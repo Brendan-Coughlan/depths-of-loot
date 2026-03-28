@@ -1,0 +1,21 @@
+INCLUDED
+
+- Tileset (16x16)
+- Props and Items​
+- Game UI
+- 2 Players (32x32) Wizard & Dwarf.
+- 3 Enemy Types (32x32) Slime, Ghast & Shroom.​
+
+CHARACTER ANIMATIONS
+
+- Players: Idle/Run/Attack/Death
+- Enemies: Idle/Run/Attack/Death
+
+PNG image format. Original size and x2/x3/x4. Information on cell dimensions are included in the download.
+
+LICENCE: This asset pack can be used in both free and commercial projects. You can modify it to suit your own needs. You may not redistribute or resell it.
+
+If you come across issues or need help, please contact me. Thanks! :)
+
+trevor-pupkin@protonmail.com
+https://trevor-pupkin.itch.io/
