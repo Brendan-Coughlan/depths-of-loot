@@ -1,7 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://d2auwmt7xo2j2"]
+[gd_scene format=3 uid="uid://d2auwmt7xo2j2"]
 
-[ext_resource type="Script" path="res://scripts/player_controller.gd" id="1_jg61u"]
+[ext_resource type="Script" uid="uid://d4eqeuqhiv30n" path="res://scripts/player_controller.gd" id="1_jg61u"]
 [ext_resource type="Texture2D" uid="uid://x1nkmh3lujxj" path="res://assets/Minimal Dungeon - Asset Pack (v2)/Players/Wizard/wizard x2.png" id="1_ph3yw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ui80"]
+size = Vector2(28, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvayj"]
 atlas = ExtResource("1_ph3yw")
@@ -141,22 +144,19 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ui80"]
-size = Vector2(28, 40)
-
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" unique_id=1742427560]
 script = ExtResource("1_jg61u")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1047943911]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_3ui80")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=380213532]
 sprite_frames = SubResource("SpriteFrames_xqwvd")
 animation = &"idle_down"
 autoplay = "idle_down"
 frame_progress = 0.894636
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 12)
-shape = SubResource("RectangleShape2D_3ui80")
-
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1357435292]
 zoom = Vector2(3, 3)
 position_smoothing_enabled = true

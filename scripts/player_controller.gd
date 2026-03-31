@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var player_animated_sprite := $AnimatedSprite2D
 
-var movement_speed := 100
+var movement_speed := 5000
 var last_direction := Vector2.DOWN
 
 func _physics_process(delta: float) -> void:
@@ -32,5 +32,5 @@ func _physics_process(delta: float) -> void:
 			else:
 				player_animated_sprite.play("idle_down")
 	
-	velocity = direction * movement_speed
+	velocity = direction * movement_speed * delta
 	move_and_slide()
