@@ -1,36 +1,46 @@
-extends CharacterBody2D
+extends Node2D
 
-@onready var player_animated_sprite := $AnimatedSprite2D
+enum States {IDLE, RUNNING, ATTACKING}
+var state: States = States.IDLE
 
-var movement_speed := 5000
+@onready var player_sprite: AnimatedSprite2D = get_parent().get_node("AnimatedSprite2D")
+
 var last_direction := Vector2.DOWN
 
-func _physics_process(delta: float) -> void:
-	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+func set_state(new_state: States, direction: Vector2):
+	if state != new_state:
+		state = new_state
 	
-	if direction != Vector2.ZERO:
-		last_direction = direction
-		
-		if abs(direction.x) > abs(direction.y):
-			# Horizontal movement
-			player_animated_sprite.flip_h = direction.x < 0
-			player_animated_sprite.play("run_right")
-		else:
-			# Vertical movement
-			if direction.y < 0:
-				player_animated_sprite.play("run_up")
-			else:
-				player_animated_sprite.play("run_down")
+	match state:
+		States.IDLE:
+			handle_idle()
+		States.RUNNING:
+			handle_running(direction)
+		States.ATTACKING:
+			pass
+
+func handle_idle():
+	if abs(last_direction.x) > abs(last_direction.y):
+		player_sprite.flip_h = last_direction.x < 0
+		play_anim("idle_right")
 	else:
-		# Idle animations based on last direction
-		if abs(last_direction.x) > abs(last_direction.y):
-			player_animated_sprite.flip_h = last_direction.x < 0
-			player_animated_sprite.play("idle_right")
+		if last_direction.y < 0:
+			play_anim("idle_up")
 		else:
-			if last_direction.y < 0:
-				player_animated_sprite.play("idle_up")
-			else:
-				player_animated_sprite.play("idle_down")
+			play_anim("idle_down")
+
+func handle_running(direction: Vector2):
+	last_direction = direction
 	
-	velocity = direction * movement_speed * delta
-	move_and_slide()
+	if abs(direction.x) > abs(direction.y):
+		player_sprite.flip_h = direction.x < 0
+		play_anim("run_right")
+	else:
+		if direction.y < 0:
+			play_anim("run_up")
+		else:
+			play_anim("run_down")
+
+func play_anim(anim_name: String):
+	if player_sprite.animation != anim_name:
+		player_sprite.play(anim_name)

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d4eqeuqhiv30n" path="res://scripts/player_controller.gd" id="1_jg61u"]
 [ext_resource type="Texture2D" uid="uid://x1nkmh3lujxj" path="res://assets/Minimal Dungeon - Asset Pack (v2)/Players/Wizard/wizard x2.png" id="1_ph3yw"]
+[ext_resource type="Script" uid="uid://cwtjyfgb26xs" path="res://scripts/player_movement.gd" id="1_qhqgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ui80"]
 size = Vector2(28, 40)
@@ -145,7 +146,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" unique_id=1742427560]
-script = ExtResource("1_jg61u")
+script = ExtResource("1_qhqgy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1047943911]
 position = Vector2(0, 12)
@@ -160,3 +161,6 @@ frame_progress = 0.894636
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1357435292]
 zoom = Vector2(3, 3)
 position_smoothing_enabled = true
+
+[node name="PlayerController" type="Node2D" parent="." unique_id=212331814]
+script = ExtResource("1_jg61u")
