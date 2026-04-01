@@ -664,16 +664,19 @@ texture_region_size = Vector2i(32, 32)
 6:20/0 = 0
 7:20/0 = 0
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_lnu2h"]
+scenes/1/scene = ExtResource("3_lnu2h")
+scenes/1/display_placeholder = true
+
 [sub_resource type="TileSet" id="TileSet_yqjtg"]
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_yqjtg")
+sources/1 = SubResource("TileSetScenesCollectionSource_lnu2h")
 
 [node name="Game" type="Node2D" unique_id=74457754]
 
-[node name="Player" parent="." unique_id=1872174230 instance=ExtResource("1_i7o4o")]
-y_sort_enabled = true
-
 [node name="World" type="Node2D" parent="." unique_id=846429850]
+y_sort_enabled = true
 
 [node name="TileMapBackground" type="TileMapLayer" parent="World" unique_id=870932820]
 z_index = -2
@@ -683,9 +686,7 @@ tile_set = SubResource("TileSet_lbhrr")
 
 [node name="TileMapObjects" type="TileMapLayer" parent="World" unique_id=373575366]
 z_index = -1
-tile_map_data = PackedByteArray("AAAAAP7/AAANAAUAAAADAAQAAAAPAAcAAAADAP7/AAAcAAAAAAD+//7/AAAdAAAAAAADAAMAAAAOAAUAAAA=")
+tile_map_data = PackedByteArray("AAAAAP7/AAANAAUAAAADAAAAAQAAAAAAAQA=")
 tile_set = SubResource("TileSet_yqjtg")
 
-[node name="TreasureChest" parent="." unique_id=135551640 instance=ExtResource("3_lnu2h")]
-y_sort_enabled = true
-position = Vector2(48, 16)
+[node name="Player" parent="World" unique_id=1872174230 instance=ExtResource("1_i7o4o")]

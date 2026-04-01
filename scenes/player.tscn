@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://se3ptgw78pjt" path="res://assets/Minimal Dungeon - Asset Pack (v2)/Players/Dwarf/dwarf x2.png" id="2_dqkch"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ui80"]
-size = Vector2(24, 28)
+size = Vector2(22, 28)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qlg0r"]
 atlas = ExtResource("2_dqkch")
@@ -149,11 +149,11 @@ animations = [{
 script = ExtResource("1_qhqgy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1047943911]
-position = Vector2(-1, -13)
+position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_3ui80")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=380213532]
-position = Vector2(0, 32)
+position = Vector2(0, 27)
 sprite_frames = SubResource("SpriteFrames_xqwvd")
 animation = &"idle_down"
 autoplay = "idle_down"
