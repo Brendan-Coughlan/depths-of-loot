@@ -7,9 +7,6 @@
 [ext_resource type="Script" uid="uid://pvlc430bnvrt" path="res://scripts/player_idle.gd" id="6_tuyoq"]
 [ext_resource type="Script" uid="uid://dgfbp4qyqhhtk" path="res://scripts/player_run.gd" id="7_fjrip"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ui80"]
-size = Vector2(22, 28)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_ujl30"]
 atlas = ExtResource("2_dqkch")
 region = Rect2(0, 320, 64, 64)
@@ -247,18 +244,21 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D" unique_id=1742427560]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ui80"]
+size = Vector2(22, 28)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1047943911]
-position = Vector2(0, -14)
-shape = SubResource("RectangleShape2D_3ui80")
+[node name="Player" type="CharacterBody2D" unique_id=1742427560]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=380213532]
 position = Vector2(0, 27)
 sprite_frames = SubResource("SpriteFrames_xqwvd")
-animation = &"idle_down"
+animation = &"attack_up"
 autoplay = "idle_down"
 offset = Vector2(0, -64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1047943911]
+position = Vector2(0, -14)
+shape = SubResource("RectangleShape2D_3ui80")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1357435292]
 zoom = Vector2(3, 3)
