@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://d2auwmt7xo2j2"]
 
-[ext_resource type="Script" uid="uid://d4eqeuqhiv30n" path="res://scripts/player_controller.gd" id="1_jg61u"]
-[ext_resource type="Script" uid="uid://cwtjyfgb26xs" path="res://scripts/player_movement.gd" id="1_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://se3ptgw78pjt" path="res://assets/Minimal Dungeon - Asset Pack (v2)/Players/Dwarf/dwarf x2.png" id="2_dqkch"]
 [ext_resource type="PackedScene" uid="uid://cp3ktrl4ufxum" path="res://scenes/interacting_component.tscn" id="4_dqkch"]
+[ext_resource type="Script" uid="uid://cynp4lvd7u4xi" path="res://scripts/state_machine.gd" id="5_qlg0r"]
+[ext_resource type="Script" uid="uid://pvlc430bnvrt" path="res://scripts/player_idle.gd" id="6_tuyoq"]
+[ext_resource type="Script" uid="uid://dgfbp4qyqhhtk" path="res://scripts/player_run.gd" id="7_fjrip"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ui80"]
 size = Vector2(22, 28)
@@ -147,7 +148,6 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" unique_id=1742427560]
-script = ExtResource("1_qhqgy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1047943911]
 position = Vector2(0, -14)
@@ -164,8 +164,19 @@ offset = Vector2(0, -64)
 zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 
-[node name="PlayerController" type="Node2D" parent="." unique_id=212331814]
-script = ExtResource("1_jg61u")
-
 [node name="InteractingComponent" parent="." unique_id=1406943900 instance=ExtResource("4_dqkch")]
 position = Vector2(0, -15)
+
+[node name="PlayerStateMachine" type="Node" parent="." unique_id=1204974527 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("5_qlg0r")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="PlayerStateMachine" unique_id=1675297445 node_paths=PackedStringArray("player_sprite")]
+script = ExtResource("6_tuyoq")
+player_sprite = NodePath("../../AnimatedSprite2D")
+metadata/_custom_type_script = "uid://pvlc430bnvrt"
+
+[node name="Run" type="Node" parent="PlayerStateMachine" unique_id=1761328944 node_paths=PackedStringArray("player_sprite")]
+script = ExtResource("7_fjrip")
+player_sprite = NodePath("../../AnimatedSprite2D")
+metadata/_custom_type_script = "uid://dgfbp4qyqhhtk"
