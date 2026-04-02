@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://d4eqeuqhiv30n" path="res://scripts/player_controller.gd" id="1_jg61u"]
 [ext_resource type="Script" uid="uid://cwtjyfgb26xs" path="res://scripts/player_movement.gd" id="1_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://se3ptgw78pjt" path="res://assets/Minimal Dungeon - Asset Pack (v2)/Players/Dwarf/dwarf x2.png" id="2_dqkch"]
+[ext_resource type="PackedScene" uid="uid://cp3ktrl4ufxum" path="res://scenes/interacting_component.tscn" id="4_dqkch"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ui80"]
 size = Vector2(22, 28)
@@ -165,3 +166,6 @@ position_smoothing_enabled = true
 
 [node name="PlayerController" type="Node2D" parent="." unique_id=212331814]
 script = ExtResource("1_jg61u")
+
+[node name="InteractingComponent" parent="." unique_id=1406943900 instance=ExtResource("4_dqkch")]
+position = Vector2(0, -15)
