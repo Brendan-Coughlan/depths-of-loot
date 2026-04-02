@@ -5,8 +5,9 @@ class_name PlayerRun
 @export var player_sprite: AnimatedSprite2D
 @export var movement_speed : int = 5000
 
-func enter():
-	print(player)
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("attack"):
+		Transitioned.emit(self, "attack")
 
 func physics_update(_delta: float):
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()

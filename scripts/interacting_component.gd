@@ -10,7 +10,7 @@ func _input(event: InputEvent) -> void:
 			can_interact = false
 			interact_label.hide()
 			
-			await  current_interactions[0].interact.call()
+			await current_interactions[0].interact.call()
 			
 			can_interact = true
 
