@@ -130,6 +130,7 @@ animations = [{
 size = Vector2(28, 13)
 
 [node name="Enemy" type="CharacterBody2D" unique_id=456978675]
+collision_mask = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2034060879]
 position = Vector2(0, -32)

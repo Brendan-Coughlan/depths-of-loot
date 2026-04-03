@@ -335,7 +335,7 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSet" id="TileSet_lbhrr"]
 tile_size = Vector2i(32, 32)
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 2
 sources/0 = SubResource("TileSetAtlasSource_lnu2h")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
