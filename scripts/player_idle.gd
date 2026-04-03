@@ -20,8 +20,6 @@ func enter():
 	else:
 		player_sprite.play("idle_up" if last_direction.y < 0 else "idle_down")
 		
-	print("hello")
-
 func physics_update(_delta: float):
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
 		
