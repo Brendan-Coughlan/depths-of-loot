@@ -1,16 +1,112 @@
 [gd_scene format=3 uid="uid://h3al0i2uaq2i"]
 
 [ext_resource type="Script" uid="uid://cd2rwru7apx7u" path="res://scripts/inventory.gd" id="1_qw0r6"]
+[ext_resource type="PackedScene" uid="uid://dm3o71k2vlhxd" path="res://scenes/inventory_slot.tscn" id="2_hj2ta"]
 
-[node name="Inventory" type="Node" unique_id=1822213814]
+[sub_resource type="LabelSettings" id="LabelSettings_hj2ta"]
+font_size = 18
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="Inventory" type="CanvasLayer" unique_id=567974528]
 script = ExtResource("1_qw0r6")
 
 [node name="InventoryWindow" type="Panel" parent="." unique_id=493690514]
-anchors_preset = -1
-anchor_right = 0.5173611
-anchor_bottom = 0.5308642
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -306.5
+offset_top = -167.5
+offset_right = 306.5
+offset_bottom = 167.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-metadata/_edit_use_anchors_ = true
+
+[node name="SlotContainer" type="GridContainer" parent="InventoryWindow" unique_id=626662425]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -298.0
+offset_top = -161.0
+offset_right = 298.0
+offset_bottom = 139.00002
+grow_horizontal = 2
+grow_vertical = 2
+columns = 6
+
+[node name="inventorySlot" parent="InventoryWindow/SlotContainer" unique_id=1224792471 instance=ExtResource("2_hj2ta")]
+layout_mode = 2
+
+[node name="inventorySlot2" parent="InventoryWindow/SlotContainer" unique_id=1177378698 instance=ExtResource("2_hj2ta")]
+layout_mode = 2
+
+[node name="inventorySlot3" parent="InventoryWindow/SlotContainer" unique_id=1182609461 instance=ExtResource("2_hj2ta")]
+layout_mode = 2
+
+[node name="inventorySlot4" parent="InventoryWindow/SlotContainer" unique_id=983445557 instance=ExtResource("2_hj2ta")]
+layout_mode = 2
+
+[node name="inventorySlot5" parent="InventoryWindow/SlotContainer" unique_id=862414728 instance=ExtResource("2_hj2ta")]
+layout_mode = 2
+
+[node name="inventorySlot6" parent="InventoryWindow/SlotContainer" unique_id=1878887520 instance=ExtResource("2_hj2ta")]
+layout_mode = 2
+
+[node name="inventorySlot7" parent="InventoryWindow/SlotContainer" unique_id=930819831 instance=ExtResource("2_hj2ta")]
+layout_mode = 2
+
+[node name="inventorySlot8" parent="InventoryWindow/SlotContainer" unique_id=276540582 instance=ExtResource("2_hj2ta")]
+layout_mode = 2
+
+[node name="inventorySlot9" parent="InventoryWindow/SlotContainer" unique_id=1754563127 instance=ExtResource("2_hj2ta")]
+layout_mode = 2
+
+[node name="inventorySlot10" parent="InventoryWindow/SlotContainer" unique_id=1250143041 instance=ExtResource("2_hj2ta")]
+layout_mode = 2
+
+[node name="inventorySlot11" parent="InventoryWindow/SlotContainer" unique_id=501261753 instance=ExtResource("2_hj2ta")]
+layout_mode = 2
+
+[node name="inventorySlot12" parent="InventoryWindow/SlotContainer" unique_id=1419772222 instance=ExtResource("2_hj2ta")]
+layout_mode = 2
+
+[node name="inventorySlot13" parent="InventoryWindow/SlotContainer" unique_id=594710582 instance=ExtResource("2_hj2ta")]
+layout_mode = 2
+
+[node name="inventorySlot14" parent="InventoryWindow/SlotContainer" unique_id=2136643655 instance=ExtResource("2_hj2ta")]
+layout_mode = 2
+
+[node name="inventorySlot15" parent="InventoryWindow/SlotContainer" unique_id=1740787341 instance=ExtResource("2_hj2ta")]
+layout_mode = 2
+
+[node name="inventorySlot16" parent="InventoryWindow/SlotContainer" unique_id=1343752586 instance=ExtResource("2_hj2ta")]
+layout_mode = 2
+
+[node name="inventorySlot17" parent="InventoryWindow/SlotContainer" unique_id=262319921 instance=ExtResource("2_hj2ta")]
+layout_mode = 2
+
+[node name="inventorySlot18" parent="InventoryWindow/SlotContainer" unique_id=303840221 instance=ExtResource("2_hj2ta")]
+layout_mode = 2
+
+[node name="InfoText" type="Label" parent="InventoryWindow" unique_id=1211522456]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -0.5
+offset_top = -23.0
+offset_right = 0.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Contain info about the selected item"
+label_settings = SubResource("LabelSettings_hj2ta")
+horizontal_alignment = 1
+vertical_alignment = 1
