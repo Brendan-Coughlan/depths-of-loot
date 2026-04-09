@@ -1,7 +1,7 @@
 extends State
 class_name PlayerDeath
 
-@onready var player: CharacterBody2D = $"../.."
+@export var player: CharacterBody2D
 @export var player_sprite: AnimatedSprite2D
 
 func enter() -> void:
