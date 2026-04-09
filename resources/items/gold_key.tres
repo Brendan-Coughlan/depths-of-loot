@@ -11,5 +11,4 @@ region = Rect2(64, 480, 32, 32)
 script = ExtResource("1_wck62")
 name = "Gold Key"
 icon = SubResource("AtlasTexture_bhu1v")
-max_stack = 1
 metadata/_custom_type_script = "uid://c5dh1m3p8jocx"
