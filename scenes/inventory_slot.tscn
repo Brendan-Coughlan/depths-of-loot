@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dm3o71k2vlhxd"]
 
-[ext_resource type="Script" uid="uid://k3j6is1fpwap" path="res://scripts/inventory_slot.gd" id="1_bxqf6"]
+[ext_resource type="Script" uid="uid://k3j6is1fpwap" path="res://scripts/inventory/inventory_slot.gd" id="1_bxqf6"]
 [ext_resource type="Texture2D" uid="uid://vpcieeu73n5p" path="res://assets/Minimal Dungeon - Asset Pack (v2)/Tileset, Props & UI/tileset, props & ui x2.png" id="1_dxvxp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qw0r6"]

@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://se3ptgw78pjt" path="res://assets/Minimal Dungeon - Asset Pack (v2)/Players/Dwarf/dwarf x2.png" id="2_dqkch"]
 [ext_resource type="PackedScene" uid="uid://cp3ktrl4ufxum" path="res://scenes/interacting_component.tscn" id="4_dqkch"]
 [ext_resource type="Script" uid="uid://cynp4lvd7u4xi" path="res://scripts/state_machine.gd" id="5_qlg0r"]
-[ext_resource type="Script" uid="uid://cf73civ7afwjo" path="res://scripts/player_attack.gd" id="6_fjrip"]
-[ext_resource type="Script" uid="uid://pvlc430bnvrt" path="res://scripts/player_idle.gd" id="6_tuyoq"]
-[ext_resource type="Script" uid="uid://dgfbp4qyqhhtk" path="res://scripts/player_run.gd" id="7_fjrip"]
+[ext_resource type="Script" uid="uid://cf73civ7afwjo" path="res://scripts/player_state_machine/player_attack.gd" id="6_fjrip"]
+[ext_resource type="Script" uid="uid://pvlc430bnvrt" path="res://scripts/player_state_machine/player_idle.gd" id="6_tuyoq"]
+[ext_resource type="Script" uid="uid://dgfbp4qyqhhtk" path="res://scripts/player_state_machine/player_run.gd" id="7_fjrip"]
 [ext_resource type="PackedScene" uid="uid://h3al0i2uaq2i" path="res://scenes/inventory.tscn" id="7_smehm"]
-[ext_resource type="Script" uid="uid://q3tu5hwbqobb" path="res://scripts/player_death.gd" id="7_ur7pv"]
+[ext_resource type="Script" uid="uid://q3tu5hwbqobb" path="res://scripts/player_state_machine/player_death.gd" id="7_ur7pv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ujl30"]
 atlas = ExtResource("2_dqkch")
