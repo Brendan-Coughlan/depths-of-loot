@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="depths-of-loot"
-run/main_scene="res://scenes/game.tscn"
+run/main_scene="uid://bywhgtvmcxm2a"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
