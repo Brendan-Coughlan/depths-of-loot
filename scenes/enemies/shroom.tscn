@@ -1,0 +1,182 @@
+[gd_scene format=3 uid="uid://bd4ugym8rbdkw"]
+
+[ext_resource type="Texture2D" uid="uid://d1mbu48xl1lma" path="res://assets/Minimal Dungeon - Asset Pack (v2)/Enemies/Shroom/shroom x2.png" id="1_72swf"]
+[ext_resource type="Script" uid="uid://cynp4lvd7u4xi" path="res://scripts/state_machine.gd" id="2_ncvao"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ype3m"]
+atlas = ExtResource("1_72swf")
+region = Rect2(0, 640, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7ass"]
+atlas = ExtResource("1_72swf")
+region = Rect2(64, 640, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sokwp"]
+atlas = ExtResource("1_72swf")
+region = Rect2(128, 640, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lr5x0"]
+atlas = ExtResource("1_72swf")
+region = Rect2(192, 640, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vjlt"]
+atlas = ExtResource("1_72swf")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7fto"]
+atlas = ExtResource("1_72swf")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bl3ro"]
+atlas = ExtResource("1_72swf")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uj0dl"]
+atlas = ExtResource("1_72swf")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2b7ds"]
+atlas = ExtResource("1_72swf")
+region = Rect2(64, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2lsr"]
+atlas = ExtResource("1_72swf")
+region = Rect2(128, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rx7fs"]
+atlas = ExtResource("1_72swf")
+region = Rect2(192, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_raxk8"]
+atlas = ExtResource("1_72swf")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cj18t"]
+atlas = ExtResource("1_72swf")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dccba"]
+atlas = ExtResource("1_72swf")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahlwi"]
+atlas = ExtResource("1_72swf")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smhvs"]
+atlas = ExtResource("1_72swf")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7k2w"]
+atlas = ExtResource("1_72swf")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kb40n"]
+atlas = ExtResource("1_72swf")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vof0i"]
+atlas = ExtResource("1_72swf")
+region = Rect2(192, 128, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ebgy8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ype3m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7ass")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sokwp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lr5x0")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vjlt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7fto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bl3ro")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uj0dl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2b7ds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2lsr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rx7fs")
+}],
+"loop": true,
+"name": &"run_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_raxk8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cj18t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dccba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahlwi")
+}],
+"loop": true,
+"name": &"run_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smhvs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7k2w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kb40n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vof0i")
+}],
+"loop": true,
+"name": &"run_up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mma71"]
+size = Vector2(22, 29)
+
+[node name="Shroom" type="CharacterBody2D" unique_id=2041274393]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1641038735]
+sprite_frames = SubResource("SpriteFrames_ebgy8")
+animation = &"death"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1964603989]
+position = Vector2(0, 13.5)
+shape = SubResource("RectangleShape2D_mma71")
+
+[node name="EnemyStateMachine" type="Node" parent="." unique_id=1335479577]
+script = ExtResource("2_ncvao")

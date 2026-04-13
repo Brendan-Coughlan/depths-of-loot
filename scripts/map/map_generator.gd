@@ -5,59 +5,76 @@ class_name MapGenerator
 const TILE_DATA: Dictionary = {
 	"floor": {
 		"source_id": 0,
-		"atlas_coords": Vector2(0, 10)
+		"atlas_coords": Vector2i(0, 10)
 	},
 	"wall": {
 		"source_id": 0,
-		"atlas_coords": Vector2(32, 4)
+		"atlas_coords": Vector2i(32, 4)
 	}
 }
 
 @export var gen_seed: int = 0
 @export var randomize_seed: bool = true
-@export var map_dimensions: Vector2i = Vector2i(40,40)
+@export var map_dimensions: Vector2i = Vector2i(40, 40)
 @export var total_steps: int = 600
 @export var boundary_padding: int = 4
-# Each time click Generate Map, call generate_map function
 @export_tool_button("Generate Map") var map_gen_button = generate_map
 @export var tilemap_layer: TileMapLayer
 
+var floor_cells: Array[Vector2i] = []
+
 func _ready() -> void:
-	generate_map()
-	
-func generate_map() -> void:
+	if not Engine.is_editor_hint():
+		generate_map()
+
+func generate_map() -> Array[Vector2i]:
 	if randomize_seed:
 		gen_seed = randi()
+
 	seed(gen_seed)
+	floor_cells.clear()
 	tilemap_layer.clear()
+
 	draw_tile_rect(map_dimensions, TILE_DATA.wall.source_id, TILE_DATA.wall.atlas_coords)
-	draw_walker_generation(map_dimensions, boundary_padding, 
-		TILE_DATA.floor.source_id, TILE_DATA.floor.atlas_coords)
-	
-# draw wall tiles on TileMapLayer 
+	draw_walker_generation(
+		map_dimensions,
+		boundary_padding,
+		TILE_DATA.floor.source_id,
+		TILE_DATA.floor.atlas_coords
+	)
+
+	return floor_cells
+
 func draw_tile_rect(dimensions: Vector2i, source_id: int, atlas_coords: Vector2i) -> void:
 	for x in range(dimensions.x):
 		for y in range(dimensions.y):
-			tilemap_layer.set_cell(Vector2(x,y), source_id, atlas_coords)
-			
+			tilemap_layer.set_cell(Vector2i(x, y), source_id, atlas_coords)
+
 func draw_walker_generation(dimensions: Vector2i, padding: int, source_id: int, atlas_coords: Vector2i) -> void:
-	var directions: Array = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
-	# current position starts from the center of the map
+	var directions: Array[Vector2i] = [
+		Vector2i.LEFT,
+		Vector2i.RIGHT,
+		Vector2i.UP,
+		Vector2i.DOWN
+	]
+
 	var cur_pos: Vector2i = Vector2i(
 		floor(dimensions.x / 2.0),
-		floor(dimensions.y / 2.0))
+		floor(dimensions.y / 2.0)
+	)
+
 	var bounds: Rect2i = Rect2i(0, 0, dimensions.x, dimensions.y)
-	
+
 	for side in [SIDE_LEFT, SIDE_RIGHT, SIDE_TOP, SIDE_BOTTOM]:
 		bounds = bounds.grow_side(side, -padding)
 
 	for i in range(total_steps):
 		if bounds.has_point(cur_pos):
-			tilemap_layer.set_cell(cur_pos, source_id, atlas_coords)
-		
+			carve_floor(cur_pos, source_id, atlas_coords)
+
 		var move_dir: Vector2i = directions.pick_random()
 		var next_pos: Vector2i = cur_pos + move_dir
-		
+
 		if bounds.has_point(next_pos):
 			cur_pos = next_pos
 		else:
@@ -66,18 +83,12 @@ func draw_walker_generation(dimensions: Vector2i, padding: int, source_id: int, 
 				if bounds.has_point(cur_pos + d):
 					cur_pos += d
 					break
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
+func carve_floor(cell: Vector2i, source_id: int, atlas_coords: Vector2i) -> void:
+	tilemap_layer.set_cell(cell, source_id, atlas_coords)
+
+	if not floor_cells.has(cell):
+		floor_cells.append(cell)
+
+func get_floor_cells() -> Array[Vector2i]:
+	return floor_cells.duplicate()

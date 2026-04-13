@@ -129,15 +129,14 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7p1mj"]
 size = Vector2(28, 13)
 
-[node name="Enemy" type="CharacterBody2D" unique_id=456978675]
+[node name="Slime" type="CharacterBody2D" unique_id=456978675]
 collision_mask = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2034060879]
 position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_8tegq")
-animation = &"idle_down"
+animation = &"run_up"
 autoplay = "idle_down"
-frame_progress = 0.3779068
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1947483105]
 position = Vector2(0, -6.5)
