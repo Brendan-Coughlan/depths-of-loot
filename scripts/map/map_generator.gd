@@ -22,6 +22,7 @@ const TILE_DATA: Dictionary = {
 @export var tilemap_layer: TileMapLayer
 
 var floor_cells: Array[Vector2i] = []
+var enemy_spawn_cells: Array[Vector2i] = []
 
 func _ready() -> void:
 	if not Engine.is_editor_hint():
@@ -33,6 +34,7 @@ func generate_map() -> Array[Vector2i]:
 
 	seed(gen_seed)
 	floor_cells.clear()
+	enemy_spawn_cells.clear()
 	tilemap_layer.clear()
 
 	draw_tile_rect(map_dimensions, TILE_DATA.wall.source_id, TILE_DATA.wall.atlas_coords)
@@ -42,6 +44,8 @@ func generate_map() -> Array[Vector2i]:
 		TILE_DATA.floor.source_id,
 		TILE_DATA.floor.atlas_coords
 	)
+
+	build_enemy_spawn_cells()
 
 	return floor_cells
 
@@ -90,5 +94,14 @@ func carve_floor(cell: Vector2i, source_id: int, atlas_coords: Vector2i) -> void
 	if not floor_cells.has(cell):
 		floor_cells.append(cell)
 
+func build_enemy_spawn_cells() -> void:
+	enemy_spawn_cells.clear()
+
+	for cell in floor_cells:
+		enemy_spawn_cells.append(cell)
+
 func get_floor_cells() -> Array[Vector2i]:
 	return floor_cells.duplicate()
+
+func get_enemy_spawn_cells() -> Array[Vector2i]:
+	return enemy_spawn_cells.duplicate()

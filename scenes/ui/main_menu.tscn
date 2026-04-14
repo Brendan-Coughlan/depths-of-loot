@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://bywhgtvmcxm2a"]
 
-[ext_resource type="Script" uid="uid://bb0yqkysrknoi" path="res://scripts/main_menu.gd" id="1_ekxnf"]
-[ext_resource type="Texture2D" uid="uid://de1c7b61wlb8w" path="res://assets/Minimal Dungeon - Asset Pack (v2)/UI/main_menu_bg.png" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://bb0yqkysrknoi" path="res://scripts/main_menu.gd" id="1_fe2o3"]
+[ext_resource type="Texture2D" uid="uid://de1c7b61wlb8w" path="res://assets/Minimal Dungeon - Asset Pack (v2)/UI/main_menu_bg.png" id="2_1g8jr"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ekxnf"]
-texture = ExtResource("1_l6cm7")
+texture = ExtResource("2_1g8jr")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vue75"]
 bg_color = Color(1, 1, 1, 1)
@@ -49,7 +49,7 @@ offset_right = 2.0
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ekxnf")
+script = ExtResource("1_fe2o3")
 
 [node name="Background" type="Panel" parent="." unique_id=580036473]
 layout_mode = 1

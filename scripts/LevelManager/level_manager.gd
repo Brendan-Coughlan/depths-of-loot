@@ -8,6 +8,7 @@ class_name LevelManager
 var player_instance: CharacterBody2D = null
 
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	setup_level()
 
 func setup_level() -> void:

@@ -705,6 +705,7 @@ collision_mask = 1
 
 [node name="MapGenerator" parent="." unique_id=1465950615 instance=ExtResource("5_p57ef")]
 visible = false
+gen_seed = 1407516739
 
 [node name="LevelManager" type="Node" parent="." unique_id=914234243 node_paths=PackedStringArray("map_generator", "entities_node")]
 script = ExtResource("6_u5sy4")

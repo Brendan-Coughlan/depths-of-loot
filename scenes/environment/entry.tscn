@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b11ycl41hbu32"]
+
+[ext_resource type="Script" uid="uid://drgo0itq6g4n4" path="res://scripts/environment/entry.gd" id="1_prfck"]
+[ext_resource type="Texture2D" uid="uid://vpcieeu73n5p" path="res://assets/Minimal Dungeon - Asset Pack (v2)/Tileset, Props & UI/tileset, props & ui x2.png" id="2_ug4wg"]
+
+[node name="Entry" type="Area2D" unique_id=449370481]
+script = ExtResource("1_prfck")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=718148718]
+texture = ExtResource("2_ug4wg")
+region_enabled = true
+region_rect = Rect2(384, 224, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1739083983]
