@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name Enemy
 
+@export var enemy_state_machine: Node
 var last_direction: Vector2 = Vector2.DOWN
 
 func update_last_direction(direction: Vector2):
@@ -11,4 +12,4 @@ func update_last_direction(direction: Vector2):
 			last_direction = Vector2(0, sign(direction.y))
 
 func take_damage():
-	queue_free()
+	enemy_state_machine.on_child_transition(enemy_state_machine.current_state, "death")

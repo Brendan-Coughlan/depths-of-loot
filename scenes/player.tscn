@@ -200,7 +200,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_487ah")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -297,10 +297,8 @@ position_smoothing_enabled = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=380213532]
 position = Vector2(0, 27)
 sprite_frames = SubResource("SpriteFrames_xqwvd")
-animation = &"attack_right"
+animation = &"death"
 autoplay = "idle_down"
-frame = 2
-frame_progress = 0.2199787
 offset = Vector2(0, -64)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1047943911]
@@ -308,6 +306,8 @@ position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_3ui80")
 
 [node name="HitArea2D" type="Area2D" parent="." unique_id=906782775]
+collision_layer = 8
+collision_mask = 0
 
 [node name="HtiBox" type="CollisionShape2D" parent="HitArea2D" unique_id=92344310]
 position = Vector2(22, -18.5)

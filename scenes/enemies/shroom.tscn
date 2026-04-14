@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://cynp4lvd7u4xi" path="res://scripts/state_machine.gd" id="2_ncvao"]
 [ext_resource type="Script" uid="uid://c3rjtxyl8jwjv" path="res://scripts/enemy_state_machine/enemy_idle.gd" id="3_ncvao"]
 [ext_resource type="Script" uid="uid://dw5wdkkw0fefj" path="res://scripts/hurt_area_2d.gd" id="5_a7ass"]
+[ext_resource type="Script" uid="uid://bj5aisjxhom3l" path="res://scripts/enemy_state_machine/enemy_death.gd" id="6_sokwp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ype3m"]
 atlas = ExtResource("1_72swf")
@@ -97,7 +98,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lr5x0")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -183,13 +184,14 @@ size = Vector2(24, 30)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a7ass"]
 size = Vector2(24, 30)
 
-[node name="Shroom" type="CharacterBody2D" unique_id=2041274393]
-collision_layer = 2
+[node name="Shroom" type="CharacterBody2D" unique_id=2041274393 node_paths=PackedStringArray("enemy_state_machine")]
+collision_layer = 4
 script = ExtResource("1_ype3m")
+enemy_state_machine = NodePath("EnemyStateMachine")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1641038735]
 sprite_frames = SubResource("SpriteFrames_ebgy8")
-animation = &"idle_down"
+animation = &"idle_up"
 autoplay = "idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1964603989]
@@ -197,6 +199,8 @@ position = Vector2(0, 17)
 shape = SubResource("RectangleShape2D_mma71")
 
 [node name="HurtArea2D" type="Area2D" parent="." unique_id=1224150657]
+collision_layer = 4
+collision_mask = 8
 script = ExtResource("5_a7ass")
 metadata/_custom_type_script = "uid://dw5wdkkw0fefj"
 
@@ -204,9 +208,18 @@ metadata/_custom_type_script = "uid://dw5wdkkw0fefj"
 position = Vector2(0, 17)
 shape = SubResource("RectangleShape2D_a7ass")
 
-[node name="EnemyStateMachine" type="Node" parent="." unique_id=1335479577]
+[node name="EnemyStateMachine" type="Node" parent="." unique_id=1335479577 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_ncvao")
+initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="EnemyStateMachine" unique_id=1803188633]
+[node name="Idle" type="Node" parent="EnemyStateMachine" unique_id=1803188633 node_paths=PackedStringArray("enemy", "enemy_sprite")]
 script = ExtResource("3_ncvao")
+enemy = NodePath("../..")
+enemy_sprite = NodePath("../../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://c3rjtxyl8jwjv"
+
+[node name="Death" type="Node" parent="EnemyStateMachine" unique_id=773851939 node_paths=PackedStringArray("enemy", "enemy_sprite")]
+script = ExtResource("6_sokwp")
+enemy = NodePath("../..")
+enemy_sprite = NodePath("../../AnimatedSprite2D")
+metadata/_custom_type_script = "uid://bj5aisjxhom3l"
