@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://bd4ugym8rbdkw"]
 
 [ext_resource type="Texture2D" uid="uid://d1mbu48xl1lma" path="res://assets/Minimal Dungeon - Asset Pack (v2)/Enemies/Shroom/shroom x2.png" id="1_72swf"]
+[ext_resource type="Script" uid="uid://baap6pl3jp53b" path="res://scripts/enemy.gd" id="1_ype3m"]
 [ext_resource type="Script" uid="uid://cynp4lvd7u4xi" path="res://scripts/state_machine.gd" id="2_ncvao"]
+[ext_resource type="Script" uid="uid://c3rjtxyl8jwjv" path="res://scripts/enemy_state_machine/enemy_idle.gd" id="3_ncvao"]
+[ext_resource type="Script" uid="uid://dw5wdkkw0fefj" path="res://scripts/hurt_area_2d.gd" id="5_a7ass"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ype3m"]
 atlas = ExtResource("1_72swf")
@@ -19,17 +22,17 @@ region = Rect2(128, 640, 64, 64)
 atlas = ExtResource("1_72swf")
 region = Rect2(192, 640, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6vjlt"]
-atlas = ExtResource("1_72swf")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r7fto"]
-atlas = ExtResource("1_72swf")
-region = Rect2(64, 0, 64, 64)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_bl3ro"]
 atlas = ExtResource("1_72swf")
 region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7fto"]
+atlas = ExtResource("1_72swf")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vjlt"]
+atlas = ExtResource("1_72swf")
+region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uj0dl"]
 atlas = ExtResource("1_72swf")
@@ -100,16 +103,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6vjlt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r7fto")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_bl3ro")
 }],
 "loop": true,
-"name": &"idle",
+"name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7fto")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vjlt")
+}],
+"loop": true,
+"name": &"idle_up",
 "speed": 5.0
 }, {
 "frames": [{
@@ -165,18 +178,35 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mma71"]
-size = Vector2(22, 29)
+size = Vector2(24, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a7ass"]
+size = Vector2(24, 30)
 
 [node name="Shroom" type="CharacterBody2D" unique_id=2041274393]
+collision_layer = 2
+script = ExtResource("1_ype3m")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1641038735]
 sprite_frames = SubResource("SpriteFrames_ebgy8")
-animation = &"death"
-autoplay = "idle"
+animation = &"idle_down"
+autoplay = "idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1964603989]
-position = Vector2(0, 13.5)
+position = Vector2(0, 17)
 shape = SubResource("RectangleShape2D_mma71")
+
+[node name="HurtArea2D" type="Area2D" parent="." unique_id=1224150657]
+script = ExtResource("5_a7ass")
+metadata/_custom_type_script = "uid://dw5wdkkw0fefj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea2D" unique_id=541464722]
+position = Vector2(0, 17)
+shape = SubResource("RectangleShape2D_a7ass")
 
 [node name="EnemyStateMachine" type="Node" parent="." unique_id=1335479577]
 script = ExtResource("2_ncvao")
+
+[node name="Idle" type="Node" parent="EnemyStateMachine" unique_id=1803188633]
+script = ExtResource("3_ncvao")
+metadata/_custom_type_script = "uid://c3rjtxyl8jwjv"

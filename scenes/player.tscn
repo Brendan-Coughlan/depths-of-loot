@@ -283,25 +283,36 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ui80"]
 size = Vector2(22, 28)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ur7pv"]
+size = Vector2(14, 33)
+
 [node name="Player" type="CharacterBody2D" unique_id=1742427560]
 collision_mask = 2
 script = ExtResource("1_ur7pv")
 
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1357435292]
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=380213532]
 position = Vector2(0, 27)
 sprite_frames = SubResource("SpriteFrames_xqwvd")
-animation = &"death"
+animation = &"attack_right"
 autoplay = "idle_down"
-frame_progress = 0.04526278
+frame = 2
+frame_progress = 0.2199787
 offset = Vector2(0, -64)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1047943911]
 position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_3ui80")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1357435292]
-zoom = Vector2(3, 3)
-position_smoothing_enabled = true
+[node name="HitArea2D" type="Area2D" parent="." unique_id=906782775]
+
+[node name="HtiBox" type="CollisionShape2D" parent="HitArea2D" unique_id=92344310]
+position = Vector2(22, -18.5)
+shape = SubResource("RectangleShape2D_ur7pv")
+disabled = true
 
 [node name="InteractingComponent" parent="." unique_id=1406943900 instance=ExtResource("4_dqkch")]
 position = Vector2(0, -15)
@@ -322,10 +333,11 @@ player = NodePath("../..")
 player_sprite = NodePath("../../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://dgfbp4qyqhhtk"
 
-[node name="Attack" type="Node" parent="PlayerStateMachine" unique_id=976050582 node_paths=PackedStringArray("player", "player_sprite")]
+[node name="Attack" type="Node" parent="PlayerStateMachine" unique_id=976050582 node_paths=PackedStringArray("player", "player_sprite", "player_hitbox")]
 script = ExtResource("6_fjrip")
 player = NodePath("../..")
 player_sprite = NodePath("../../AnimatedSprite2D")
+player_hitbox = NodePath("../../HitArea2D/HtiBox")
 metadata/_custom_type_script = "uid://cf73civ7afwjo"
 
 [node name="Death" type="Node" parent="PlayerStateMachine" unique_id=221767128 node_paths=PackedStringArray("player", "player_sprite")]
