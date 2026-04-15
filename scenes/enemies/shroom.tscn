@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://c3rjtxyl8jwjv" path="res://scripts/enemy_state_machine/enemy_idle.gd" id="3_ncvao"]
 [ext_resource type="Script" uid="uid://dw5wdkkw0fefj" path="res://scripts/hurt_area_2d.gd" id="5_a7ass"]
 [ext_resource type="Script" uid="uid://bj5aisjxhom3l" path="res://scripts/enemy_state_machine/enemy_death.gd" id="6_sokwp"]
+[ext_resource type="Script" uid="uid://dh1eqpo6p6vd6" path="res://scripts/enemy_state_machine/enemy_chase.gd" id="7_lr5x0"]
+[ext_resource type="Script" uid="uid://ctvisqq68ob1j" path="res://scripts/enemy_wander.gd" id="8_6vjlt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ype3m"]
 atlas = ExtResource("1_72swf")
@@ -210,7 +212,7 @@ shape = SubResource("RectangleShape2D_a7ass")
 
 [node name="EnemyStateMachine" type="Node" parent="." unique_id=1335479577 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_ncvao")
-initial_state = NodePath("Idle")
+initial_state = NodePath("Chase")
 
 [node name="Idle" type="Node" parent="EnemyStateMachine" unique_id=1803188633 node_paths=PackedStringArray("enemy", "enemy_sprite")]
 script = ExtResource("3_ncvao")
@@ -223,3 +225,15 @@ script = ExtResource("6_sokwp")
 enemy = NodePath("../..")
 enemy_sprite = NodePath("../../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://bj5aisjxhom3l"
+
+[node name="Chase" type="Node" parent="EnemyStateMachine" unique_id=1238711627 node_paths=PackedStringArray("enemy", "enemy_sprite")]
+script = ExtResource("7_lr5x0")
+enemy = NodePath("../..")
+enemy_sprite = NodePath("../../AnimatedSprite2D")
+metadata/_custom_type_script = "uid://dh1eqpo6p6vd6"
+
+[node name="Wander" type="Node" parent="EnemyStateMachine" unique_id=1663264135 node_paths=PackedStringArray("enemy", "enemy_sprite")]
+script = ExtResource("8_6vjlt")
+enemy = NodePath("../..")
+enemy_sprite = NodePath("../../AnimatedSprite2D")
+metadata/_custom_type_script = "uid://ctvisqq68ob1j"

@@ -1,34 +1,21 @@
 extends State
-class_name EnemyWander
+class_name EnemyChase
 
 @export var enemy: Enemy
 @export var enemy_sprite: AnimatedSprite2D
+@export var target: Node2D
 @export var movement_speed: float = 5000.0
-@export var move_time: float = 2.0
-
-@onready var timer: Timer = Timer.new()
-
-var direction : Vector2 = Vector2.ZERO
-var possible_directions : Array = [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT] 
-
-func _ready() -> void:
-	add_child(timer)
-	timer.wait_time = move_time
-	timer.start()
-	timer.timeout.connect(_on_timer_timeout)
 
 func enter() -> void:
-	randomize_direction()
+	target = get_tree().get_first_node_in_group("player")
 	play_run_animation()
 
-func _on_timer_timeout():
-	print("Finished")
-	randomize_direction()
-
-func randomize_direction():
-	direction = possible_directions[randi() % possible_directions.size()]
-	
 func physics_update(_delta: float):
+	if target == null:
+		return
+		
+	var direction = (target.global_position - enemy.global_position).normalized()
+	
 	if direction != Vector2.ZERO:
 		enemy.velocity = direction * movement_speed * _delta
 		
