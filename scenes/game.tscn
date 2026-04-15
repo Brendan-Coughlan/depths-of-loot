@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bd4ugym8rbdkw" path="res://scenes/enemies/shroom.tscn" id="4_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://dc2wj6yxukjol" path="res://scenes/map_generator.tscn" id="5_p57ef"]
 [ext_resource type="Script" uid="uid://cs3l178w5vs2i" path="res://scripts/LevelManager/level_manager.gd" id="6_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://b11ycl41hbu32" path="res://scenes/environment/entry.tscn" id="8_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://d2jnjhl6cjrql" path="res://scenes/environment/exit.tscn" id="9_vtaks"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("2_yqjtg")
@@ -698,17 +700,24 @@ tile_map_data = PackedByteArray("AAAAAP7/AAANAAUAAAADAAAAAQAAAAAAAQADAP//AQAAAAA
 tile_set = SubResource("TileSet_yqjtg")
 
 [node name="Player" parent="World" unique_id=1872174230 instance=ExtResource("1_i7o4o")]
+z_index = 10
 collision_layer = 2
 collision_mask = 1
 
 [node name="Entities" type="Node2D" parent="World" unique_id=1491458311]
 
+[node name="Objects" type="Node2D" parent="World" unique_id=1246075946]
+
 [node name="MapGenerator" parent="." unique_id=1465950615 instance=ExtResource("5_p57ef")]
 visible = false
-gen_seed = 1407516739
+gen_seed = 2468369149
+map_dimensions = Vector2i(80, 80)
+total_steps = 2000
 
-[node name="LevelManager" type="Node" parent="." unique_id=914234243 node_paths=PackedStringArray("map_generator", "entities_node")]
+[node name="LevelManager" type="Node" parent="." unique_id=914234243 node_paths=PackedStringArray("map_generator", "object_container", "player")]
 script = ExtResource("6_u5sy4")
 map_generator = NodePath("../MapGenerator")
-entities_node = NodePath("../World/Entities")
-player_scene = ExtResource("1_i7o4o")
+entry_scene = ExtResource("8_0tnpc")
+exit_scene = ExtResource("9_vtaks")
+object_container = NodePath("../World/Objects")
+player = NodePath("../World/Player")
