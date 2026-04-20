@@ -287,7 +287,6 @@ size = Vector2(22, 28)
 size = Vector2(14, 33)
 
 [node name="Player" type="CharacterBody2D" unique_id=1742427560 groups=["player"]]
-collision_mask = 2
 script = ExtResource("1_ur7pv")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1357435292]
