@@ -709,7 +709,6 @@ collision_mask = 1
 [node name="Objects" type="Node2D" parent="World" unique_id=1246075946]
 
 [node name="MapGenerator" parent="." unique_id=1465950615 instance=ExtResource("5_p57ef")]
-visible = false
 gen_seed = 2468369149
 map_dimensions = Vector2i(80, 80)
 total_steps = 2000
