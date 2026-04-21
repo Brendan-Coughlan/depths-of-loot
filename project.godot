@@ -81,6 +81,7 @@ inventory={
 2d_physics/layer_6="Items"
 2d_physics/layer_7="Interactables"
 2d_physics/layer_8="Props"
+2d_physics/layer_9="Wall"
 
 [rendering]
 
