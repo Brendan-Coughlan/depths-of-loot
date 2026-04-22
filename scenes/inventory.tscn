@@ -10,6 +10,7 @@ region = Rect2(0, 0, 112, 104)
 
 [sub_resource type="LabelSettings" id="LabelSettings_hj2ta"]
 font_size = 18
+font_color = Color(0, 0, 0, 1)
 shadow_color = Color(0, 0, 0, 1)
 
 [node name="Inventory" type="CanvasLayer" unique_id=567974528]

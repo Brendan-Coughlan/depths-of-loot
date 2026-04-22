@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="DropData" format=3 uid="uid://br38s12iis5ur"]
+
+[ext_resource type="Script" uid="uid://4psh84xkqjcr" path="res://scripts/drop_data.gd" id="1_4gf0b"]
+[ext_resource type="Resource" uid="uid://dosqth0xiulr2" path="res://resources/items/gold_bar.tres" id="1_85mls"]
+
+[resource]
+script = ExtResource("1_4gf0b")
+item = ExtResource("1_85mls")
+metadata/_custom_type_script = "uid://4psh84xkqjcr"
