@@ -1,27 +1,64 @@
 [gd_scene format=3 uid="uid://dm3o71k2vlhxd"]
 
 [ext_resource type="Script" uid="uid://k3j6is1fpwap" path="res://scripts/inventory/inventory_slot.gd" id="1_bxqf6"]
-[ext_resource type="Texture2D" uid="uid://vpcieeu73n5p" path="res://assets/Minimal Dungeon - Asset Pack (v2)/Tileset, Props & UI/tileset, props & ui x2.png" id="1_dxvxp"]
+[ext_resource type="Texture2D" uid="uid://bo23885f4qhmr" path="res://assets/UI/PNG/Inventory.png" id="2_hddt5"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qw0r6"]
-atlas = ExtResource("1_dxvxp")
-region = Rect2(64, 576, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbig2"]
+atlas = ExtResource("2_hddt5")
+region = Rect2(177, 113, 14, 14)
 
 [sub_resource type="LabelSettings" id="LabelSettings_hj2ta"]
 font_size = 24
 shadow_color = Color(0, 0, 0, 1)
 
 [node name="inventorySlot" type="Button" unique_id=1224792471]
-custom_minimum_size = Vector2(96, 96)
+custom_minimum_size = Vector2(75, 75)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -37.5
+offset_right = 37.5
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
 icon_alignment = 1
 script = ExtResource("1_bxqf6")
 
-[node name="Icon" type="TextureRect" parent="." unique_id=1509825119]
-layout_mode = 0
-offset_right = 89.5
-offset_bottom = 90.5
+[node name="Slot" type="TextureRect" parent="." unique_id=336210950]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -37.5
+offset_right = 37.5
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
-texture = SubResource("AtlasTexture_qw0r6")
+texture = SubResource("AtlasTexture_bbig2")
+stretch_mode = 5
+
+[node name="Icon" type="TextureRect" parent="." unique_id=1509825119]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -35.0
+offset_right = 35.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+stretch_mode = 5
 
 [node name="QuantityText" type="Label" parent="." unique_id=1047425087]
 layout_mode = 1
@@ -34,7 +71,7 @@ offset_left = -32.5
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "52"
+text = "1"
 label_settings = SubResource("LabelSettings_hj2ta")
 horizontal_alignment = 2
 vertical_alignment = 2

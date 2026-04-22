@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://cd2rwru7apx7u" path="res://scripts/inventory/inventory.gd" id="1_qw0r6"]
 [ext_resource type="PackedScene" uid="uid://dm3o71k2vlhxd" path="res://scenes/inventory_slot.tscn" id="2_hj2ta"]
+[ext_resource type="Texture2D" uid="uid://bo23885f4qhmr" path="res://assets/UI/PNG/Inventory.png" id="3_ty45s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53g1v"]
+atlas = ExtResource("3_ty45s")
+region = Rect2(0, 0, 112, 104)
 
 [sub_resource type="LabelSettings" id="LabelSettings_hj2ta"]
 font_size = 18
@@ -10,35 +15,32 @@ shadow_color = Color(0, 0, 0, 1)
 [node name="Inventory" type="CanvasLayer" unique_id=567974528]
 script = ExtResource("1_qw0r6")
 
-[node name="InventoryWindow" type="Panel" parent="." unique_id=493690514]
+[node name="InventoryWindow" type="TextureRect" parent="." unique_id=556913893]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -306.5
-offset_top = -167.5
-offset_right = 306.5
-offset_bottom = 167.5
+offset_left = -236.0
+offset_top = -215.0
+offset_right = 222.0
+offset_bottom = 231.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+texture = SubResource("AtlasTexture_53g1v")
+stretch_mode = 5
 
 [node name="SlotContainer" type="GridContainer" parent="InventoryWindow" unique_id=626662425]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -298.0
-offset_top = -161.0
-offset_right = 298.0
-offset_bottom = 139.00002
+anchors_preset = -1
+anchor_left = 0.15938862
+anchor_top = 0.1680926
+anchor_right = 0.84061134
+anchor_bottom = 0.8676442
 grow_horizontal = 2
 grow_vertical = 2
-columns = 6
+columns = 4
+metadata/_edit_use_anchors_ = true
 
 [node name="inventorySlot" parent="InventoryWindow/SlotContainer" unique_id=1224792471 instance=ExtResource("2_hj2ta")]
 layout_mode = 2
@@ -88,25 +90,17 @@ layout_mode = 2
 [node name="inventorySlot16" parent="InventoryWindow/SlotContainer" unique_id=1343752586 instance=ExtResource("2_hj2ta")]
 layout_mode = 2
 
-[node name="inventorySlot17" parent="InventoryWindow/SlotContainer" unique_id=262319921 instance=ExtResource("2_hj2ta")]
-layout_mode = 2
-
-[node name="inventorySlot18" parent="InventoryWindow/SlotContainer" unique_id=303840221 instance=ExtResource("2_hj2ta")]
-layout_mode = 2
-
 [node name="InfoText" type="Label" parent="InventoryWindow" unique_id=1211522456]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -0.5
-offset_top = -23.0
-offset_right = 0.5
+anchors_preset = -1
+anchor_left = 0.15283842
+anchor_top = 0.8654708
+anchor_right = 0.8471616
+anchor_bottom = 0.9237668
 grow_horizontal = 2
 grow_vertical = 0
 text = "Contain info about the selected item"
 label_settings = SubResource("LabelSettings_hj2ta")
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

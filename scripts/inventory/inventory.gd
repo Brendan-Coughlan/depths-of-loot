@@ -5,7 +5,7 @@ var slots : Array[InventorySlot]
 var hotbar : Array[InventorySlot]
 var hovered_slot: Button = null
 
-@onready var window : Panel = get_node("InventoryWindow")
+@onready var window : TextureRect = get_node("InventoryWindow")
 @onready var info_text : Label = get_node("InventoryWindow/InfoText")
 
 func _input(event: InputEvent) -> void:
