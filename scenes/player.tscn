@@ -649,7 +649,7 @@ autoplay = "idle_down"
 offset = Vector2(0, -64)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1047943911]
-position = Vector2(0, -14)
+position = Vector2(0, -36)
 shape = SubResource("RectangleShape2D_3ui80")
 
 [node name="HitArea2D" type="Area2D" parent="." unique_id=906782775]
@@ -657,12 +657,12 @@ collision_layer = 8
 collision_mask = 0
 
 [node name="HtiBox" type="CollisionShape2D" parent="HitArea2D" unique_id=92344310]
-position = Vector2(22, -18.5)
+position = Vector2(23, -36)
 shape = SubResource("RectangleShape2D_ur7pv")
 disabled = true
 
 [node name="InteractingComponent" parent="." unique_id=1406943900 instance=ExtResource("4_dqkch")]
-position = Vector2(0, -15)
+position = Vector2(0, -36)
 
 [node name="PlayerStateMachine" type="Node" parent="." unique_id=1204974527 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("5_qlg0r")

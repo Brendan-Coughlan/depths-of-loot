@@ -17,12 +17,12 @@ func _ready() -> void:
 	setup_level()
 
 func setup_level() -> void:
-	clear_objects()
-	map_generator.generate_map()
-	choose_entry_and_exit()
-	spawn_entry()
-	spawn_exit()
-	place_player()
+	#clear_objects()
+	#map_generator.generate_map()
+	#choose_entry_and_exit()
+	#spawn_entry()
+	#spawn_exit()
+	#place_player()
 	pass
 
 func clear_objects() -> void:
