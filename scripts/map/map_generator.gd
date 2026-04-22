@@ -5,11 +5,11 @@ class_name MapGenerator
 const TILE_DATA: Dictionary = {
 	"floor": {
 		"source_id": 0,
-		"atlas_coords": Vector2i(0, 10)
+		"atlas_coords": Vector2i(0, 5)
 	},
 	"wall": {
 		"source_id": 0,
-		"atlas_coords": Vector2i(32, 4)
+		"atlas_coords": Vector2i(17, 1)
 	}
 }
 
