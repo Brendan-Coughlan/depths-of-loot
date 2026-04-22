@@ -22,7 +22,6 @@ func enter() -> void:
 	play_run_animation()
 
 func _on_timer_timeout():
-	print("Finished")
 	randomize_direction()
 
 func randomize_direction():

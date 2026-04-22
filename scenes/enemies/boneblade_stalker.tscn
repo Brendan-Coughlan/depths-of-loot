@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://dw5wdkkw0fefj" path="res://scripts/hurt_area_2d.gd" id="5_a7ass"]
 [ext_resource type="Script" uid="uid://bj5aisjxhom3l" path="res://scripts/enemy_state_machine/enemy_death.gd" id="6_sokwp"]
 [ext_resource type="Script" uid="uid://dh1eqpo6p6vd6" path="res://scripts/enemy_state_machine/enemy_chase.gd" id="7_lr5x0"]
-[ext_resource type="Script" uid="uid://ctvisqq68ob1j" path="res://scripts/enemy_wander.gd" id="8_6vjlt"]
+[ext_resource type="Script" uid="uid://ctvisqq68ob1j" path="res://scripts/enemy_state_machine/enemy_wander.gd" id="8_6vjlt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rdnu0"]
 atlas = ExtResource("2_stq02")
@@ -375,7 +375,7 @@ shape = SubResource("RectangleShape2D_a7ass")
 
 [node name="EnemyStateMachine" type="Node" parent="." unique_id=1335479577 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_ncvao")
-initial_state = NodePath("Chase")
+initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="EnemyStateMachine" unique_id=1803188633 node_paths=PackedStringArray("enemy", "enemy_sprite")]
 script = ExtResource("3_ncvao")

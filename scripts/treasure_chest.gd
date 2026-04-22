@@ -19,4 +19,4 @@ func spawn_item(item: ItemData, amount: int):
 	instance.item = item
 	instance.amount = amount
 	instance.global_position = global_position + Vector2(0, 5)
-	get_tree().root.get_node("Game/World").add_child(instance)
+	get_tree().root.get_node("DevelopmentRoom/World").add_child(instance)
