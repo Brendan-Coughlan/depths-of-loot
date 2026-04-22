@@ -627,10 +627,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ui80"]
-size = Vector2(22, 28)
+size = Vector2(17, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ur7pv"]
-size = Vector2(14, 33)
+size = Vector2(17, 33)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3v2ag"]
+size = Vector2(35, 10)
 
 [node name="Player" type="CharacterBody2D" unique_id=1742427560 groups=["player"]]
 collision_layer = 2
@@ -644,25 +647,42 @@ position_smoothing_enabled = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=380213532]
 position = Vector2(0, 27)
 sprite_frames = SubResource("SpriteFrames_xqwvd")
-animation = &"idle_up"
+animation = &"attack_down"
 autoplay = "idle_down"
+frame = 6
+frame_progress = 1.0
 offset = Vector2(0, -64)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1047943911]
-position = Vector2(0, -14)
+position = Vector2(-0.5, -31)
 shape = SubResource("RectangleShape2D_3ui80")
 
 [node name="HitArea2D" type="Area2D" parent="." unique_id=906782775]
 collision_layer = 8
 collision_mask = 0
 
-[node name="HtiBox" type="CollisionShape2D" parent="HitArea2D" unique_id=92344310]
-position = Vector2(22, -18.5)
+[node name="RightHtiBox" type="CollisionShape2D" parent="HitArea2D" unique_id=92344310]
+position = Vector2(17.5, -34.5)
 shape = SubResource("RectangleShape2D_ur7pv")
 disabled = true
 
+[node name="LeftHtiBox" type="CollisionShape2D" parent="HitArea2D" unique_id=1479119228]
+position = Vector2(-17.5, -34.5)
+shape = SubResource("RectangleShape2D_ur7pv")
+disabled = true
+
+[node name="UpHitBox" type="CollisionShape2D" parent="HitArea2D" unique_id=2118270087]
+position = Vector2(0, -48)
+shape = SubResource("RectangleShape2D_3v2ag")
+disabled = true
+
+[node name="DownHitBox" type="CollisionShape2D" parent="HitArea2D" unique_id=259760605]
+position = Vector2(0, -20)
+shape = SubResource("RectangleShape2D_3v2ag")
+disabled = true
+
 [node name="InteractingComponent" parent="." unique_id=1406943900 instance=ExtResource("4_dqkch")]
-position = Vector2(0, -15)
+position = Vector2(0, -36)
 
 [node name="PlayerStateMachine" type="Node" parent="." unique_id=1204974527 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("5_qlg0r")
@@ -680,11 +700,11 @@ player = NodePath("../..")
 player_sprite = NodePath("../../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://dgfbp4qyqhhtk"
 
-[node name="Attack" type="Node" parent="PlayerStateMachine" unique_id=976050582 node_paths=PackedStringArray("player", "player_sprite", "player_hitbox")]
+[node name="Attack" type="Node" parent="PlayerStateMachine" unique_id=976050582 node_paths=PackedStringArray("player", "player_sprite", "player_hitboxes")]
 script = ExtResource("6_fjrip")
 player = NodePath("../..")
 player_sprite = NodePath("../../AnimatedSprite2D")
-player_hitbox = NodePath("../../HitArea2D/HtiBox")
+player_hitboxes = [NodePath("../../HitArea2D/RightHtiBox"), NodePath("../../HitArea2D/LeftHtiBox"), NodePath("../../HitArea2D/UpHitBox"), NodePath("../../HitArea2D/DownHitBox")]
 metadata/_custom_type_script = "uid://cf73civ7afwjo"
 
 [node name="Death" type="Node" parent="PlayerStateMachine" unique_id=221767128 node_paths=PackedStringArray("player", "player_sprite")]
