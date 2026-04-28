@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://b231i761fpqtl"]
+
+[ext_resource type="Texture2D" uid="uid://dhvoebp3p1g71" path="res://assets/market/PNG/Characters/Character_others_animation/Trader_bread_animation_with_shadow.png" id="1_jqh7t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wa72"]
+atlas = ExtResource("1_jqh7t")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eq011"]
+atlas = ExtResource("1_jqh7t")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tmc6"]
+atlas = ExtResource("1_jqh7t")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bq4q"]
+atlas = ExtResource("1_jqh7t")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsia8"]
+atlas = ExtResource("1_jqh7t")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqh7t"]
+atlas = ExtResource("1_jqh7t")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smduj"]
+atlas = ExtResource("1_jqh7t")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36v88"]
+atlas = ExtResource("1_jqh7t")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ae00t"]
+atlas = ExtResource("1_jqh7t")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_olsmc"]
+atlas = ExtResource("1_jqh7t")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kj3na"]
+atlas = ExtResource("1_jqh7t")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i54af"]
+atlas = ExtResource("1_jqh7t")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nnung"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wa72")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eq011")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tmc6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bq4q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jsia8")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqh7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smduj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36v88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ae00t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_olsmc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kj3na")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i54af")
+}],
+"loop": false,
+"name": &"wave",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jqh7t"]
+size = Vector2(17, 12)
+
+[node name="FoodTrader" type="StaticBody2D" unique_id=600359875]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1505887675]
+sprite_frames = SubResource("SpriteFrames_nnung")
+animation = &"wave"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1098770059]
+position = Vector2(-0.5, 5)
+shape = SubResource("RectangleShape2D_jqh7t")
