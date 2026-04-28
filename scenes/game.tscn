@@ -708,7 +708,6 @@ z_index = 10
 
 [node name="MapGenerator" parent="." unique_id=1465950615 instance=ExtResource("5_p57ef")]
 gen_seed = 2468369149
-map_dimensions = Vector2i(80, 80)
 total_steps = 2000
 
 [node name="LevelManager" type="Node" parent="." unique_id=914234243 node_paths=PackedStringArray("map_generator", "object_container", "player")]
@@ -718,6 +717,7 @@ entry_scene = ExtResource("8_0tnpc")
 exit_scene = ExtResource("9_vtaks")
 object_container = NodePath("../World/Objects")
 player = NodePath("../World/Player")
+min_entry_exit_distance = 100
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=226149511]
 
