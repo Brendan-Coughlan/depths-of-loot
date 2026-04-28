@@ -713,3 +713,7 @@ player = NodePath("../..")
 player_sprite = NodePath("../../AnimatedSprite2D")
 
 [node name="Inventory" parent="." unique_id=1822213814 instance=ExtResource("7_smehm")]
+
+[node name="MiniMapMarker" type="Polygon2D" parent="." unique_id=1925907170]
+z_index = 100
+position = Vector2(0, -36)
