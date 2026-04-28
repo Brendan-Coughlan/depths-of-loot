@@ -8,6 +8,9 @@ var hovered_slot: Button = null
 @onready var window : TextureRect = get_node("InventoryWindow")
 @onready var info_text : Label = get_node("InventoryWindow/InfoText")
 
+@export var inactive_slot_texture : AtlasTexture
+@export var active_slot_texture : AtlasTexture
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("inventory"):
 		toggle_window(!window.visible)
@@ -24,6 +27,15 @@ func _ready():
 
 func _on_slot_hovered(slot):
 	hovered_slot = slot
+	hovered_slot.get_node("Slot").texture = active_slot_texture
+	
+	for iter_slot in slots:
+		if iter_slot == hovered_slot:
+			continue
+		iter_slot.get_node("Slot").texture = inactive_slot_texture
+	
+	
+		
 	update_info_text()
 
 func toggle_window(open : bool):
