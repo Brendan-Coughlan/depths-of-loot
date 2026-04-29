@@ -1,12 +1,12 @@
-class_name HitArea2D
 extends Area2D
+class_name HitArea2D
 
-signal hit(hurtArea2D)
+@export var damage: int = 10
 
-func _init() -> void:
+func _ready() -> void:
 	area_entered.connect(_on_area_entered)
 
-func _on_area_entered(hurtArea2D: HurtArea2D) -> void:
-	print("[Hit] %s => %s" % [owner.name, hurtArea2D.owner.name])
-	hit.emit(hurtArea2D)
-	hurtArea2D.hurt.emit(self)
+func _on_area_entered(area: Area2D) -> void:
+	if area is HurtArea2D:
+		var hurt_area := area as HurtArea2D
+		hurt_area.hurt(damage)
