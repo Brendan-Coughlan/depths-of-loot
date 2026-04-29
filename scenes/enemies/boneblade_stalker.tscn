@@ -7,7 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://bjqem7lxoolvr" path="res://assets/skeletons/PNG/Skeleton1/Without_shadow/Skeleton1_Idle_without_shadow.png" id="3_gx4c5"]
 [ext_resource type="Script" uid="uid://c3rjtxyl8jwjv" path="res://scripts/enemy_state_machine/enemy_idle.gd" id="3_ncvao"]
 [ext_resource type="Texture2D" uid="uid://bming0m0odr1q" path="res://assets/skeletons/PNG/Skeleton1/Without_shadow/Skeleton1_Run_without_shadow.png" id="5_4cset"]
-[ext_resource type="Script" uid="uid://dw5wdkkw0fefj" path="res://scripts/hurt_area_2d.gd" id="5_a7ass"]
+[ext_resource type="Script" uid="uid://dw5wdkkw0fefj" path="res://scripts/hit_and_hurt/hurt_area_2d.gd" id="5_a7ass"]
+[ext_resource type="Script" uid="uid://bt6qoo5t5cq51" path="res://scripts/hit_and_hurt/hit_area_2d.gd" id="6_d36jp"]
 [ext_resource type="Script" uid="uid://bj5aisjxhom3l" path="res://scripts/enemy_state_machine/enemy_death.gd" id="6_sokwp"]
 [ext_resource type="Script" uid="uid://dh1eqpo6p6vd6" path="res://scripts/enemy_state_machine/enemy_chase.gd" id="7_lr5x0"]
 [ext_resource type="Script" uid="uid://ctvisqq68ob1j" path="res://scripts/enemy_state_machine/enemy_wander.gd" id="8_6vjlt"]
@@ -620,8 +621,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mma71"]
 size = Vector2(16, 15)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d36jp"]
+size = Vector2(11, 17)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a7ass"]
-size = Vector2(14, 20)
+size = Vector2(11, 21)
 
 [node name="BonebladeStalker" type="CharacterBody2D" unique_id=2041274393 node_paths=PackedStringArray("enemy_state_machine")]
 collision_layer = 4
@@ -641,6 +645,16 @@ autoplay = "idle_down"
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_mma71")
 
+[node name="HitArea2D" type="Area2D" parent="." unique_id=2117632410]
+collision_layer = 0
+collision_mask = 512
+script = ExtResource("6_d36jp")
+metadata/_custom_type_script = "uid://bt6qoo5t5cq51"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea2D" unique_id=1583316909]
+position = Vector2(0.5, -1.5)
+shape = SubResource("RectangleShape2D_d36jp")
+
 [node name="HurtArea2D" type="Area2D" parent="." unique_id=1224150657]
 collision_layer = 4
 collision_mask = 8
@@ -648,7 +662,7 @@ script = ExtResource("5_a7ass")
 metadata/_custom_type_script = "uid://dw5wdkkw0fefj"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea2D" unique_id=541464722]
-position = Vector2(0, -1)
+position = Vector2(-0.5, -1.5)
 shape = SubResource("RectangleShape2D_a7ass")
 
 [node name="EnemyStateMachine" type="Node" parent="." unique_id=1335479577 node_paths=PackedStringArray("initial_state")]

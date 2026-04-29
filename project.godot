@@ -82,6 +82,8 @@ inventory={
 2d_physics/layer_7="Interactables"
 2d_physics/layer_8="Props"
 2d_physics/layer_9="Wall"
+2d_physics/layer_10="PlayerHurtArea"
+2d_physics/layer_11="EnemyHurtArea"
 
 [rendering]
 
