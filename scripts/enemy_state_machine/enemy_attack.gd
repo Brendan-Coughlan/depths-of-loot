@@ -38,7 +38,7 @@ func physics_update(_delta: float) -> void:
 			Transitioned.emit(self, "idle")
 			return
 
-	var distance := enemy.global_position.distance_to(enemy.target.global_position)
+	var distance := get_attack_distance()
 
 	if distance > enemy.attack_range and not attacking:
 		Transitioned.emit(self, "chase")
@@ -49,6 +49,15 @@ func physics_update(_delta: float) -> void:
 
 	if can_attack and not attacking:
 		attack()
+		
+func get_attack_distance() -> float:
+	var enemy_origin := enemy.get_node_or_null("AttackOrigin") as Marker2D
+	var player_target := enemy.target.get_node_or_null("TargetPoint") as Marker2D
+
+	if enemy_origin == null or player_target == null:
+		return enemy.global_position.distance_to(enemy.target.global_position)
+
+	return enemy_origin.global_position.distance_to(player_target.global_position)
 
 
 func attack() -> void:
@@ -92,7 +101,21 @@ func update_attack_direction() -> void:
 	if enemy == null or enemy.target == null:
 		return
 
-	var direction := enemy.target.global_position - enemy.global_position
+	var enemy_origin := enemy.get_node("AttackOrigin") as Marker2D
+	var player_target := enemy.target.get_node("TargetPoint") as Marker2D
+
+	var direction := player_target.global_position - enemy_origin.global_position
+
+	#print(
+		#"Enemy Y:", enemy.global_position.y,
+		#" Player Y:", enemy.target.global_position.y,
+		#" Direction:", direction
+	#)
+	
+	if direction.length() < 4.0:
+		return # keep previous last_direction
+	
+	print("Fixed Direction:", direction)
 
 	if abs(direction.x) > abs(direction.y):
 		enemy.last_direction = Vector2(sign(direction.x), 0)
@@ -101,9 +124,6 @@ func update_attack_direction() -> void:
 
 
 func get_hitbox_index(dir: Vector2) -> int:
-	# Same order as your player:
-	# 0 = right, 1 = left, 2 = up, 3 = down
-
 	if enemy_hitboxes.size() < 4:
 		push_warning("EnemyAttack: enemy_hitboxes needs 4 CollisionShape2D nodes.")
 		return -1

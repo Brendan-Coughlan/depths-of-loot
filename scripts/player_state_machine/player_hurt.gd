@@ -5,10 +5,21 @@ class_name PlayerHurt
 @export var player_sprite: AnimatedSprite2D
 @export var health: HealthComponent
 
-func enter():
+func enter() -> void:
+	if player == null or player_sprite == null or health == null:
+		push_warning("PlayerHurt: Missing player, sprite, or health reference.")
+		Transitioned.emit(self, "idle")
+		return
+
 	health.invulnerable = true
+
+	player.velocity = Vector2.ZERO
+	player.move_and_slide()
+
 	play_hurt_animation()
+
 	await player_sprite.animation_finished
+
 	health.invulnerable = false
 	Transitioned.emit(self, "idle")
 

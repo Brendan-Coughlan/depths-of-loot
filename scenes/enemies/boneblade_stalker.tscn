@@ -10,11 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://bming0m0odr1q" path="res://assets/skeletons/PNG/Skeleton1/Without_shadow/Skeleton1_Run_without_shadow.png" id="5_4cset"]
 [ext_resource type="Script" uid="uid://dw5wdkkw0fefj" path="res://scripts/hit_and_hurt/hurt_area_2d.gd" id="5_a7ass"]
 [ext_resource type="Script" uid="uid://bt6qoo5t5cq51" path="res://scripts/hit_and_hurt/hit_area_2d.gd" id="6_d36jp"]
-[ext_resource type="Script" path="res://scripts/enemy_state_machine/enemy_death.gd" id="6_sokwp"]
+[ext_resource type="Script" uid="uid://bj5aisjxhom3l" path="res://scripts/enemy_state_machine/enemy_death.gd" id="6_sokwp"]
 [ext_resource type="Script" uid="uid://dh1eqpo6p6vd6" path="res://scripts/enemy_state_machine/enemy_chase.gd" id="7_lr5x0"]
 [ext_resource type="Script" uid="uid://ctvisqq68ob1j" path="res://scripts/enemy_state_machine/enemy_wander.gd" id="8_6vjlt"]
 [ext_resource type="Script" uid="uid://bocttuif2c7yu" path="res://scripts/enemy_state_machine/enemy_attack.gd" id="11_4cset"]
-[ext_resource type="Script" path="res://scripts/health_component.gd" id="15_ser5m"]
+[ext_resource type="Script" uid="uid://bnh5kspkv7e3t" path="res://scripts/enemy_state_machine/enemy_hurt.gd" id="15_dsf8j"]
+[ext_resource type="Script" uid="uid://cyvmfqey7r7qs" path="res://scripts/health_component.gd" id="15_ser5m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6wfl1"]
 atlas = ExtResource("2_t41c6")
@@ -558,7 +559,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ufofn")
 }],
-"loop": true,
+"loop": false,
 "name": &"hurt_down",
 "speed": 5.0
 }, {
@@ -575,7 +576,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_b2h6v")
 }],
-"loop": true,
+"loop": false,
 "name": &"hurt_left",
 "speed": 5.0
 }, {
@@ -592,7 +593,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cxjfr")
 }],
-"loop": true,
+"loop": false,
 "name": &"hurt_right",
 "speed": 5.0
 }, {
@@ -609,7 +610,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yfepg")
 }],
-"loop": true,
+"loop": false,
 "name": &"hurt_up",
 "speed": 5.0
 }, {
@@ -762,7 +763,7 @@ size = Vector2(12.5, 18.5)
 size = Vector2(20, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a7ass"]
-size = Vector2(11, 21)
+size = Vector2(19, 21)
 
 [node name="BonebladeStalker" type="CharacterBody2D" unique_id=2041274393 node_paths=PackedStringArray("enemy_state_machine")]
 collision_layer = 4
@@ -770,12 +771,11 @@ collision_mask = 259
 script = ExtResource("1_ype3m")
 enemy_state_machine = NodePath("EnemyStateMachine")
 movement_speed = 50.0
-attack_range = 10.0
 detection_range = 50.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1641038735]
 sprite_frames = SubResource("SpriteFrames_ebgy8")
-animation = &"hurt_right"
+animation = &"run_up"
 autoplay = "idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1964603989]
@@ -805,14 +805,14 @@ position = Vector2(0, 14)
 shape = SubResource("RectangleShape2D_gd4t4")
 
 [node name="HurtArea2D" type="Area2D" parent="." unique_id=1224150657 node_paths=PackedStringArray("health_component")]
-collision_layer = 4
-collision_mask = 8
+collision_layer = 1024
+collision_mask = 0
 script = ExtResource("5_a7ass")
 health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://dw5wdkkw0fefj"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea2D" unique_id=541464722]
-position = Vector2(-0.5, -1.5)
+position = Vector2(0.5, -2)
 shape = SubResource("RectangleShape2D_a7ass")
 
 [node name="EnemyStateMachine" type="Node" parent="." unique_id=1335479577 node_paths=PackedStringArray("initial_state")]
@@ -849,5 +849,13 @@ enemy_sprite = NodePath("../../AnimatedSprite2D")
 enemy_hitboxes = [NodePath("../../HitArea2D/RightHitBox"), NodePath("../../HitArea2D/LeftHitBox"), NodePath("../../HitArea2D/UpHitBox"), NodePath("../../HitArea2D/DownHitBox")]
 attack_cooldown = 2.0
 
+[node name="Hurt" type="Node" parent="EnemyStateMachine" unique_id=253752322 node_paths=PackedStringArray("enemy", "enemy_sprite", "health")]
+script = ExtResource("15_dsf8j")
+enemy = NodePath("../..")
+enemy_sprite = NodePath("../../AnimatedSprite2D")
+health = NodePath("../../HealthComponent")
+
 [node name="HealthComponent" type="Node" parent="." unique_id=2087082735]
 script = ExtResource("15_ser5m")
+
+[node name="AttackOrigin" type="Marker2D" parent="." unique_id=1688768962]
