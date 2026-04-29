@@ -28,6 +28,7 @@ font_color = Color(0, 0, 0, 1)
 shadow_color = Color(0, 0, 0, 1)
 
 [node name="Inventory" type="CanvasLayer" unique_id=567974528]
+layer = 2
 script = ExtResource("1_qw0r6")
 inactive_slot_texture = SubResource("AtlasTexture_yyk2a")
 active_slot_texture = SubResource("AtlasTexture_s887n")

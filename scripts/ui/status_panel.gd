@@ -12,7 +12,6 @@ func _ready() -> void:
 	health_component.health_changed.connect(update_health)
 	update_health(health_component.current_health, health_component.max_health)
 
-
 func update_health(current: int, max_health: int) -> void:
-	var percentage := current / float(max_health)
+	var percentage := current / float(max_health) * 100
 	health_bar.value = percentage

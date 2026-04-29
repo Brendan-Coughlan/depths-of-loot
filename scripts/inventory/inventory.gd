@@ -2,7 +2,6 @@ extends Node
 class_name Inventory
 
 var slots : Array[InventorySlot]
-var hotbar : Array[InventorySlot]
 var hovered_slot: Button = null
 
 @onready var window : TextureRect = get_node("InventoryWindow")
@@ -27,21 +26,13 @@ func _ready():
 
 func _on_slot_hovered(slot):
 	hovered_slot = slot
-	hovered_slot.get_node("Slot").texture = active_slot_texture
-	
-	for iter_slot in slots:
-		if iter_slot == hovered_slot:
-			continue
-		iter_slot.get_node("Slot").texture = inactive_slot_texture
-	
-	
-		
+	#for iter_slot in slots:
+		#iter_slot.get_node("Slot").texture = inactive_slot_texture
+	#hovered_slot.get_node("Slot").texture = inactive_slot_texture
 	update_info_text()
 
 func toggle_window(open : bool):
 	window.visible = open
-	for slot in slots:
-		slot.visible = true
 
 	if open:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

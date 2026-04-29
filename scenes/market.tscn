@@ -2268,7 +2268,7 @@ sources/2 = SubResource("TileSetAtlasSource_4msli")
 
 [node name="Market" type="Node2D" unique_id=74457754]
 
-[node name="World" type="Node2D" parent="." unique_id=846429850]
+[node name="World" type="Node2D" parent="." unique_id=846429850 groups=["world"]]
 y_sort_enabled = true
 
 [node name="TileMapBackground" type="TileMapLayer" parent="World" unique_id=870932820]
