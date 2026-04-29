@@ -701,6 +701,7 @@ tile_set = SubResource("TileSet_yqjtg")
 
 [node name="Player" parent="World" unique_id=1872174230 instance=ExtResource("1_i7o4o")]
 z_index = 10
+position = Vector2(0, 0)
 
 [node name="Entities" type="Node2D" parent="World" unique_id=1491458311]
 
@@ -717,6 +718,10 @@ entry_scene = ExtResource("8_0tnpc")
 exit_scene = ExtResource("9_vtaks")
 object_container = NodePath("../World/Objects")
 player = NodePath("../World/Player")
+enemy_scene = ExtResource("4_u5sy4")
+chest_scene = ExtResource("3_lnu2h")
+enemy_count = 50
+chest_count = 10
 min_entry_exit_distance = 100
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=226149511]

@@ -3,28 +3,31 @@ class_name EnemyChase
 
 @export var enemy: Enemy
 @export var enemy_sprite: AnimatedSprite2D
-@export var target: Node2D
-@export var movement_speed: float = 5000.0
 
 func enter() -> void:
-	target = get_tree().get_first_node_in_group("player")
+	if enemy.target == null:
+		enemy.find_player()
+
 	play_run_animation()
 
-func physics_update(_delta: float):
-	if target == null:
+func physics_update(_delta: float) -> void:
+	if enemy.target == null:
+		enemy.find_player()
 		return
-		
-	var direction = (target.global_position - enemy.global_position).normalized()
-	
+
+	var direction := (enemy.target.global_position - enemy.global_position).normalized()
+
 	if direction != Vector2.ZERO:
-		enemy.velocity = direction * movement_speed * _delta
-		
+		enemy.velocity = direction * enemy.movement_speed
+		enemy.update_last_direction(direction)
+
 		if abs(direction.x) > abs(direction.y):
 			enemy_sprite.flip_h = direction.x < 0
 			enemy_sprite.play("run_right")
 		else:
+			enemy_sprite.flip_h = false
 			enemy_sprite.play("run_up" if direction.y < 0 else "run_down")
-		
+
 		enemy.move_and_slide()
 
 func play_run_animation() -> void:

@@ -13,8 +13,8 @@
 [ext_resource type="Script" uid="uid://dgfbp4qyqhhtk" path="res://scripts/player_state_machine/player_run.gd" id="7_fjrip"]
 [ext_resource type="PackedScene" uid="uid://h3al0i2uaq2i" path="res://scenes/inventory.tscn" id="7_smehm"]
 [ext_resource type="Script" uid="uid://q3tu5hwbqobb" path="res://scripts/player_state_machine/player_death.gd" id="7_ur7pv"]
-[ext_resource type="Script" uid="uid://82q65dnubqli" path="res://scripts/player_state_machine/player_hurt.gd" id="12_f1ej7"]
-[ext_resource type="Script" uid="uid://cyvmfqey7r7qs" path="res://scripts/health_component.gd" id="13_jej6c"]
+[ext_resource type="Script" path="res://scripts/player_state_machine/player_hurt.gd" id="12_f1ej7"]
+[ext_resource type="Script" path="res://scripts/health_component.gd" id="13_jej6c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ujl30"]
 atlas = ExtResource("2_jej6c")
@@ -858,7 +858,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ui80"]
-size = Vector2(17, 12)
+size = Vector2(13.362978, 11.978973)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ur7pv"]
 size = Vector2(17, 33)
@@ -869,7 +869,7 @@ size = Vector2(35, 10)
 [node name="Player" type="CharacterBody2D" unique_id=1742427560 groups=["player"]]
 position = Vector2(0, 36)
 collision_layer = 2
-collision_mask = 256
+collision_mask = 260
 script = ExtResource("1_ur7pv")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1357435292]
@@ -884,7 +884,8 @@ autoplay = "idle_down"
 offset = Vector2(0, -64)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1047943911]
-position = Vector2(-0.5, -31)
+position = Vector2(0, -36.000004)
+scale = Vector2(0.9511571, 1.1104065)
 shape = SubResource("RectangleShape2D_3ui80")
 
 [node name="HitArea2D" type="Area2D" parent="." unique_id=906782775]
@@ -947,10 +948,8 @@ script = ExtResource("12_f1ej7")
 player = NodePath("../..")
 player_sprite = NodePath("../../AnimatedSprite2D")
 health = NodePath("../../HealthComponent")
-metadata/_custom_type_script = "uid://82q65dnubqli"
 
 [node name="Inventory" parent="." unique_id=1822213814 instance=ExtResource("7_smehm")]
 
 [node name="HealthComponent" type="Node" parent="." unique_id=11957842]
 script = ExtResource("13_jej6c")
-metadata/_custom_type_script = "uid://cyvmfqey7r7qs"

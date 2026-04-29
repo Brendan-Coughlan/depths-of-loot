@@ -7,8 +7,16 @@ class_name LevelManager
 @export var object_container: Node2D
 @export var player: CharacterBody2D
 
+@export var enemy_scene: PackedScene
+@export var chest_scene: PackedScene
+@export var enemy_count: int = 5
+@export var chest_count: int = 3
+@export var min_spawn_distance_from_entry: int = 6
+
 @export var min_entry_exit_distance: int = 10
 @export var player_z_index: int = 10
+@export var enemy_z_index: int = 5
+@export var chest_z_index: int = 4
 
 var entry_cell: Vector2i = Vector2i.ZERO
 var exit_cell: Vector2i = Vector2i.ZERO
@@ -23,7 +31,7 @@ func setup_level() -> void:
 	spawn_entry()
 	spawn_exit()
 	place_player()
-	pass
+	spawn_random_objects()
 
 func clear_objects() -> void:
 	if object_container == null:
@@ -93,6 +101,7 @@ func spawn_entry() -> void:
 	var instance = entry_scene.instantiate()
 	object_container.add_child(instance)
 	instance.position = get_2x2_center(entry_cell)
+	instance.z_index = chest_z_index
 
 	print("Entry spawned at: ", instance.position)
 
@@ -104,6 +113,7 @@ func spawn_exit() -> void:
 	var instance = exit_scene.instantiate()
 	object_container.add_child(instance)
 	instance.position = get_2x2_center(exit_cell)
+	instance.z_index = chest_z_index
 
 	print("Exit spawned at: ", instance.position)
 
@@ -111,6 +121,45 @@ func place_player() -> void:
 	player.position = get_tile_center(entry_cell)
 	player.z_index = player_z_index
 	print("Player spawned at: ", player.position)
+
+func spawn_random_objects() -> void:
+	var available_cells: Array[Vector2i] = map_generator.get_floor_cells().duplicate()
+
+	available_cells.erase(entry_cell)
+	available_cells.erase(exit_cell)
+
+	available_cells = available_cells.filter(func(cell: Vector2i):
+		return manhattan_distance(cell, entry_cell) >= min_spawn_distance_from_entry
+	)
+
+	available_cells.shuffle()
+
+	for i in range(enemy_count):
+		if available_cells.is_empty():
+			return
+
+		var cell: Vector2i = available_cells.pop_back() as Vector2i
+		spawn_scene_at_cell(enemy_scene, cell, enemy_z_index)
+
+	for i in range(chest_count):
+		if available_cells.is_empty():
+			return
+
+		var cell: Vector2i = available_cells.pop_back() as Vector2i
+		spawn_scene_at_cell(chest_scene, cell, chest_z_index)
+
+func spawn_scene_at_cell(scene: PackedScene, cell: Vector2i, z_value: int) -> void:
+	if scene == null:
+		push_warning("LevelManager: spawn scene is not assigned.")
+		return
+
+	var instance = scene.instantiate()
+	object_container.add_child(instance)
+
+	instance.position = get_tile_center(cell)
+	instance.z_index = z_value
+
+	print("Spawned object at: ", cell)
 
 func get_tile_center(cell: Vector2i) -> Vector2:
 	var tilemap = map_generator.tilemap_layer
