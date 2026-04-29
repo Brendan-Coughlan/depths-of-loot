@@ -20,7 +20,7 @@ region = Rect2(193, 113, 14, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_53g1v"]
 atlas = ExtResource("3_ty45s")
-region = Rect2(0, 0, 112, 104)
+region = Rect2(7, 0, 98, 101)
 
 [sub_resource type="LabelSettings" id="LabelSettings_hj2ta"]
 font_size = 18

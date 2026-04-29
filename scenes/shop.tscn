@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://bck1sh6wlvpsn"]
+
+[ext_resource type="Script" uid="uid://c7gwryd7gwqnf" path="res://scripts/shop.gd" id="1_1l46r"]
+[ext_resource type="Texture2D" uid="uid://c8x27mioq3nv6" path="res://assets/UI/PNG/Shop.png" id="2_1l46r"]
+[ext_resource type="PackedScene" uid="uid://bshb3pcsfrkjm" path="res://scenes/shop_slot.tscn" id="3_1l46r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1l46r"]
+atlas = ExtResource("2_1l46r")
+region = Rect2(7, 0, 115, 149)
+
+[node name="Shop" type="CanvasLayer" unique_id=567974528]
+script = ExtResource("1_1l46r")
+
+[node name="ShopWindow" type="TextureRect" parent="." unique_id=556913893]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -236.0
+offset_top = -215.0
+offset_right = 222.0
+offset_bottom = 231.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_1l46r")
+stretch_mode = 5
+
+[node name="SlotContainer" type="GridContainer" parent="ShopWindow" unique_id=626662425]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -132.5
+offset_top = -202.0
+offset_right = 132.5
+offset_bottom = 202.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 20
+columns = 3
+
+[node name="ShopSlot" parent="ShopWindow/SlotContainer" unique_id=1224792471 instance=ExtResource("3_1l46r")]
+layout_mode = 2
+
+[node name="ShopSlot2" parent="ShopWindow/SlotContainer" unique_id=607184083 instance=ExtResource("3_1l46r")]
+layout_mode = 2
+
+[node name="ShopSlot3" parent="ShopWindow/SlotContainer" unique_id=264141926 instance=ExtResource("3_1l46r")]
+layout_mode = 2
+
+[node name="ShopSlot4" parent="ShopWindow/SlotContainer" unique_id=1822913013 instance=ExtResource("3_1l46r")]
+layout_mode = 2
+
+[node name="ShopSlot5" parent="ShopWindow/SlotContainer" unique_id=312278137 instance=ExtResource("3_1l46r")]
+layout_mode = 2
+
+[node name="ShopSlot6" parent="ShopWindow/SlotContainer" unique_id=91256150 instance=ExtResource("3_1l46r")]
+layout_mode = 2
+
+[node name="ExitButton" type="Button" parent="ShopWindow" unique_id=872534685]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+anchor_left = 0.790393
+anchor_top = 0.013452915
+anchor_right = 0.8515284
+anchor_bottom = 0.07399103
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="ShopWindow/ExitButton" to="." method="_on_exit_button_pressed"]

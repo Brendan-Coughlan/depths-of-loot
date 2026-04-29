@@ -40,6 +40,8 @@ func _on_slot_hovered(slot):
 
 func toggle_window(open : bool):
 	window.visible = open
+	for slot in slots:
+		slot.visible = true
 
 	if open:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

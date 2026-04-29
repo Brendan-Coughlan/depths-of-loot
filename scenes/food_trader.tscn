@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://b231i761fpqtl"]
 
+[ext_resource type="Script" uid="uid://us31kwp15t5x" path="res://scripts/food_trader.gd" id="1_eq011"]
 [ext_resource type="Texture2D" uid="uid://dhvoebp3p1g71" path="res://assets/market/PNG/Characters/Character_others_animation/Trader_bread_animation_with_shadow.png" id="1_jqh7t"]
+[ext_resource type="PackedScene" uid="uid://bk68ewvu5yrd5" path="res://scenes/interactable.tscn" id="2_8wa72"]
+[ext_resource type="PackedScene" uid="uid://bck1sh6wlvpsn" path="res://scenes/shop.tscn" id="4_3tmc6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8wa72"]
 atlas = ExtResource("1_jqh7t")
@@ -102,7 +105,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jqh7t"]
 size = Vector2(17, 12)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_8wa72"]
+radius = 20.0
+
 [node name="FoodTrader" type="StaticBody2D" unique_id=600359875]
+script = ExtResource("1_eq011")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1505887675]
 sprite_frames = SubResource("SpriteFrames_nnung")
@@ -112,3 +119,11 @@ autoplay = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1098770059]
 position = Vector2(-0.5, 5)
 shape = SubResource("RectangleShape2D_jqh7t")
+
+[node name="Interactable" parent="." unique_id=1605018207 instance=ExtResource("2_8wa72")]
+interact_name = "Trade"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=874613398]
+shape = SubResource("CircleShape2D_8wa72")
+
+[node name="Shop" parent="." unique_id=567974528 instance=ExtResource("4_3tmc6")]

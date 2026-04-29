@@ -12,6 +12,7 @@ font_size = 24
 shadow_color = Color(0, 0, 0, 1)
 
 [node name="inventorySlot" type="Button" unique_id=1224792471]
+self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(75, 75)
 anchors_preset = 8
 anchor_left = 0.5

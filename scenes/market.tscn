@@ -2293,8 +2293,8 @@ tile_set = SubResource("TileSet_yqjtg")
 
 [node name="Entities" type="Node2D" parent="World" unique_id=433793545]
 
+[node name="Player" parent="World/Entities" unique_id=1872174230 instance=ExtResource("7_1syoy")]
+z_index = 10
+
 [node name="FoodTrader" parent="World/Entities" unique_id=600359875 instance=ExtResource("9_4msli")]
 position = Vector2(4, -47)
-
-[node name="Player" parent="World" unique_id=1872174230 instance=ExtResource("7_1syoy")]
-z_index = 10

@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://bshb3pcsfrkjm"]
+
+[ext_resource type="Script" uid="uid://m7cc36chs74e" path="res://scripts/shop_slot.gd" id="1_7nrpo"]
+[ext_resource type="Texture2D" uid="uid://bo23885f4qhmr" path="res://assets/UI/PNG/Inventory.png" id="2_7nrpo"]
+[ext_resource type="Texture2D" uid="uid://c8x27mioq3nv6" path="res://assets/UI/PNG/Shop.png" id="3_7nrpo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckp8l"]
+atlas = ExtResource("3_7nrpo")
+region = Rect2(131, 170, 26, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbig2"]
+atlas = ExtResource("2_7nrpo")
+region = Rect2(177, 113, 14, 14)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hj2ta"]
+font_size = 24
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="ShopSlot" type="Control" unique_id=1843900430]
+custom_minimum_size = Vector2(75, 150)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -75.0
+offset_right = 35.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7nrpo")
+
+[node name="Button" type="TextureRect" parent="." unique_id=696240048]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = 28.5
+offset_right = 39.0
+offset_bottom = 103.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_ckp8l")
+stretch_mode = 5
+
+[node name="BuyButton" type="Button" parent="." unique_id=379419087]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 2.0
+offset_top = 132.0
+offset_right = 77.0
+offset_bottom = 173.0
+
+[node name="Slot" type="TextureRect" parent="." unique_id=336210950]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -37.5
+offset_right = 37.5
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_bbig2")
+stretch_mode = 5
+
+[node name="QuantityText" type="Label" parent="Slot" unique_id=1047425087]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.56666666
+anchor_top = 0.55333334
+anchor_right = 1.0
+anchor_bottom = 1.0066667
+grow_horizontal = 0
+grow_vertical = 0
+text = "1"
+label_settings = SubResource("LabelSettings_hj2ta")
+horizontal_alignment = 2
+vertical_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Icon" type="TextureRect" parent="." unique_id=1509825119]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -35.0
+offset_right = 35.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+stretch_mode = 5
+
+[connection signal="pressed" from="BuyButton" to="." method="_on_buy_button_pressed"]
