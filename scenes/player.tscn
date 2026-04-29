@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://cf73civ7afwjo" path="res://scripts/player_state_machine/player_attack.gd" id="6_fjrip"]
 [ext_resource type="Script" uid="uid://pvlc430bnvrt" path="res://scripts/player_state_machine/player_idle.gd" id="6_tuyoq"]
 [ext_resource type="Script" uid="uid://dgfbp4qyqhhtk" path="res://scripts/player_state_machine/player_run.gd" id="7_fjrip"]
+[ext_resource type="Script" uid="uid://bt6qoo5t5cq51" path="res://scripts/hit_and_hurt/hit_area_2d.gd" id="7_fulsm"]
 [ext_resource type="Script" uid="uid://dw5wdkkw0fefj" path="res://scripts/hit_and_hurt/hurt_area_2d.gd" id="7_qfm1y"]
 [ext_resource type="PackedScene" uid="uid://h3al0i2uaq2i" path="res://scenes/inventory.tscn" id="7_smehm"]
 [ext_resource type="Script" uid="uid://q3tu5hwbqobb" path="res://scripts/player_state_machine/player_death.gd" id="7_ur7pv"]
@@ -884,7 +885,7 @@ position_smoothing_enabled = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=380213532]
 position = Vector2(0, 27)
 sprite_frames = SubResource("SpriteFrames_xqwvd")
-animation = &"hurt_down"
+animation = &"hurt_up"
 autoplay = "idle_down"
 offset = Vector2(0, -64)
 
@@ -894,8 +895,9 @@ scale = Vector2(0.9511571, 1.1104065)
 shape = SubResource("RectangleShape2D_3ui80")
 
 [node name="HitArea2D" type="Area2D" parent="." unique_id=906782775]
-collision_layer = 8
-collision_mask = 0
+collision_layer = 0
+collision_mask = 1024
+script = ExtResource("7_fulsm")
 
 [node name="RightHtiBox" type="CollisionShape2D" parent="HitArea2D" unique_id=92344310]
 position = Vector2(17.5, -34.5)
@@ -917,10 +919,11 @@ position = Vector2(0, -20)
 shape = SubResource("RectangleShape2D_3v2ag")
 disabled = true
 
-[node name="HurtArea2D" type="Area2D" parent="." unique_id=412193411]
+[node name="HurtArea2D" type="Area2D" parent="." unique_id=412193411 node_paths=PackedStringArray("health_component")]
 collision_layer = 512
 collision_mask = 0
 script = ExtResource("7_qfm1y")
+health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://dw5wdkkw0fefj"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea2D" unique_id=1901305037]
@@ -980,3 +983,6 @@ offset_right = 98.0
 offset_bottom = 41.0
 scale = Vector2(5.4225206, 5.650942)
 health_component = NodePath("../../HealthComponent")
+
+[node name="TargetPoint" type="Marker2D" parent="." unique_id=2115873881]
+position = Vector2(0, -36)

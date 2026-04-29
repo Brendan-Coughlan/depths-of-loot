@@ -3,9 +3,11 @@ class_name EnemyAttack
 
 @export var enemy: Enemy
 @export var enemy_sprite: AnimatedSprite2D
+@export var enemy_hitboxes: Array[CollisionShape2D]
 @export var attack_cooldown: float = 0.8
 
 var can_attack: bool = true
+var attacking: bool = false
 
 
 func enter() -> void:
@@ -14,10 +16,6 @@ func enter() -> void:
 	if enemy == null:
 		push_warning("EnemyAttack: enemy is null.")
 		return
-
-	if enemy_sprite != null:
-		if not enemy_sprite.is_connected("animation_finished", Callable(self, "_on_animation_finished")):
-			enemy_sprite.connect("animation_finished", Callable(self, "_on_animation_finished"))
 
 	if enemy.target == null:
 		enemy.find_player()
@@ -40,57 +38,112 @@ func physics_update(_delta: float) -> void:
 			Transitioned.emit(self, "idle")
 			return
 
-	var distance := enemy.global_position.distance_to(enemy.target.global_position)
+	var distance := get_attack_distance()
 
-	if distance > enemy.attack_range:
+	if distance > enemy.attack_range and not attacking:
 		Transitioned.emit(self, "chase")
 		return
-
-	if distance > 1.0:
-		update_attack_direction()
 
 	enemy.velocity = Vector2.ZERO
 	enemy.move_and_slide()
 
-	if can_attack:
+	if can_attack and not attacking:
 		attack()
+		
+func get_attack_distance() -> float:
+	var enemy_origin := enemy.get_node_or_null("AttackOrigin") as Marker2D
+	var player_target := enemy.target.get_node_or_null("TargetPoint") as Marker2D
+
+	if enemy_origin == null or player_target == null:
+		return enemy.global_position.distance_to(enemy.target.global_position)
+
+	return enemy_origin.global_position.distance_to(player_target.global_position)
 
 
 func attack() -> void:
-	if enemy == null or enemy.target == null:
+	if enemy == null or enemy_sprite == null:
 		return
 
 	can_attack = false
+	attacking = true
+
+	update_attack_direction()
+
+	var dir := enemy.last_direction
+	var hitbox_index := get_hitbox_index(dir)
 
 	play_attack_animation()
 
-	if enemy.target.has_method("take_damage"):
-		enemy.target.take_damage(enemy.attack_damage)
+	if hitbox_index != -1:
+		enemy_hitboxes[hitbox_index].disabled = false
+
+	await enemy_sprite.animation_finished
+
+	if hitbox_index != -1:
+		enemy_hitboxes[hitbox_index].disabled = true
+
+	attacking = false
 
 	await get_tree().create_timer(attack_cooldown).timeout
 	can_attack = true
 
 
 func exit() -> void:
+	disable_all_hitboxes()
+
 	if enemy != null:
 		enemy.velocity = Vector2.ZERO
+
+	attacking = false
 
 
 func update_attack_direction() -> void:
 	if enemy == null or enemy.target == null:
 		return
 
-	var direction := enemy.target.global_position - enemy.global_position
+	var enemy_origin := enemy.get_node("AttackOrigin") as Marker2D
+	var player_target := enemy.target.get_node("TargetPoint") as Marker2D
 
-	var horizontal_threshold := 12.0
-	var vertical_dead_zone := 10.0
+	var direction := player_target.global_position - enemy_origin.global_position
 
-	if abs(direction.x) > horizontal_threshold:
+	#print(
+		#"Enemy Y:", enemy.global_position.y,
+		#" Player Y:", enemy.target.global_position.y,
+		#" Direction:", direction
+	#)
+	
+	if direction.length() < 4.0:
+		return # keep previous last_direction
+	
+	print("Fixed Direction:", direction)
+
+	if abs(direction.x) > abs(direction.y):
 		enemy.last_direction = Vector2(sign(direction.x), 0)
-		return
-
-	if abs(direction.y) > vertical_dead_zone:
+	else:
 		enemy.last_direction = Vector2(0, sign(direction.y))
+
+
+func get_hitbox_index(dir: Vector2) -> int:
+	if enemy_hitboxes.size() < 4:
+		push_warning("EnemyAttack: enemy_hitboxes needs 4 CollisionShape2D nodes.")
+		return -1
+
+	if abs(dir.x) > abs(dir.y):
+		if dir.x < 0:
+			return 1
+		else:
+			return 0
+	else:
+		if dir.y < 0:
+			return 2
+		else:
+			return 3
+
+
+func disable_all_hitboxes() -> void:
+	for hitbox in enemy_hitboxes:
+		if hitbox != null:
+			hitbox.disabled = true
 
 
 func setup_references() -> void:
@@ -106,28 +159,16 @@ func play_attack_animation() -> void:
 		return
 
 	var dir := enemy.last_direction
-	var anim := "attack_down"
 
-	if abs(dir.x) > 0:
+	if abs(dir.x) > abs(dir.y):
 		enemy_sprite.flip_h = dir.x < 0
-		anim = "attack_right"
+		enemy_sprite.play("attack_right")
 	else:
 		enemy_sprite.flip_h = false
 
 		if dir.y < 0:
-			anim = "attack_up"
+			enemy_sprite.play("attack_up")
 		else:
-			anim = "attack_down"
+			enemy_sprite.play("attack_down")
 
-	enemy_sprite.play(anim)
 	enemy_sprite.frame = 0
-
-
-func _on_animation_finished() -> void:
-	if enemy == null or enemy.target == null:
-		return
-
-	var distance := enemy.global_position.distance_to(enemy.target.global_position)
-
-	if distance > enemy.attack_range:
-		Transitioned.emit(self, "chase")
