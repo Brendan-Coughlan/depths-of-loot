@@ -716,11 +716,11 @@ script = ExtResource("6_u5sy4")
 map_generator = NodePath("../MapGenerator")
 entry_scene = ExtResource("8_0tnpc")
 exit_scene = ExtResource("9_vtaks")
-object_container = NodePath("../World/Objects")
+object_container = NodePath("../World/Entities")
 player = NodePath("../World/Player")
 enemy_scene = ExtResource("4_u5sy4")
 chest_scene = ExtResource("3_lnu2h")
-enemy_count = 50
+enemy_count = 30
 chest_count = 10
 min_entry_exit_distance = 100
 

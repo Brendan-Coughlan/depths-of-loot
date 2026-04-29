@@ -21,10 +21,24 @@ class_name LevelManager
 var entry_cell: Vector2i = Vector2i.ZERO
 var exit_cell: Vector2i = Vector2i.ZERO
 
+
 func _ready() -> void:
 	setup_level()
 
+
 func setup_level() -> void:
+	if map_generator == null:
+		push_error("LevelManager: map_generator is not assigned.")
+		return
+
+	if object_container == null:
+		push_error("LevelManager: object_container is not assigned.")
+		return
+
+	if player == null:
+		push_error("LevelManager: player is not assigned.")
+		return
+
 	clear_objects()
 	map_generator.generate_map()
 	choose_entry_and_exit()
@@ -33,13 +47,11 @@ func setup_level() -> void:
 	place_player()
 	spawn_random_objects()
 
-func clear_objects() -> void:
-	if object_container == null:
-		push_error("LevelManager: object_container is not assigned.")
-		return
 
+func clear_objects() -> void:
 	for child in object_container.get_children():
 		child.queue_free()
+
 
 func choose_entry_and_exit() -> void:
 	var valid_cells: Array[Vector2i] = get_valid_2x2_cells()
@@ -51,8 +63,10 @@ func choose_entry_and_exit() -> void:
 	entry_cell = valid_cells.pick_random()
 
 	var far_cells: Array[Vector2i] = []
+
 	for cell in valid_cells:
 		var distance := manhattan_distance(cell, entry_cell)
+
 		if distance >= min_entry_exit_distance:
 			far_cells.append(cell)
 
@@ -64,6 +78,7 @@ func choose_entry_and_exit() -> void:
 	print("Entry cell: ", entry_cell)
 	print("Exit cell: ", exit_cell)
 
+
 func get_valid_2x2_cells() -> Array[Vector2i]:
 	var floor_cells: Array[Vector2i] = map_generator.get_floor_cells()
 	var valid_cells: Array[Vector2i] = []
@@ -73,6 +88,7 @@ func get_valid_2x2_cells() -> Array[Vector2i]:
 			valid_cells.append(cell)
 
 	return valid_cells
+
 
 func is_valid_2x2_floor(cell: Vector2i) -> bool:
 	var floor_cells: Array[Vector2i] = map_generator.get_floor_cells()
@@ -90,8 +106,10 @@ func is_valid_2x2_floor(cell: Vector2i) -> bool:
 
 	return true
 
+
 func manhattan_distance(a: Vector2i, b: Vector2i) -> int:
 	return abs(a.x - b.x) + abs(a.y - b.y)
+
 
 func spawn_entry() -> void:
 	if entry_scene == null:
@@ -100,10 +118,12 @@ func spawn_entry() -> void:
 
 	var instance = entry_scene.instantiate()
 	object_container.add_child(instance)
+
 	instance.position = get_2x2_center(entry_cell)
 	instance.z_index = chest_z_index
 
 	print("Entry spawned at: ", instance.position)
+
 
 func spawn_exit() -> void:
 	if exit_scene == null:
@@ -112,21 +132,36 @@ func spawn_exit() -> void:
 
 	var instance = exit_scene.instantiate()
 	object_container.add_child(instance)
+
 	instance.position = get_2x2_center(exit_cell)
 	instance.z_index = chest_z_index
 
 	print("Exit spawned at: ", instance.position)
 
+
 func place_player() -> void:
+	if player == null:
+		push_error("LevelManager: player is not assigned.")
+		return
+
+	if not is_valid_2x2_floor(entry_cell):
+		push_error("LevelManager: entry_cell is not a valid 2x2 floor area.")
+		return
+
 	player.position = get_tile_center(entry_cell)
 	player.z_index = player_z_index
+
+	if not player.is_in_group("player"):
+		player.add_to_group("player")
+
 	print("Player spawned at: ", player.position)
+
 
 func spawn_random_objects() -> void:
 	var available_cells: Array[Vector2i] = map_generator.get_floor_cells().duplicate()
 
-	available_cells.erase(entry_cell)
-	available_cells.erase(exit_cell)
+	remove_2x2_area_from_cells(available_cells, entry_cell)
+	remove_2x2_area_from_cells(available_cells, exit_cell)
 
 	available_cells = available_cells.filter(func(cell: Vector2i):
 		return manhattan_distance(cell, entry_cell) >= min_spawn_distance_from_entry
@@ -138,15 +173,16 @@ func spawn_random_objects() -> void:
 		if available_cells.is_empty():
 			return
 
-		var cell: Vector2i = available_cells.pop_back() as Vector2i
+		var cell: Vector2i = available_cells.pop_back()
 		spawn_scene_at_cell(enemy_scene, cell, enemy_z_index)
 
 	for i in range(chest_count):
 		if available_cells.is_empty():
 			return
 
-		var cell: Vector2i = available_cells.pop_back() as Vector2i
+		var cell: Vector2i = available_cells.pop_back()
 		spawn_scene_at_cell(chest_scene, cell, chest_z_index)
+
 
 func spawn_scene_at_cell(scene: PackedScene, cell: Vector2i, z_value: int) -> void:
 	if scene == null:
@@ -159,16 +195,51 @@ func spawn_scene_at_cell(scene: PackedScene, cell: Vector2i, z_value: int) -> vo
 	instance.position = get_tile_center(cell)
 	instance.z_index = z_value
 
-	print("Spawned object at: ", cell)
+	if instance is Enemy:
+		setup_enemy(instance)
+
+	print("Spawned object at cell: ", cell, " position: ", instance.position)
+
+
+func setup_enemy(enemy: Enemy) -> void:
+	enemy.target = player as Player
+
+	if enemy.target == null:
+		push_warning("LevelManager: player is not a Player class. Enemy target was not assigned.")
+		return
+
+	if enemy.enemy_state_machine == null:
+		enemy.enemy_state_machine = enemy.get_node_or_null("EnemyStateMachine")
+
+	if enemy.enemy_state_machine == null:
+		push_warning("LevelManager: EnemyStateMachine was not found on spawned enemy.")
+	else:
+		print("Enemy state machine connected.")
+
+	enemy.find_player()
+
+	print("Enemy target assigned: ", enemy.target.name)
+
+
+func remove_2x2_area_from_cells(cells: Array[Vector2i], top_left_cell: Vector2i) -> void:
+	var occupied_cells: Array[Vector2i] = [
+		top_left_cell,
+		top_left_cell + Vector2i(1, 0),
+		top_left_cell + Vector2i(0, 1),
+		top_left_cell + Vector2i(1, 1)
+	]
+
+	for cell in occupied_cells:
+		cells.erase(cell)
+
 
 func get_tile_center(cell: Vector2i) -> Vector2:
 	var tilemap = map_generator.tilemap_layer
-	var base_pos = tilemap.map_to_local(cell)
-	var tile_size = tilemap.tile_set.tile_size
-	return base_pos + Vector2(tile_size) / 2.0
+	return tilemap.map_to_local(cell)
+
 
 func get_2x2_center(cell: Vector2i) -> Vector2:
 	var tilemap = map_generator.tilemap_layer
-	var base_pos = tilemap.map_to_local(cell)
-	var tile_size = tilemap.tile_set.tile_size
-	return base_pos + Vector2(tile_size)
+	var tile_size: Vector2 = Vector2(tilemap.tile_set.tile_size)
+
+	return tilemap.map_to_local(cell) + tile_size / 2.0

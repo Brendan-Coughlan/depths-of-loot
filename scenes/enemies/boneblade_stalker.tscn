@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://c3rjtxyl8jwjv" path="res://scripts/enemy_state_machine/enemy_idle.gd" id="3_ncvao"]
 [ext_resource type="Texture2D" uid="uid://bming0m0odr1q" path="res://assets/skeletons/PNG/Skeleton1/Without_shadow/Skeleton1_Run_without_shadow.png" id="5_4cset"]
 [ext_resource type="Script" uid="uid://dw5wdkkw0fefj" path="res://scripts/hurt_area_2d.gd" id="5_a7ass"]
-[ext_resource type="Script" path="res://scripts/enemy_state_machine/enemy_death.gd" id="6_sokwp"]
+[ext_resource type="Script" uid="uid://bj5aisjxhom3l" path="res://scripts/enemy_state_machine/enemy_death.gd" id="6_sokwp"]
 [ext_resource type="Script" uid="uid://dh1eqpo6p6vd6" path="res://scripts/enemy_state_machine/enemy_chase.gd" id="7_lr5x0"]
 [ext_resource type="Script" uid="uid://ctvisqq68ob1j" path="res://scripts/enemy_state_machine/enemy_wander.gd" id="8_6vjlt"]
 [ext_resource type="Script" uid="uid://bocttuif2c7yu" path="res://scripts/enemy_state_machine/enemy_attack.gd" id="11_4cset"]
@@ -355,7 +355,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ogula")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack_down",
 "speed": 5.0
 }, {
@@ -387,7 +387,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dshgb")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack_left",
 "speed": 5.0
 }, {
@@ -419,7 +419,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pnbvg")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack_right",
 "speed": 5.0
 }, {
@@ -451,7 +451,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_etpei")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack_up",
 "speed": 5.0
 }, {
@@ -618,24 +618,27 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mma71"]
-size = Vector2(16, 12)
+size = Vector2(16, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a7ass"]
-size = Vector2(16, 22)
+size = Vector2(14, 20)
 
 [node name="BonebladeStalker" type="CharacterBody2D" unique_id=2041274393 node_paths=PackedStringArray("enemy_state_machine")]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 259
 script = ExtResource("1_ype3m")
 enemy_state_machine = NodePath("EnemyStateMachine")
+movement_speed = 50.0
+attack_range = 10.0
+detection_range = 50.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1641038735]
 sprite_frames = SubResource("SpriteFrames_ebgy8")
-animation = &"attack_right"
+animation = &"attack_down"
 autoplay = "idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1964603989]
-position = Vector2(0, 3)
+position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_mma71")
 
 [node name="HurtArea2D" type="Area2D" parent="." unique_id=1224150657]
@@ -645,7 +648,7 @@ script = ExtResource("5_a7ass")
 metadata/_custom_type_script = "uid://dw5wdkkw0fefj"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea2D" unique_id=541464722]
-position = Vector2(0, -2)
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_a7ass")
 
 [node name="EnemyStateMachine" type="Node" parent="." unique_id=1335479577 node_paths=PackedStringArray("initial_state")]
@@ -675,5 +678,8 @@ enemy = NodePath("../..")
 enemy_sprite = NodePath("../../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://ctvisqq68ob1j"
 
-[node name="Attack" type="Node" parent="EnemyStateMachine" unique_id=2006737249]
+[node name="Attack" type="Node" parent="EnemyStateMachine" unique_id=2006737249 node_paths=PackedStringArray("enemy", "enemy_sprite")]
 script = ExtResource("11_4cset")
+enemy = NodePath("../..")
+enemy_sprite = NodePath("../../AnimatedSprite2D")
+attack_cooldown = 2.0

@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://bkgj4cm8ox82a"]
+
+[ext_resource type="Script" uid="uid://c3udlllnbic14" path="res://scripts/ui/status_panel.gd" id="1_5g1pj"]
+[ext_resource type="Texture2D" uid="uid://i76s3qqjarou" path="res://assets/dungeon/PNG/Arches_columns.png" id="1_jjlsm"]
+[ext_resource type="Texture2D" uid="uid://b16ickytvhytj" path="res://assets/swordsman/PNG/Swordsman_lvl4/With_shadow/lvl4_Idle_with_shadow.png" id="2_03b4n"]
+[ext_resource type="Texture2D" uid="uid://8o3t4r0tgip0" path="res://assets/UI/PNG/character_panel.png" id="3_03b4n"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5g1pj"]
+texture = ExtResource("1_jjlsm")
+region_rect = Rect2(246, 117, 35, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oo0f2"]
+atlas = ExtResource("2_03b4n")
+region = Rect2(25, 20, 13, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03b4n"]
+atlas = ExtResource("3_03b4n")
+region = Rect2(30, 42, 51, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5g1pj"]
+atlas = ExtResource("3_03b4n")
+region = Rect2(126, 74, 52, 2)
+
+[node name="StatusPanel" type="HBoxContainer" unique_id=42681282]
+script = ExtResource("1_5g1pj")
+
+[node name="AvatarBox" type="PanelContainer" parent="." unique_id=620027307]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5g1pj")
+
+[node name="Avatar" type="TextureRect" parent="AvatarBox" unique_id=1605130656]
+layout_mode = 2
+texture = SubResource("AtlasTexture_oo0f2")
+stretch_mode = 5
+
+[node name="HealthBar" type="TextureProgressBar" parent="." unique_id=1573532208]
+layout_mode = 2
+size_flags_vertical = 4
+value = 20.0
+texture_under = SubResource("AtlasTexture_03b4n")
+texture_progress = SubResource("AtlasTexture_5g1pj")
+texture_progress_offset = Vector2(0, 0.5)

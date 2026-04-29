@@ -3,8 +3,9 @@ class_name Enemy
 
 @export var enemy_state_machine: Node
 @export var movement_speed: float = 80.0
-@export var attack_range: float = 32.0
+@export var attack_range: float = 2.0
 @export var attack_damage: int = 10
+@export var detection_range: float = 150.0
 
 var target: Player
 var last_direction: Vector2 = Vector2.DOWN
