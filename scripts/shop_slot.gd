@@ -27,3 +27,7 @@ func update_quantity_text():
 
 func _on_buy_button_pressed() -> void:
 	print("Buy button pressed")
+
+
+func _on_sell_button_pressed() -> void:
+	print("Sell button pressed")

@@ -18,6 +18,10 @@ shadow_size = 0
 atlas = ExtResource("3_7nrpo")
 region = Rect2(227, 162, 26, 14)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jns18"]
+atlas = ExtResource("3_7nrpo")
+region = Rect2(225, 194, 30, 14)
+
 [node name="ShopSlot" type="Control" unique_id=803532061]
 custom_minimum_size = Vector2(88, 200)
 layout_mode = 3
@@ -44,9 +48,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -44.0
-offset_top = -47.5
+offset_top = -44.0
 offset_right = 44.0
-offset_bottom = 41.0
+offset_bottom = 44.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_7nrpo")
@@ -98,4 +102,22 @@ grow_vertical = 2
 texture_normal = SubResource("AtlasTexture_ckp8l")
 stretch_mode = 5
 
+[node name="SellButton" type="TextureButton" parent="." unique_id=2100890165]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = 77.5
+offset_right = 44.0
+offset_bottom = 165.5
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = SubResource("AtlasTexture_jns18")
+stretch_mode = 5
+
 [connection signal="pressed" from="BuyButton" to="Slot" method="_on_buy_button_pressed"]
+[connection signal="pressed" from="SellButton" to="Slot" method="_on_sell_button_pressed"]

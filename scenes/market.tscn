@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://d2auwmt7xo2j2" path="res://scenes/player.tscn" id="7_1syoy"]
 [ext_resource type="Texture2D" uid="uid://bifvxtxlf4h5y" path="res://assets/market/PNG/Objects.png" id="8_hvm52"]
 [ext_resource type="PackedScene" uid="uid://b231i761fpqtl" path="res://scenes/food_trader.tscn" id="9_4msli"]
+[ext_resource type="PackedScene" uid="uid://d4laxxywaicm6" path="res://scenes/pause_menu.tscn" id="11_wa5cj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("1_co8of")
@@ -2298,3 +2299,5 @@ z_index = 10
 
 [node name="FoodTrader" parent="World/Entities" unique_id=600359875 instance=ExtResource("9_4msli")]
 position = Vector2(4, -47)
+
+[node name="PauseMenu" parent="." unique_id=1091750795 instance=ExtResource("11_wa5cj")]

@@ -6,6 +6,7 @@ var hovered_slot: TextureButton = null
 
 @onready var window : TextureRect = get_node("InventoryWindow")
 @onready var info_text : Label = get_node("InventoryWindow/InfoText")
+@onready var background_blur : TextureRect = get_node("BackgroundBlurTexture")
 
 @export var inactive_slot_texture : AtlasTexture
 @export var active_slot_texture : AtlasTexture
@@ -36,6 +37,7 @@ func _on_slot_hovered(slot):
 
 func toggle_window(open : bool):
 	window.visible = open
+	background_blur.visible = open
 
 	if open:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

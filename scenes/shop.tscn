@@ -2,7 +2,12 @@
 
 [ext_resource type="Script" uid="uid://c7gwryd7gwqnf" path="res://scripts/shop.gd" id="1_1l46r"]
 [ext_resource type="Texture2D" uid="uid://c8x27mioq3nv6" path="res://assets/UI/PNG/Shop.png" id="2_1l46r"]
+[ext_resource type="Texture2D" uid="uid://bqrlfixtam86r" path="res://assets/UI/PNG/Main_menu.png" id="2_032fp"]
 [ext_resource type="PackedScene" uid="uid://bshb3pcsfrkjm" path="res://scenes/shop_slot.tscn" id="3_1l46r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fc2m"]
+atlas = ExtResource("2_032fp")
+region = Rect2(240, 176, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1l46r"]
 atlas = ExtResource("2_1l46r")
@@ -11,17 +16,33 @@ region = Rect2(7, 240, 115, 149)
 [node name="Shop" type="CanvasLayer" unique_id=567974528]
 script = ExtResource("1_1l46r")
 
+[node name="BackgroundBlurTexture" type="TextureRect" parent="." unique_id=587844792]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1010.0
+offset_top = -577.0
+offset_right = 1011.0
+offset_bottom = 609.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_2fc2m")
+
 [node name="ShopWindow" type="TextureRect" parent="." unique_id=556913893]
-custom_minimum_size = Vector2(512, 512)
+custom_minimum_size = Vector2(512, 1024)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -256.0
-offset_top = -256.0
+offset_top = -512.0
 offset_right = 256.0
-offset_bottom = 256.0
+offset_bottom = 512.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_1l46r")
@@ -34,14 +55,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -132.5
-offset_top = -202.0
-offset_right = 132.5
-offset_bottom = 202.0
+offset_left = -206.0
+offset_top = -304.0
+offset_right = 206.0
+offset_bottom = 304.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/h_separation = 20
-columns = 3
+theme_override_constants/v_separation = 50
+columns = 4
 
 [node name="ShopSlot" parent="ShopWindow/SlotContainer" unique_id=1224792471 instance=ExtResource("3_1l46r")]
 layout_mode = 2
@@ -61,14 +83,20 @@ layout_mode = 2
 [node name="ShopSlot6" parent="ShopWindow/SlotContainer" unique_id=91256150 instance=ExtResource("3_1l46r")]
 layout_mode = 2
 
+[node name="ShopSlot7" parent="ShopWindow/SlotContainer" unique_id=803532061 instance=ExtResource("3_1l46r")]
+layout_mode = 2
+
+[node name="ShopSlot8" parent="ShopWindow/SlotContainer" unique_id=1354918160 instance=ExtResource("3_1l46r")]
+layout_mode = 2
+
 [node name="ExitButton" type="Button" parent="ShopWindow" unique_id=872534685]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.79882824
-anchor_top = 0.011718776
-anchor_right = 0.8593751
-anchor_bottom = 0.07421878
+anchor_left = 0.88671887
+anchor_top = 0.18457031
+anchor_right = 0.966797
+anchor_bottom = 0.22460938
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
