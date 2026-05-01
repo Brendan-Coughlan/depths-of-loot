@@ -1,125 +1,86 @@
 [gd_scene format=3 uid="uid://d4laxxywaicm6"]
 
 [ext_resource type="Script" uid="uid://cuhvpfi11u0ab" path="res://scripts/pause_menu.gd" id="1_n87rw"]
+[ext_resource type="Texture2D" uid="uid://bqrlfixtam86r" path="res://assets/UI/PNG/Main_menu.png" id="2_myx47"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_n87rw"]
-font_size = 80
+[sub_resource type="AtlasTexture" id="AtlasTexture_7l7mv"]
+atlas = ExtResource("2_myx47")
+region = Rect2(96, 180, 80, 88)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uahpa"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_color = Color(0, 0, 0, 0.20392157)
-shadow_size = 5
-shadow_offset = Vector2(0, 3.41)
+[sub_resource type="AtlasTexture" id="AtlasTexture_kukqi"]
+atlas = ExtResource("2_myx47")
+region = Rect2(189, 18, 56, 12)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n87rw"]
-bg_color = Color(0.63529414, 0.63529414, 0.63529414, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_color = Color(0, 0, 0, 0.20392157)
-shadow_size = 5
-shadow_offset = Vector2(0, 3.41)
+[sub_resource type="AtlasTexture" id="AtlasTexture_5d2l8"]
+atlas = ExtResource("2_myx47")
+region = Rect2(189, 50, 56, 12)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_myx47"]
-bg_color = Color(0.8235294, 0.8235294, 0.8235294, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_color = Color(0, 0, 0, 0.20392157)
-shadow_size = 5
-shadow_offset = Vector2(0, 3.41)
+[sub_resource type="AtlasTexture" id="AtlasTexture_myx47"]
+atlas = ExtResource("2_myx47")
+region = Rect2(189, 146, 56, 12)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kukqi"]
-
-[node name="PauseMenu" type="Control" unique_id=1847698206]
+[node name="PauseMenu" type="CanvasLayer" unique_id=1091750795]
 process_mode = 3
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 script = ExtResource("1_n87rw")
 
-[node name="PausedLabel" type="Label" parent="." unique_id=1467373086]
-layout_mode = 1
+[node name="TextureRect" type="TextureRect" parent="." unique_id=545030263]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -112.5
-offset_top = -192.0
-offset_right = 112.5
-offset_bottom = -104.0
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Paused"
-label_settings = SubResource("LabelSettings_n87rw")
+texture = SubResource("AtlasTexture_7l7mv")
+stretch_mode = 5
 
 [node name="Menu" type="VBoxContainer" parent="." unique_id=881408193]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -118.0
-offset_top = -89.5
-offset_right = 118.0
-offset_bottom = 89.5
+offset_left = -192.0
+offset_top = -160.0
+offset_right = 192.0
+offset_bottom = 160.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 9
 
-[node name="Resume" type="Button" parent="Menu" unique_id=1640582779]
+[node name="Resume" type="TextureButton" parent="Menu" unique_id=1849665209]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_uahpa")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_n87rw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_myx47")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_kukqi")
-text = "Resume"
+texture_normal = SubResource("AtlasTexture_kukqi")
+stretch_mode = 5
 
-[node name="Options" type="Button" parent="Menu" unique_id=452948270]
+[node name="Settings" type="TextureButton" parent="Menu" unique_id=1573078386]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_uahpa")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_n87rw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_myx47")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_kukqi")
-text = "Options"
+texture_normal = SubResource("AtlasTexture_5d2l8")
+stretch_mode = 5
 
-[node name="Exit" type="Button" parent="Menu" unique_id=152501743]
+[node name="Quit" type="TextureButton" parent="Menu" unique_id=921837096]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_uahpa")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_n87rw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_myx47")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_kukqi")
-text = "Exit"
+texture_normal = SubResource("AtlasTexture_myx47")
+stretch_mode = 5
+
+[node name="ExitButton" type="Button" parent="." unique_id=1269486367]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+anchor_left = 0.58489585
+anchor_top = 0.27407408
+anchor_right = 0.6119792
+anchor_bottom = 0.32222223
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Menu/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="Menu/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="Menu/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Menu/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Menu/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

@@ -751,7 +751,4 @@ scale = Vector2(52.021748, 1905.6744)
 script = ExtResource("10_vtaks")
 player = NodePath("../../../../World/Player")
 
-[node name="UI" type="CanvasLayer" parent="." unique_id=1137518638]
-layer = 5
-
-[node name="PauseMenu" parent="UI" unique_id=1847698206 instance=ExtResource("12_dinhu")]
+[node name="PauseMenu" parent="." unique_id=1847698206 instance=ExtResource("12_dinhu")]

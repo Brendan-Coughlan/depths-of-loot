@@ -1,4 +1,4 @@
-extends Button
+extends TextureButton
 class_name InventorySlot
 
 var item : ItemData

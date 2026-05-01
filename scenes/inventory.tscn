@@ -20,7 +20,7 @@ region = Rect2(193, 113, 14, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_53g1v"]
 atlas = ExtResource("3_ty45s")
-region = Rect2(7, 0, 98, 101)
+region = Rect2(7, 160, 98, 101)
 
 [sub_resource type="LabelSettings" id="LabelSettings_hj2ta"]
 font_size = 18
@@ -34,15 +34,16 @@ inactive_slot_texture = SubResource("AtlasTexture_yyk2a")
 active_slot_texture = SubResource("AtlasTexture_s887n")
 
 [node name="InventoryWindow" type="TextureRect" parent="." unique_id=556913893]
+custom_minimum_size = Vector2(512, 512)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -236.0
-offset_top = -215.0
-offset_right = 222.0
-offset_bottom = 231.0
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_53g1v")
@@ -51,10 +52,10 @@ stretch_mode = 5
 [node name="SlotContainer" type="GridContainer" parent="InventoryWindow" unique_id=626662425]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.15938862
-anchor_top = 0.1680926
-anchor_right = 0.84061134
-anchor_bottom = 0.8676442
+anchor_left = 0.14453125
+anchor_top = 0.1640625
+anchor_right = 0.85546875
+anchor_bottom = 0.875
 grow_horizontal = 2
 grow_vertical = 2
 columns = 4
@@ -111,10 +112,10 @@ layout_mode = 2
 [node name="InfoText" type="Label" parent="InventoryWindow" unique_id=1211522456]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.15283842
-anchor_top = 0.8654708
-anchor_right = 0.8471616
-anchor_bottom = 0.9237668
+anchor_left = 0.14666665
+anchor_top = 0.88439447
+anchor_right = 0.85333335
+anchor_bottom = 0.94269043
 grow_horizontal = 2
 grow_vertical = 0
 text = "Contain info about the selected item"
@@ -122,3 +123,17 @@ label_settings = SubResource("LabelSettings_hj2ta")
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="ExitButton" type="Button" parent="InventoryWindow" unique_id=1734347461]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8652345
+anchor_top = 0.019531276
+anchor_right = 0.95507824
+anchor_bottom = 0.10937503
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="InventoryWindow/ExitButton" to="." method="_on_exit_button_pressed"]

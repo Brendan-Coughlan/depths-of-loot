@@ -2,7 +2,7 @@ extends Node
 class_name Inventory
 
 var slots : Array[InventorySlot]
-var hovered_slot: Button = null
+var hovered_slot: TextureButton = null
 
 @onready var window : TextureRect = get_node("InventoryWindow")
 @onready var info_text : Label = get_node("InventoryWindow/InfoText")
@@ -13,6 +13,9 @@ var hovered_slot: Button = null
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("inventory"):
 		toggle_window(!window.visible)
+
+func _on_exit_button_pressed():
+	toggle_window(false)
 
 func _ready():
 	toggle_window(false)
