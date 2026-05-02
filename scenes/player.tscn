@@ -971,18 +971,12 @@ health = NodePath("../../HealthComponent")
 inactive_slot_texture = null
 active_slot_texture = null
 
+[node name="StatusPanel" parent="." unique_id=42681282 instance=ExtResource("16_a8ls1")]
+scale = Vector2(5.4225206, 5.650942)
+transform = Transform2D(5.4225206, 0, 0, 5.650942, 0, 0)
+
 [node name="HealthComponent" type="Node" parent="." unique_id=11957842]
 script = ExtResource("13_jej6c")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2094208981]
-
-[node name="StatusPanel" parent="CanvasLayer" unique_id=42681282 node_paths=PackedStringArray("health_component") instance=ExtResource("16_a8ls1")]
-offset_left = 16.0
-offset_top = 15.0
-offset_right = 98.0
-offset_bottom = 41.0
-scale = Vector2(5.4225206, 5.650942)
-health_component = NodePath("../../HealthComponent")
 
 [node name="TargetPoint" type="Marker2D" parent="." unique_id=2115873881]
 position = Vector2(0, -36)

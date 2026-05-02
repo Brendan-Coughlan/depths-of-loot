@@ -21,20 +21,22 @@ region = Rect2(30, 42, 51, 3)
 atlas = ExtResource("3_03b4n")
 region = Rect2(126, 74, 52, 2)
 
-[node name="StatusPanel" type="HBoxContainer" unique_id=42681282]
+[node name="StatusGUI" type="CanvasLayer" unique_id=1274522783]
+
+[node name="StatusPanel" type="HBoxContainer" parent="." unique_id=42681282]
 script = ExtResource("1_5g1pj")
 
-[node name="AvatarBox" type="PanelContainer" parent="." unique_id=620027307]
+[node name="AvatarBox" type="PanelContainer" parent="StatusPanel" unique_id=620027307]
 custom_minimum_size = Vector2(26, 26)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_5g1pj")
 
-[node name="Avatar" type="TextureRect" parent="AvatarBox" unique_id=1605130656]
+[node name="Avatar" type="TextureRect" parent="StatusPanel/AvatarBox" unique_id=1605130656]
 layout_mode = 2
 texture = SubResource("AtlasTexture_oo0f2")
 stretch_mode = 5
 
-[node name="HealthBar" type="TextureProgressBar" parent="." unique_id=1573532208]
+[node name="HealthBar" type="TextureProgressBar" parent="StatusPanel" unique_id=1573532208]
 layout_mode = 2
 size_flags_vertical = 4
 value = 20.0
