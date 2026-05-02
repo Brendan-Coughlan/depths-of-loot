@@ -25,6 +25,7 @@ region = Rect2(189, 146, 56, 12)
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=1091750795]
 process_mode = 3
+layer = 3
 script = ExtResource("1_n87rw")
 
 [node name="BackgroundBlurTexture" type="TextureRect" parent="." unique_id=1114350954]

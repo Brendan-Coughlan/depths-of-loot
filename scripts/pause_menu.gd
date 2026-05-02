@@ -22,6 +22,7 @@ func _on_settings_pressed() -> void:
 	print("Options pressed")
 
 func _on_quit_pressed() -> void:
+	resume_game()
 	get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
 
 func pause_game():

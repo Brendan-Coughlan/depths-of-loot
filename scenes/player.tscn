@@ -481,7 +481,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_down",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -507,7 +507,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_right",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -533,7 +533,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_up",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -559,7 +559,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"death_down",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -585,7 +585,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"death_right",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -611,7 +611,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"death_up",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -631,7 +631,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hurt_down",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -651,7 +651,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hurt_right",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -671,7 +671,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hurt_up",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -712,7 +712,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_down",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -753,7 +753,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_right",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -770,7 +770,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_up",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -799,7 +799,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run_down",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -828,7 +828,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run_right",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -857,7 +857,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run_up",
-"speed": 5.0
+"speed": 8.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ui80"]
@@ -873,9 +873,8 @@ size = Vector2(35, 10)
 size = Vector2(12, 20)
 
 [node name="Player" type="CharacterBody2D" unique_id=1742427560 groups=["player"]]
-position = Vector2(0, 36)
 collision_layer = 2
-collision_mask = 260
+collision_mask = 256
 script = ExtResource("1_ur7pv")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1357435292]
@@ -885,7 +884,7 @@ position_smoothing_enabled = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=380213532]
 position = Vector2(0, 27)
 sprite_frames = SubResource("SpriteFrames_xqwvd")
-animation = &"hurt_up"
+animation = &"run_up"
 autoplay = "idle_down"
 offset = Vector2(0, -64)
 
@@ -894,10 +893,11 @@ position = Vector2(0, -36.000004)
 scale = Vector2(0.9511571, 1.1104065)
 shape = SubResource("RectangleShape2D_3ui80")
 
-[node name="HitArea2D" type="Area2D" parent="." unique_id=906782775]
+[node name="HitArea2D" type="Area2D" parent="." unique_id=1762854336]
 collision_layer = 0
 collision_mask = 1024
 script = ExtResource("7_fulsm")
+metadata/_custom_type_script = "uid://bt6qoo5t5cq51"
 
 [node name="RightHtiBox" type="CollisionShape2D" parent="HitArea2D" unique_id=92344310]
 position = Vector2(17.5, -34.5)
@@ -956,24 +956,27 @@ player_sprite = NodePath("../../AnimatedSprite2D")
 player_hitboxes = [NodePath("../../HitArea2D/RightHtiBox"), NodePath("../../HitArea2D/LeftHtiBox"), NodePath("../../HitArea2D/UpHitBox"), NodePath("../../HitArea2D/DownHitBox")]
 metadata/_custom_type_script = "uid://cf73civ7afwjo"
 
-[node name="Death" type="Node" parent="PlayerStateMachine" unique_id=221767128 node_paths=PackedStringArray("player", "player_sprite")]
+[node name="Death" type="Node" parent="PlayerStateMachine" unique_id=1708074521 node_paths=PackedStringArray("player", "player_sprite")]
 script = ExtResource("7_ur7pv")
 player = NodePath("../..")
 player_sprite = NodePath("../../AnimatedSprite2D")
+metadata/_custom_type_script = "uid://q3tu5hwbqobb"
 
-[node name="Hurt" type="Node" parent="PlayerStateMachine" unique_id=362881587 node_paths=PackedStringArray("player", "player_sprite", "health")]
+[node name="Hurt" type="Node" parent="PlayerStateMachine" unique_id=555815990 node_paths=PackedStringArray("player", "player_sprite", "health")]
 script = ExtResource("12_f1ej7")
 player = NodePath("../..")
 player_sprite = NodePath("../../AnimatedSprite2D")
 health = NodePath("../../HealthComponent")
+metadata/_custom_type_script = "uid://82q65dnubqli"
 
 [node name="Inventory" parent="." unique_id=1822213814 instance=ExtResource("7_smehm")]
 inactive_slot_texture = null
 active_slot_texture = null
 
-[node name="StatusPanel" parent="." unique_id=42681282 instance=ExtResource("16_a8ls1")]
+[node name="StatusPanel" parent="." unique_id=42681282 node_paths=PackedStringArray("health_component") instance=ExtResource("16_a8ls1")]
 scale = Vector2(5.4225206, 5.650942)
 transform = Transform2D(5.4225206, 0, 0, 5.650942, 0, 0)
+health_component = NodePath("../HealthComponent")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=11957842]
 script = ExtResource("13_jej6c")

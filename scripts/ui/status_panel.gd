@@ -1,8 +1,8 @@
-extends HBoxContainer
+extends CanvasLayer
 
 @export var health_component: HealthComponent
 
-@onready var health_bar: TextureProgressBar = $HealthBar
+@onready var health_bar: TextureProgressBar = $StatusPanel/HealthBar
 
 func _ready() -> void:
 	if health_component == null:

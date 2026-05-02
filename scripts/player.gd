@@ -11,7 +11,12 @@ func _ready() -> void:
 	health.damaged.connect(_on_damaged)
 
 func _on_died() -> void:
-	queue_free()
+	#queue_free()
+	
+	player_state_machine.on_child_transition(
+		player_state_machine.current_state,
+		"death"
+	)
 
 func _on_damaged(amount: int) -> void:
 	print("Took damage:", amount)

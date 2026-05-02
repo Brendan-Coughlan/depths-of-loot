@@ -22,9 +22,9 @@ atlas = ExtResource("3_03b4n")
 region = Rect2(126, 74, 52, 2)
 
 [node name="StatusGUI" type="CanvasLayer" unique_id=1274522783]
+script = ExtResource("1_5g1pj")
 
 [node name="StatusPanel" type="HBoxContainer" parent="." unique_id=42681282]
-script = ExtResource("1_5g1pj")
 
 [node name="AvatarBox" type="PanelContainer" parent="StatusPanel" unique_id=620027307]
 custom_minimum_size = Vector2(26, 26)

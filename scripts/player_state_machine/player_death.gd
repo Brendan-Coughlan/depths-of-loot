@@ -8,28 +8,29 @@ func enter() -> void:
 	player.velocity = Vector2.ZERO
 	
 	if player_sprite:
-		player_sprite.play("death")
-		if not player_sprite.animation_finished.is_connected(_on_animation_finished):
-			player_sprite.animation_finished.connect(_on_animation_finished)
+		play_death_animation()
+		await player_sprite.animation_finished
+		print("Player is dead")
+		get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
+
 	else:
 		print("Player sprite not found")
 
-func exit() -> void:
-	if player_sprite and player_sprite.animation_finished.is_connected(_on_animation_finished):
-		player_sprite.animation_finished.disconnect(_on_animation_finished)
-
-func update(_delta: float) -> void:
-	pass
-
 func physics_update(_delta: float) -> void:
 	player.velocity = Vector2.ZERO
+	
+func play_death_animation() -> void:
+	var dir : Vector2 = player.last_direction
+	
+	if abs(dir.x) > abs(dir.y):
+		player_sprite.flip_h = dir.x < 0
+		play_if_not_playing("death_right")
+	else:
+		if dir.y < 0:
+			play_if_not_playing("death_up")
+		else:
+			play_if_not_playing("death_down")
 
-func _input(_event: InputEvent) -> void:
-	pass
-
-func _on_animation_finished() -> void:
-	if player_sprite.animation == "death":
-		print("Player is dead")
-		# queue_free()
-		# get_tree().reload_current_scene()
-		# Transitioned.emit(self, "game_over")
+func play_if_not_playing(anim: String) -> void:
+	if player_sprite.animation != anim:
+		player_sprite.play(anim)

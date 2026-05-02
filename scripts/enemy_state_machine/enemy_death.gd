@@ -8,26 +8,29 @@ func enter() -> void:
 	enemy.velocity = Vector2.ZERO
 	
 	if enemy_sprite:
-		enemy_sprite.play("death")
-		if not enemy_sprite.animation_finished.is_connected(_on_animation_finished):
-			enemy_sprite.animation_finished.connect(_on_animation_finished)
+		play_death_animation()
+		await enemy_sprite.animation_finished
+		print("Enemy is dead")
+		enemy.queue_free()
+		
 	else:
 		print("Enemy sprite not found")
-
-func exit() -> void:
-	if enemy_sprite and enemy_sprite.animation_finished.is_connected(_on_animation_finished):
-		enemy_sprite.animation_finished.disconnect(_on_animation_finished)
-
-func update(_delta: float) -> void:
-	pass
 
 func physics_update(_delta: float) -> void:
 	enemy.velocity = Vector2.ZERO
 
-func _input(_event: InputEvent) -> void:
-	pass
+func play_death_animation() -> void:
+	var dir : Vector2 = enemy.last_direction
+	
+	if abs(dir.x) > abs(dir.y):
+		enemy_sprite.flip_h = dir.x < 0
+		play_if_not_playing("death_right")
+	else:
+		if dir.y < 0:
+			play_if_not_playing("death_up")
+		else:
+			play_if_not_playing("death_down")
 
-func _on_animation_finished() -> void:
-	if enemy_sprite.animation == "death":
-		print("Enemy is dead")
-		enemy.queue_free()
+func play_if_not_playing(anim: String) -> void:
+	if enemy_sprite.animation != anim:
+		enemy_sprite.play(anim)

@@ -4,7 +4,6 @@ class_name EnemyIdle
 @export var enemy: Enemy
 @export var enemy_sprite: AnimatedSprite2D
 
-
 func enter() -> void:
 	if enemy == null:
 		enemy = owner as Enemy
