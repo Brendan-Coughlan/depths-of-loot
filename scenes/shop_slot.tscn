@@ -38,6 +38,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+script = ExtResource("1_7nrpo")
 
 [node name="Slot" type="TextureRect" parent="." unique_id=440703502]
 custom_minimum_size = Vector2(88, 88)
@@ -55,7 +56,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_7nrpo")
 stretch_mode = 5
-script = ExtResource("1_7nrpo")
 
 [node name="Icon" type="TextureRect" parent="." unique_id=1509825119]
 layout_mode = 1
@@ -67,7 +67,7 @@ anchor_bottom = 0.5
 offset_left = -44.0
 offset_top = -43.0
 offset_right = 44.0
-offset_bottom = 101.5
+offset_bottom = 45.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -111,13 +111,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -44.0
-offset_top = 77.5
+offset_top = 28.5
 offset_right = 44.0
-offset_bottom = 165.5
+offset_bottom = 116.5
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = SubResource("AtlasTexture_jns18")
 stretch_mode = 5
 
-[connection signal="pressed" from="BuyButton" to="Slot" method="_on_buy_button_pressed"]
-[connection signal="pressed" from="SellButton" to="Slot" method="_on_sell_button_pressed"]
+[connection signal="pressed" from="BuyButton" to="." method="_on_buy_button_pressed"]
+[connection signal="pressed" from="SellButton" to="." method="_on_sell_button_pressed"]

@@ -1,6 +1,8 @@
 extends Node
 class_name Inventory
 
+var gold: int = 100
+
 var slots : Array[InventorySlot]
 var hovered_slot: TextureButton = null
 
@@ -59,7 +61,7 @@ func add_item(item : ItemData):
 func remove_item(item : ItemData):
 	var slot = get_slot_to_remove(item)
   
-	if slot == null or slot.item == item:
+	if slot == null or slot.item != item:
 		return
 	
 	slot.remove_item()

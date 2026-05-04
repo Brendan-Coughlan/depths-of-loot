@@ -973,10 +973,11 @@ metadata/_custom_type_script = "uid://82q65dnubqli"
 inactive_slot_texture = null
 active_slot_texture = null
 
-[node name="StatusPanel" parent="." unique_id=42681282 node_paths=PackedStringArray("health_component") instance=ExtResource("16_a8ls1")]
+[node name="StatusPanel" parent="." unique_id=42681282 node_paths=PackedStringArray("health_component", "player_inventory") instance=ExtResource("16_a8ls1")]
 scale = Vector2(5.4225206, 5.650942)
 transform = Transform2D(5.4225206, 0, 0, 5.650942, 0, 0)
 health_component = NodePath("../HealthComponent")
+player_inventory = NodePath("../Inventory")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=11957842]
 script = ExtResource("13_jej6c")

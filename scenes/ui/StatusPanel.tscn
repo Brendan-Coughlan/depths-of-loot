@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://i76s3qqjarou" path="res://assets/dungeon/PNG/Arches_columns.png" id="1_jjlsm"]
 [ext_resource type="Texture2D" uid="uid://b16ickytvhytj" path="res://assets/swordsman/PNG/Swordsman_lvl4/With_shadow/lvl4_Idle_with_shadow.png" id="2_03b4n"]
 [ext_resource type="Texture2D" uid="uid://8o3t4r0tgip0" path="res://assets/UI/PNG/character_panel.png" id="3_03b4n"]
+[ext_resource type="Texture2D" uid="uid://bo23885f4qhmr" path="res://assets/UI/PNG/Inventory.png" id="5_oo0f2"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5g1pj"]
 texture = ExtResource("1_jjlsm")
@@ -21,10 +22,18 @@ region = Rect2(30, 42, 51, 3)
 atlas = ExtResource("3_03b4n")
 region = Rect2(126, 74, 52, 2)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5upg"]
+atlas = ExtResource("5_oo0f2")
+region = Rect2(243, 115, 10, 10)
+
+[sub_resource type="LabelSettings" id="LabelSettings_oo0f2"]
+font_size = 10
+
 [node name="StatusGUI" type="CanvasLayer" unique_id=1274522783]
 script = ExtResource("1_5g1pj")
 
 [node name="StatusPanel" type="HBoxContainer" parent="." unique_id=42681282]
+theme_override_constants/separation = 2
 
 [node name="AvatarBox" type="PanelContainer" parent="StatusPanel" unique_id=620027307]
 custom_minimum_size = Vector2(26, 26)
@@ -43,3 +52,14 @@ value = 20.0
 texture_under = SubResource("AtlasTexture_03b4n")
 texture_progress = SubResource("AtlasTexture_5g1pj")
 texture_progress_offset = Vector2(0, 0.5)
+
+[node name="GoldIcon" type="TextureRect" parent="StatusPanel" unique_id=107401877]
+layout_mode = 2
+texture = SubResource("AtlasTexture_p5upg")
+stretch_mode = 5
+
+[node name="GoldLabel" type="Label" parent="StatusPanel" unique_id=1036406708]
+layout_mode = 2
+text = "100"
+label_settings = SubResource("LabelSettings_oo0f2")
+vertical_alignment = 1
