@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://bocttuif2c7yu" path="res://scripts/enemy_state_machine/enemy_attack.gd" id="11_4cset"]
 [ext_resource type="Script" uid="uid://bnh5kspkv7e3t" path="res://scripts/enemy_state_machine/enemy_hurt.gd" id="15_dsf8j"]
 [ext_resource type="Script" uid="uid://cyvmfqey7r7qs" path="res://scripts/health_component.gd" id="15_ser5m"]
+[ext_resource type="Script" uid="uid://c6n6hxcthkhwq" path="res://scripts/ui/EnemyHealthBar.gd" id="17_vb1bo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6wfl1"]
 atlas = ExtResource("2_t41c6")
@@ -758,6 +759,20 @@ size = Vector2(20, 11)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a7ass"]
 size = Vector2(19, 21)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dsf8j"]
+load_path = "res://.godot/imported/character_panel.png-4e5dab95b05b58878577f801fc574d23.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2h6v"]
+atlas = SubResource("CompressedTexture2D_dsf8j")
+region = Rect2(30, 42, 51, 3)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vb1bo"]
+load_path = "res://.godot/imported/character_panel.png-4e5dab95b05b58878577f801fc574d23.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5vnx"]
+atlas = SubResource("CompressedTexture2D_vb1bo")
+region = Rect2(126, 74, 52, 2)
+
 [node name="BonebladeStalker" type="CharacterBody2D" unique_id=2041274393 node_paths=PackedStringArray("enemy_state_machine")]
 collision_layer = 4
 collision_mask = 256
@@ -857,3 +872,20 @@ max_health = 30
 current_health = 30
 
 [node name="AttackOrigin" type="Marker2D" parent="." unique_id=1688768962]
+
+[node name="HealthBar" type="Node2D" parent="." unique_id=79389974 node_paths=PackedStringArray("health_component")]
+position = Vector2(-17, -18)
+scale = Vector2(-33.333, 1)
+script = ExtResource("17_vb1bo")
+health_component = NodePath("../HealthComponent")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HealthBar" unique_id=321866647]
+offset_left = 0.4800049
+offset_top = -3.0
+offset_right = 51.480003
+offset_bottom = 37.0
+scale = Vector2(-0.019785509, 1.528871)
+value = 100.0
+texture_under = SubResource("AtlasTexture_b2h6v")
+texture_progress = SubResource("AtlasTexture_o5vnx")
+texture_progress_offset = Vector2(0, 0.5)
