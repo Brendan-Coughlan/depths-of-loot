@@ -92,6 +92,7 @@ pause={
 2d_physics/layer_9="Wall"
 2d_physics/layer_10="PlayerHurtArea"
 2d_physics/layer_11="EnemyHurtArea"
+2d_physics/layer_12="Entry"
 
 [rendering]
 

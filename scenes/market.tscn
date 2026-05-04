@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://d2auwmt7xo2j2" path="res://scenes/player.tscn" id="7_1syoy"]
 [ext_resource type="Texture2D" uid="uid://bifvxtxlf4h5y" path="res://assets/market/PNG/Objects.png" id="8_hvm52"]
 [ext_resource type="PackedScene" uid="uid://b231i761fpqtl" path="res://scenes/food_trader.tscn" id="9_4msli"]
+[ext_resource type="PackedScene" uid="uid://102euhoyfxjy" path="res://scenes/environment/DungeonEntry.tscn" id="11_k7ps5"]
 [ext_resource type="PackedScene" uid="uid://d4laxxywaicm6" path="res://scenes/pause_menu.tscn" id="11_wa5cj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
@@ -2267,6 +2268,21 @@ sources/0 = SubResource("TileSetAtlasSource_yqjtg")
 sources/1 = SubResource("TileSetScenesCollectionSource_lnu2h")
 sources/2 = SubResource("TileSetAtlasSource_4msli")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k7ps5"]
+size = Vector2(109, 55.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wa5cj"]
+size = Vector2(76.25, 52)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1syoy"]
+size = Vector2(80.125, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4okcq"]
+size = Vector2(97.0625, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8yfkx"]
+size = Vector2(122.125, 86)
+
 [node name="Market" type="Node2D" unique_id=74457754]
 
 [node name="World" type="Node2D" parent="." unique_id=846429850 groups=["world"]]
@@ -2292,6 +2308,46 @@ z_as_relative = false
 tile_map_data = PackedByteArray("AAD9//v/AgAGABIAAAD9//z/AgAGABMAAAD+//n/AgAHABAAAAD+//r/AgAHABEAAAD+//v/AgAHABIAAAD+//z/AgAHABMAAAD+//3/AgAHABQAAAD///n/AgAIABAAAAD///r/AgAIABEAAAD///v/AgAIABIAAAD///z/AgAIABMAAAD///3/AgAIABQAAAAAAPn/AgAJABAAAAAAAPr/AgAJABEAAAAAAPv/AgAJABIAAAAAAPz/AgAJABMAAAABAPn/AgAKABAAAAABAPr/AgAKABEAAAABAPv/AgAKABIAAAABAPz/AgAKABMAAAACAPn/AgALABAAAAACAPr/AgALABEAAAACAPv/AgALABIAAAACAPz/AgALABMAAAD3//n/AgAAACAAAAD3//r/AgAAACEAAAD3//v/AgAAACIAAAD3//z/AgAAACMAAAD4//n/AgABACAAAAD4//r/AgABACEAAAD4//v/AgABACIAAAD4//z/AgABACMAAAD5//n/AgACACAAAAD5//r/AgACACEAAAD5//v/AgACACIAAAD5//z/AgACACMAAAD6//n/AgADACAAAAD6//r/AgADACEAAAD6//v/AgADACIAAAD6//z/AgADACMAAAD7//n/AgAEACAAAAD7//r/AgAEACEAAAD7//v/AgAEACIAAAD7//z/AgAEACMAAAAEAPj/AgAAABsAAAAEAPn/AgAAABwAAAAEAPr/AgAAAB0AAAAEAPv/AgAAAB4AAAAEAPz/AgAAAB8AAAAFAPf/AgABABoAAAAFAPj/AgABABsAAAAFAPn/AgABABwAAAAFAPr/AgABAB0AAAAFAPv/AgABAB4AAAAFAPz/AgABAB8AAAAGAPb/AgACABkAAAAGAPf/AgACABoAAAAGAPj/AgACABsAAAAGAPn/AgACABwAAAAGAPr/AgACAB0AAAAGAPv/AgACAB4AAAAGAPz/AgACAB8AAAAHAPX/AgADABgAAAAHAPb/AgADABkAAAAHAPf/AgADABoAAAAHAPj/AgADABsAAAAHAPn/AgADABwAAAAHAPr/AgADAB0AAAAHAPv/AgADAB4AAAAHAPz/AgADAB8AAAAIAPb/AgAEABkAAAAIAPf/AgAEABoAAAAIAPj/AgAEABsAAAAIAPn/AgAEABwAAAAIAPr/AgAEAB0AAAAIAPv/AgAEAB4AAAAIAPz/AgAEAB8AAAAJAPf/AgAFABoAAAAJAPj/AgAFABsAAAAJAPn/AgAFABwAAAAJAPr/AgAFAB0AAAAJAPv/AgAFAB4AAAAJAPz/AgAFAB8AAAAKAPj/AgAGABsAAAAKAPn/AgAGABwAAAAKAPr/AgAGAB0AAAAKAPv/AgAGAB4AAAAKAPz/AgAGAB8AAAAMAPn/AgAAAAQAAAANAPf/AgABAAIAAAANAPj/AgABAAMAAAANAPn/AgABAAQAAAANAPr/AgABAAUAAAANAPv/AgABAAYAAAAOAPb/AgACAAEAAAAOAPf/AgACAAIAAAAOAPj/AgACAAMAAAAOAPn/AgACAAQAAAAOAPr/AgACAAUAAAAOAPv/AgACAAYAAAAOAPz/AgACAAcAAAAPAPf/AgADAAIAAAAPAPj/AgADAAMAAAAPAPn/AgADAAQAAAAPAPr/AgADAAUAAAAPAPv/AgADAAYAAAAPAPz/AgADAAcAAAAQAPX/AgAEAAAAAAAQAPb/AgAEAAEAAAAQAPf/AgAEAAIAAAAQAPj/AgAEAAMAAAAQAPn/AgAEAAQAAAAQAPr/AgAEAAUAAAAQAPv/AgAEAAYAAAAQAPz/AgAEAAcAAAAQAP3/AgAEAAgAAAARAPX/AgAFAAAAAAARAPb/AgAFAAEAAAARAPf/AgAFAAIAAAARAPj/AgAFAAMAAAARAPn/AgAFAAQAAAARAPr/AgAFAAUAAAARAPv/AgAFAAYAAAARAPz/AgAFAAcAAAARAP3/AgAFAAgAAAASAPf/AgAGAAIAAAASAPj/AgAGAAMAAAASAPn/AgAGAAQAAAASAPr/AgAGAAUAAAASAPv/AgAGAAYAAAASAPz/AgAGAAcAAAASAP3/AgAGAAgAAAATAPf/AgAHAAIAAAATAPj/AgAHAAMAAAATAPn/AgAHAAQAAAATAPr/AgAHAAUAAAATAPv/AgAHAAYAAAATAPz/AgAHAAcAAAATAP3/AgAHAAgAAAAUAPb/AgAIAAEAAAAUAPf/AgAIAAIAAAAUAPj/AgAIAAMAAAAUAPn/AgAIAAQAAAAUAPr/AgAIAAUAAAAUAPv/AgAIAAYAAAAUAPz/AgAIAAcAAADu//r/AgAAAAwAAADu//v/AgAAAA0AAADu//z/AgAAAA4AAADv//f/AgABAAkAAADv//j/AgABAAoAAADv//n/AgABAAsAAADv//r/AgABAAwAAADv//v/AgABAA0AAADv//z/AgABAA4AAADv//3/AgABAA8AAADw//f/AgACAAkAAADw//j/AgACAAoAAADw//n/AgACAAsAAADw//r/AgACAAwAAADw//v/AgACAA0AAADw//z/AgACAA4AAADw//3/AgACAA8AAADx//f/AgADAAkAAADx//j/AgADAAoAAADx//n/AgADAAsAAADx//r/AgADAAwAAADx//v/AgADAA0AAADx//z/AgADAA4AAADx//3/AgADAA8AAADy//f/AgAEAAkAAADy//j/AgAEAAoAAADy//n/AgAEAAsAAADy//r/AgAEAAwAAADy//v/AgAEAA0AAADy//z/AgAEAA4AAADy//3/AgAEAA8AAADz//f/AgAFAAkAAADz//j/AgAFAAoAAADz//n/AgAFAAsAAADz//r/AgAFAAwAAADz//v/AgAFAA0AAADz//z/AgAFAA4AAADz//3/AgAFAA8AAAD0//f/AgAGAAkAAAD0//j/AgAGAAoAAAD0//n/AgAGAAsAAAD0//r/AgAGAAwAAAD0//v/AgAGAA0AAAD0//z/AgAGAA4AAAD0//3/AgAGAA8AAAD1//v/AgAHAA0AAAD1//z/AgAHAA4AAAD1//3/AgAHAA8AAAA=")
 tile_set = SubResource("TileSet_yqjtg")
 
+[node name="Shop1" type="CharacterBody2D" parent="World/TileMapObjects" unique_id=583943914]
+collision_layer = 256
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/TileMapObjects/Shop1" unique_id=974812821]
+position = Vector2(-220.5, -72.75)
+shape = SubResource("RectangleShape2D_k7ps5")
+
+[node name="Shop2" type="CharacterBody2D" parent="World/TileMapObjects" unique_id=1919499495]
+collision_layer = 256
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/TileMapObjects/Shop2" unique_id=531603167]
+position = Vector2(-105.125, -77)
+shape = SubResource("RectangleShape2D_wa5cj")
+
+[node name="Shop3" type="CharacterBody2D" parent="World/TileMapObjects" unique_id=2012943013]
+collision_layer = 256
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/TileMapObjects/Shop3" unique_id=297289880]
+position = Vector2(0.9375, -78)
+shape = SubResource("RectangleShape2D_1syoy")
+
+[node name="Shop4" type="CharacterBody2D" parent="World/TileMapObjects" unique_id=1142095436]
+collision_layer = 256
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/TileMapObjects/Shop4" unique_id=1185398646]
+position = Vector2(121.46875, -90)
+shape = SubResource("RectangleShape2D_4okcq")
+
+[node name="Shop5" type="CharacterBody2D" parent="World/TileMapObjects" unique_id=390273321]
+collision_layer = 256
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/TileMapObjects/Shop5" unique_id=292354565]
+position = Vector2(266.9375, -85)
+shape = SubResource("RectangleShape2D_8yfkx")
+
 [node name="Entities" type="Node2D" parent="World" unique_id=433793545]
 
 [node name="Player" parent="World/Entities" unique_id=1872174230 instance=ExtResource("7_1syoy")]
@@ -2300,5 +2356,8 @@ position = Vector2(0, 50)
 
 [node name="FoodTrader" parent="World/Entities" unique_id=600359875 instance=ExtResource("9_4msli")]
 position = Vector2(4, -47)
+
+[node name="DungeonEntry" parent="World/Entities" unique_id=1794178792 instance=ExtResource("11_k7ps5")]
+position = Vector2(-11, 134)
 
 [node name="PauseMenu" parent="." unique_id=1091750795 instance=ExtResource("11_wa5cj")]

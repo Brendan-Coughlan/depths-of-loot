@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://bh8ckkrt2hcek"]
+
+[ext_resource type="Texture2D" uid="uid://30x1173jt12q" path="res://assets/dungeon/PNG/Statue_fire.png" id="1_2mu87"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xi4gg"]
+size = Vector2(50, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_raao2"]
+atlas = ExtResource("1_2mu87")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0pcu"]
+atlas = ExtResource("1_2mu87")
+region = Rect2(80, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2uf1"]
+atlas = ExtResource("1_2mu87")
+region = Rect2(160, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5u0r"]
+atlas = ExtResource("1_2mu87")
+region = Rect2(240, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3hcr"]
+atlas = ExtResource("1_2mu87")
+region = Rect2(320, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34mv1"]
+atlas = ExtResource("1_2mu87")
+region = Rect2(400, 0, 80, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qaivo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_raao2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0pcu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2uf1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5u0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3hcr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34mv1")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 5.0
+}]
+
+[node name="Statue" type="StaticBody2D" unique_id=30312498]
+collision_layer = 256
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=560868312]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_xi4gg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=811614086]
+sprite_frames = SubResource("SpriteFrames_qaivo")
+animation = &"fire"
+autoplay = "fire"
+frame_progress = 0.4117155
