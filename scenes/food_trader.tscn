@@ -4,6 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://dhvoebp3p1g71" path="res://assets/market/PNG/Characters/Character_others_animation/Trader_bread_animation_with_shadow.png" id="1_jqh7t"]
 [ext_resource type="PackedScene" uid="uid://bk68ewvu5yrd5" path="res://scenes/interactable.tscn" id="2_8wa72"]
 [ext_resource type="PackedScene" uid="uid://bck1sh6wlvpsn" path="res://scenes/shop.tscn" id="4_3tmc6"]
+[ext_resource type="Script" uid="uid://c5dh1m3p8jocx" path="res://scripts/item_data.gd" id="5_smduj"]
+[ext_resource type="Resource" uid="uid://cgpc0h6uleevh" path="res://resources/items/bones.tres" id="6_36v88"]
+[ext_resource type="Resource" uid="uid://cbh5pn0ixxtmt" path="res://resources/items/glasses.tres" id="6_ae00t"]
+[ext_resource type="Resource" uid="uid://bantt2hw3854l" path="res://resources/items/amulet.tres" id="7_ae00t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8wa72"]
 atlas = ExtResource("1_jqh7t")
@@ -127,3 +131,5 @@ interact_name = "Trade"
 shape = SubResource("CircleShape2D_8wa72")
 
 [node name="Shop" parent="." unique_id=567974528 instance=ExtResource("4_3tmc6")]
+buy_shop_items = Array[ExtResource("5_smduj")]([ExtResource("6_ae00t")])
+sell_shop_items = Array[ExtResource("5_smduj")]([ExtResource("6_36v88"), ExtResource("7_ae00t")])

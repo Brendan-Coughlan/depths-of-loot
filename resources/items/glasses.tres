@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://cbh5pn0ixxtmt"]
+
+[ext_resource type="Texture2D" uid="uid://li6ke2mkodp" path="res://assets/loot/PNG/Transperent/Icon19.png" id="1_fepyp"]
+[ext_resource type="Script" uid="uid://c5dh1m3p8jocx" path="res://scripts/item_data.gd" id="1_g8adi"]
+
+[resource]
+script = ExtResource("1_g8adi")
+name = "Glasses"
+icon = ExtResource("1_fepyp")
+stackable = false
+value = 25
+metadata/_custom_type_script = "uid://c5dh1m3p8jocx"

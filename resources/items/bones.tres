@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://cgpc0h6uleevh"]
+
+[ext_resource type="Texture2D" uid="uid://bnvqflj4bto04" path="res://assets/loot/PNG/Transperent/Icon2.png" id="1_n8urs"]
+[ext_resource type="Script" uid="uid://c5dh1m3p8jocx" path="res://scripts/item_data.gd" id="2_cxx5h"]
+
+[resource]
+script = ExtResource("2_cxx5h")
+name = "Bones"
+icon = ExtResource("1_n8urs")
+value = 2
+metadata/_custom_type_script = "uid://c5dh1m3p8jocx"

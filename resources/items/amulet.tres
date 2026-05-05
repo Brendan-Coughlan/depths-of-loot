@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bantt2hw3854l"]
+
+[ext_resource type="Texture2D" uid="uid://c3qbicdktwsmw" path="res://assets/loot/PNG/Transperent/Icon6.png" id="1_0aa8d"]
+[ext_resource type="Script" uid="uid://c5dh1m3p8jocx" path="res://scripts/item_data.gd" id="1_88kns"]
+
+[resource]
+script = ExtResource("1_88kns")
+name = "Amulet"
+icon = ExtResource("1_0aa8d")
+max_stack_size = 5
+value = 35
+metadata/_custom_type_script = "uid://c5dh1m3p8jocx"
