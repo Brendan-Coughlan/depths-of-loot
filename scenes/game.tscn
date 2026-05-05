@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://bsonrsr1jia00" path="res://scripts/map/mini_map_viewport.gd" id="10_kvpfn"]
 [ext_resource type="Script" uid="uid://cc2evc56xhm5a" path="res://scripts/map/mini_map_camera.gd" id="10_vtaks"]
 [ext_resource type="PackedScene" uid="uid://d4laxxywaicm6" path="res://scenes/pause_menu.tscn" id="12_dinhu"]
+[ext_resource type="PackedScene" uid="uid://bdkety04mftgw" path="res://scenes/ui/FloorPopupUI.tscn" id="13_kvuet"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("2_yqjtg")
@@ -751,3 +752,5 @@ script = ExtResource("10_vtaks")
 player = NodePath("../../../../World/Player")
 
 [node name="PauseMenu" parent="." unique_id=1847698206 instance=ExtResource("12_dinhu")]
+
+[node name="FloorPopupUI" parent="." unique_id=640797541 instance=ExtResource("13_kvuet")]

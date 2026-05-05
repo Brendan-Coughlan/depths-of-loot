@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bdkety04mftgw"]
+
+[ext_resource type="Script" uid="uid://sbjbradwmlsd" path="res://scripts/ui/floor_popup_ui.gd" id="1_8564t"]
+[ext_resource type="Texture2D" uid="uid://d00wlgqkltisk" path="res://assets/UI/PNG/Action_panel.png" id="1_hjt7r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8564t"]
+atlas = ExtResource("1_hjt7r")
+region = Rect2(13, 13, 166, 19)
+
+[node name="FloorPopupUI" type="CanvasLayer" unique_id=640797541]
+script = ExtResource("1_8564t")
+
+[node name="PopupRoot" type="Control" parent="." unique_id=310313421]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 575.0
+offset_top = 106.0
+offset_right = -545.0
+offset_bottom = 206.0
+grow_horizontal = 2
+
+[node name="Background" type="TextureRect" parent="PopupRoot" unique_id=1907309313]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_8564t")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="PopupRoot/Background" unique_id=713819027]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+vertical_alignment = 1
