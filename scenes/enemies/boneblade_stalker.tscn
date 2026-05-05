@@ -14,9 +14,9 @@
 [ext_resource type="Script" uid="uid://dh1eqpo6p6vd6" path="res://scripts/enemy_state_machine/enemy_chase.gd" id="7_lr5x0"]
 [ext_resource type="Script" uid="uid://ctvisqq68ob1j" path="res://scripts/enemy_state_machine/enemy_wander.gd" id="8_6vjlt"]
 [ext_resource type="Script" uid="uid://bocttuif2c7yu" path="res://scripts/enemy_state_machine/enemy_attack.gd" id="11_4cset"]
-[ext_resource type="Script" uid="uid://bnh5kspkv7e3t" path="res://scripts/enemy_state_machine/enemy_hurt.gd" id="15_dsf8j"]
-[ext_resource type="Script" uid="uid://cyvmfqey7r7qs" path="res://scripts/health_component.gd" id="15_ser5m"]
-[ext_resource type="Script" uid="uid://c6n6hxcthkhwq" path="res://scripts/ui/EnemyHealthBar.gd" id="17_vb1bo"]
+[ext_resource type="Script" path="res://scripts/enemy_state_machine/enemy_hurt.gd" id="15_dsf8j"]
+[ext_resource type="Script" path="res://scripts/health_component.gd" id="15_ser5m"]
+[ext_resource type="Script" path="res://scripts/ui/EnemyHealthBar.gd" id="17_vb1bo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6wfl1"]
 atlas = ExtResource("2_t41c6")
@@ -773,7 +773,7 @@ load_path = "res://.godot/imported/character_panel.png-4e5dab95b05b58878577f801f
 atlas = SubResource("CompressedTexture2D_vb1bo")
 region = Rect2(126, 74, 52, 2)
 
-[node name="BonebladeStalker" type="CharacterBody2D" unique_id=2041274393 node_paths=PackedStringArray("enemy_state_machine")]
+[node name="BonebladeStalker" type="CharacterBody2D" unique_id=2041274393 node_paths=PackedStringArray("enemy_state_machine") groups=["enemies"]]
 collision_layer = 4
 collision_mask = 256
 script = ExtResource("1_ype3m")
@@ -862,7 +862,6 @@ script = ExtResource("15_dsf8j")
 enemy = NodePath("../..")
 enemy_sprite = NodePath("../../AnimatedSprite2D")
 health = NodePath("../../HealthComponent")
-metadata/_custom_type_script = "uid://bnh5kspkv7e3t"
 
 [node name="Death" type="Node" parent="EnemyStateMachine" unique_id=232159633 node_paths=PackedStringArray("enemy", "enemy_sprite")]
 script = ExtResource("6_sokwp")

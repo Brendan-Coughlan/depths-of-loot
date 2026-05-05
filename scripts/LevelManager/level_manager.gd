@@ -13,6 +13,9 @@ class_name LevelManager
 @export var chest_count: int = 3
 @export var min_spawn_distance_from_entry: int = 6
 
+@export var max_floor: int = 10
+@export var current_floor: int = 1
+
 @export var min_entry_exit_distance: int = 10
 @export var player_z_index: int = 10
 @export var enemy_z_index: int = 5
@@ -21,8 +24,12 @@ class_name LevelManager
 var entry_cell: Vector2i = Vector2i.ZERO
 var exit_cell: Vector2i = Vector2i.ZERO
 
+var floor_popup_ui: FloorPopupUI = null
+
 
 func _ready() -> void:
+	add_to_group("level_manager")
+	floor_popup_ui = get_tree().get_first_node_in_group("floor_popup_ui")
 	setup_level()
 
 
@@ -46,6 +53,34 @@ func setup_level() -> void:
 	spawn_exit()
 	place_player()
 	spawn_random_objects()
+	show_floor_popup()
+
+
+func show_floor_popup() -> void:
+	if floor_popup_ui == null:
+		floor_popup_ui = get_tree().get_first_node_in_group("floor_popup_ui")
+
+	if floor_popup_ui != null:
+		floor_popup_ui.show_floor_message(current_floor, max_floor)
+	else:
+		push_warning("LevelManager: FloorPopupUI was not found.")
+
+
+func next_floor() -> void:
+	if current_floor >= max_floor:
+		game_completed()
+		return
+
+	current_floor += 1
+	print("Going to floor: ", current_floor)
+
+	setup_level()
+
+
+func game_completed() -> void:
+	print("Game completed! You cleared all floors.")
+	# Later you can change this to a win screen:
+	# get_tree().change_scene_to_file("res://scenes/ui/win_screen.tscn")
 
 
 func clear_objects() -> void:
@@ -196,6 +231,7 @@ func spawn_scene_at_cell(scene: PackedScene, cell: Vector2i, z_value: int) -> vo
 	instance.z_index = z_value
 
 	if instance is Enemy:
+		instance.add_to_group("enemies")
 		setup_enemy(instance)
 
 	print("Spawned object at cell: ", cell, " position: ", instance.position)

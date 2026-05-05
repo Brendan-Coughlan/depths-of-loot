@@ -9,11 +9,11 @@ var tween: Tween
 
 
 func _ready() -> void:
+	add_to_group("floor_popup_ui")
+
 	popup_root.modulate.a = 0.0
 	popup_root.visible = false
 
-	await get_tree().create_timer(1.0).timeout
-	show_floor_message(3, 10)
 
 func show_floor_message(current_floor: int, max_floor: int) -> void:
 	var floors_left: int = max_floor - current_floor

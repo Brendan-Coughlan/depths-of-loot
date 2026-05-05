@@ -1160,3 +1160,5 @@ tile_set = SubResource("TileSet_yqjtg")
 
 [node name="Player" parent="World" unique_id=1872174230 instance=ExtResource("5_l4wpr")]
 z_index = 10
+position = Vector2(0, 36)
+collision_mask = 260
