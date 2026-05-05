@@ -778,7 +778,7 @@ collision_layer = 4
 collision_mask = 256
 script = ExtResource("1_ype3m")
 enemy_state_machine = NodePath("EnemyStateMachine")
-movement_speed = 50.0
+movement_speed = 25.0
 detection_range = 50.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1641038735]
@@ -799,18 +799,22 @@ metadata/_custom_type_script = "uid://bt6qoo5t5cq51"
 [node name="RightHitBox" type="CollisionShape2D" parent="HitArea2D" unique_id=1583316909]
 position = Vector2(11.75, -0.25)
 shape = SubResource("RectangleShape2D_d36jp")
+disabled = true
 
 [node name="LeftHitBox" type="CollisionShape2D" parent="HitArea2D" unique_id=1554594926]
 position = Vector2(-12, 0)
 shape = SubResource("RectangleShape2D_d36jp")
+disabled = true
 
 [node name="UpHitBox" type="CollisionShape2D" parent="HitArea2D" unique_id=1242737537]
 position = Vector2(0, -14.5)
 shape = SubResource("RectangleShape2D_gd4t4")
+disabled = true
 
 [node name="DownHitBox" type="CollisionShape2D" parent="HitArea2D" unique_id=1172472691]
 position = Vector2(0, 14)
 shape = SubResource("RectangleShape2D_gd4t4")
+disabled = true
 
 [node name="HurtArea2D" type="Area2D" parent="." unique_id=1224150657 node_paths=PackedStringArray("health_component")]
 collision_layer = 1024

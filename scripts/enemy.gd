@@ -17,6 +17,7 @@ var is_dead: bool = false
 
 func _ready() -> void:
 	find_player()
+	disable_all_hitboxes()
 
 	if health != null:
 		if not health.damaged.is_connected(_on_damaged):
@@ -71,8 +72,8 @@ func _on_died() -> void:
 		return
 
 	is_dead = true
-
 	velocity = Vector2.ZERO
+	disable_all_hitboxes()
 
 	if enemy_state_machine != null:
 		enemy_state_machine.on_child_transition(
@@ -84,28 +85,37 @@ func _on_died() -> void:
 
 
 func can_see_player() -> bool:
+	if is_dead:
+		return false
+
 	if target == null:
 		find_player()
 
 	if target == null:
 		return false
 
-	var distance := global_position.distance_to(target.global_position)
+	var distance: float = global_position.distance_to(target.global_position)
 	return distance <= detection_range
 
 
 func is_player_in_attack_range() -> bool:
+	if is_dead:
+		return false
+
 	if target == null:
 		find_player()
 
 	if target == null:
 		return false
 
-	var distance := global_position.distance_to(target.global_position)
+	var distance: float = global_position.distance_to(target.global_position)
 	return distance <= attack_range
 
 
 func get_direction_to_player() -> Vector2:
+	if is_dead:
+		return Vector2.ZERO
+
 	if target == null:
 		find_player()
 
@@ -113,3 +123,40 @@ func get_direction_to_player() -> Vector2:
 		return Vector2.ZERO
 
 	return (target.global_position - global_position).normalized()
+
+
+func disable_all_hitboxes() -> void:
+	var hit_area := get_node_or_null("HitArea2D")
+
+	if hit_area == null:
+		return
+
+	for child in hit_area.get_children():
+		if child is CollisionShape2D:
+			child.disabled = true
+
+
+func enable_hitbox_by_direction(direction: Vector2) -> void:
+	disable_all_hitboxes()
+
+	var hit_area := get_node_or_null("HitArea2D")
+	if hit_area == null:
+		return
+
+	var hitbox_name := ""
+
+	if abs(direction.x) > abs(direction.y):
+		if direction.x > 0:
+			hitbox_name = "RightHitBox"
+		else:
+			hitbox_name = "LeftHitBox"
+	else:
+		if direction.y < 0:
+			hitbox_name = "UpHitBox"
+		else:
+			hitbox_name = "DownHitBox"
+
+	var hitbox := hit_area.get_node_or_null(hitbox_name)
+
+	if hitbox != null and hitbox is CollisionShape2D:
+		hitbox.disabled = false
