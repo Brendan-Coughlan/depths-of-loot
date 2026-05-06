@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://lv52d8u7pty2"]
 
 [ext_resource type="Texture2D" uid="uid://dadch0rqdcixu" path="res://assets/market/PNG/Characters/Character_others_animation/Trader_magic_animation_with_shadow.png" id="1_01y3n"]
-[ext_resource type="Script" path="res://scripts/magic_trader.gd" id="1_imqmu"]
+[ext_resource type="Script" uid="uid://dp2dxm7es0xxc" path="res://scripts/magic_trader.gd" id="1_imqmu"]
 [ext_resource type="PackedScene" uid="uid://bk68ewvu5yrd5" path="res://scenes/interactable.tscn" id="2_imqmu"]
 [ext_resource type="PackedScene" uid="uid://bck1sh6wlvpsn" path="res://scenes/shop.tscn" id="3_wfluk"]
 [ext_resource type="Script" uid="uid://c5dh1m3p8jocx" path="res://scripts/item_data.gd" id="4_3yx17"]
-[ext_resource type="Texture2D" uid="uid://bnvqflj4bto04" path="res://assets/loot/PNG/Transperent/Icon2.png" id="6_1pqqf"]
-[ext_resource type="Texture2D" uid="uid://c3qbicdktwsmw" path="res://assets/loot/PNG/Transperent/Icon6.png" id="7_i1b4j"]
+[ext_resource type="Texture2D" uid="uid://bnvqflj4bto04" path="res://assets/demon_loot/PNG/Transperent/Icon2.png" id="6_1pqqf"]
+[ext_resource type="Texture2D" uid="uid://c3qbicdktwsmw" path="res://assets/demon_loot/PNG/Transperent/Icon6.png" id="7_i1b4j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l1fc2"]
 atlas = ExtResource("1_01y3n")
