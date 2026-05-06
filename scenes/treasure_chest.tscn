@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dcb603ur3pbnr"]
 
 [ext_resource type="Script" uid="uid://cy5wfsuuyn16u" path="res://scripts/treasure_chest.gd" id="1_4lyqs"]
-[ext_resource type="Resource" uid="uid://dosqth0xiulr2" path="res://resources/items/gold_bar.tres" id="2_b1w43"]
+[ext_resource type="Resource" uid="uid://bn1wglvghum17" path="res://resources/loot_tables/treasure_chest_loot_table.tres" id="2_b1w43"]
 [ext_resource type="PackedScene" uid="uid://bk68ewvu5yrd5" path="res://scenes/interactable.tscn" id="2_ybsko"]
 [ext_resource type="Texture2D" uid="uid://btd0u67g14obk" path="res://assets/dungeon/PNG/chest_lever.png" id="3_tymi3"]
 
@@ -40,7 +40,7 @@ size = Vector2(36.5, 24)
 
 [node name="TreasureChest" type="StaticBody2D" unique_id=135551640]
 script = ExtResource("1_4lyqs")
-dropped_item = ExtResource("2_b1w43")
+loot_table = ExtResource("2_b1w43")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=665809911]
 position = Vector2(0, 10)

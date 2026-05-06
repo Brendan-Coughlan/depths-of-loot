@@ -4,6 +4,8 @@ extends Area2D
 @export var item: ItemData
 @export var amount: int = 1
 
+@export var gold_item: ItemData
+
 @onready var inventory: Inventory = get_tree().get_nodes_in_group("player")[0].get_node("Inventory")
 @onready var interactable: Area2D = $Interactable
 @onready var sprite: Sprite2D = $Sprite2D
@@ -16,5 +18,8 @@ func _ready():
 
 func _on_interact():
 	interactable.is_interactable = false
-	inventory.add_item(item)
+	if item == gold_item:
+		inventory.add_gold(10)
+	else:
+		inventory.add_item(item)
 	queue_free()

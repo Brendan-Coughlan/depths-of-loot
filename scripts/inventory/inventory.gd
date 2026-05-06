@@ -98,3 +98,6 @@ func update_info_text():
 		info_text.text = hovered_slot.item.name
 	else:
 		info_text.text = ""
+		
+func add_gold(amount: int):
+	gold += amount

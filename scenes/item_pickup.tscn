@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://djyswcon1fgtm"]
 
 [ext_resource type="Script" uid="uid://c16ycyu8632yn" path="res://scripts/item_pickup.gd" id="1_lgqak"]
+[ext_resource type="Resource" uid="uid://874umfxa844r" path="res://resources/items/gold.tres" id="2_72sof"]
 [ext_resource type="PackedScene" uid="uid://bk68ewvu5yrd5" path="res://scenes/interactable.tscn" id="2_yiukj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yiukj"]
@@ -11,6 +12,7 @@ z_index = 1
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_lgqak")
+gold_item = ExtResource("2_72sof")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1622597849]
 

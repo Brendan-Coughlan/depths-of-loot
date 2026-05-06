@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LootEntry" format=3 uid="uid://6dt228gp4krt"]
+
+[ext_resource type="Script" uid="uid://4psh84xkqjcr" path="res://scripts/loot_entry.gd" id="1_8y3ru"]
+[ext_resource type="Resource" uid="uid://874umfxa844r" path="res://resources/items/gold.tres" id="1_17nkx"]
+
+[resource]
+script = ExtResource("1_8y3ru")
+item = ExtResource("1_17nkx")
+max_amount = 5
+metadata/_custom_type_script = "uid://4psh84xkqjcr"

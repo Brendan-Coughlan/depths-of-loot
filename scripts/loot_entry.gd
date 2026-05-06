@@ -1,5 +1,5 @@
 extends Resource
-class_name DropData
+class_name LootEntry
 
 @export var item: ItemData
 @export var chance: float = 1.0

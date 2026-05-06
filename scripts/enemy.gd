@@ -9,6 +9,7 @@ class_name Enemy
 @export var detection_range: float = 150.0
 
 @onready var health: HealthComponent = $HealthComponent
+@export var loot_table: LootTable
 
 var target: Player
 var last_direction: Vector2 = Vector2.DOWN
@@ -80,6 +81,7 @@ func _on_died() -> void:
 			enemy_state_machine.current_state,
 			"death"
 		)
+		drop_loot()
 	else:
 		queue_free()
 
@@ -160,3 +162,22 @@ func enable_hitbox_by_direction(direction: Vector2) -> void:
 
 	if hitbox != null and hitbox is CollisionShape2D:
 		hitbox.disabled = false
+
+func drop_loot():
+	var loot = LootManager.roll_loot(loot_table)
+
+	for entry in loot:
+		spawn_item(entry.item, entry.amount)
+
+func spawn_item(item: ItemData, amount: int):
+	var instance = preload("res://scenes/item_pickup.tscn").instantiate()
+	instance.item = item
+	instance.amount = amount
+
+	var world = get_tree().get_first_node_in_group("world")
+	world.add_child(instance)
+
+	instance.global_position = global_position + Vector2(
+		randf_range(-8, 8),
+		randf_range(-8, 8)
+	)

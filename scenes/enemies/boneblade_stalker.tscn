@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bd4ugym8rbdkw"]
 
 [ext_resource type="Script" uid="uid://baap6pl3jp53b" path="res://scripts/enemy.gd" id="1_ype3m"]
+[ext_resource type="Resource" uid="uid://dywv7xxrihvjl" path="res://resources/loot_tables/boneblade_stalker_loot_table.tres" id="2_34is1"]
 [ext_resource type="Script" uid="uid://cynp4lvd7u4xi" path="res://scripts/state_machine.gd" id="2_ncvao"]
 [ext_resource type="Texture2D" uid="uid://dqpor0k5xdcjf" path="res://assets/skeletons/PNG/Skeleton1/Without_shadow/Skeleton1_Death_without_shadow.png" id="2_stq02"]
 [ext_resource type="Texture2D" uid="uid://c77ne5pmm55xs" path="res://assets/skeletons/PNG/Skeleton1/Without_shadow/Skeleton1_Attack_without_shadow.png" id="2_t41c6"]
@@ -14,9 +15,9 @@
 [ext_resource type="Script" uid="uid://dh1eqpo6p6vd6" path="res://scripts/enemy_state_machine/enemy_chase.gd" id="7_lr5x0"]
 [ext_resource type="Script" uid="uid://ctvisqq68ob1j" path="res://scripts/enemy_state_machine/enemy_wander.gd" id="8_6vjlt"]
 [ext_resource type="Script" uid="uid://bocttuif2c7yu" path="res://scripts/enemy_state_machine/enemy_attack.gd" id="11_4cset"]
-[ext_resource type="Script" path="res://scripts/enemy_state_machine/enemy_hurt.gd" id="15_dsf8j"]
-[ext_resource type="Script" path="res://scripts/health_component.gd" id="15_ser5m"]
-[ext_resource type="Script" path="res://scripts/ui/EnemyHealthBar.gd" id="17_vb1bo"]
+[ext_resource type="Script" uid="uid://bnh5kspkv7e3t" path="res://scripts/enemy_state_machine/enemy_hurt.gd" id="15_dsf8j"]
+[ext_resource type="Script" uid="uid://cyvmfqey7r7qs" path="res://scripts/health_component.gd" id="15_ser5m"]
+[ext_resource type="Script" uid="uid://c6n6hxcthkhwq" path="res://scripts/ui/EnemyHealthBar.gd" id="17_vb1bo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6wfl1"]
 atlas = ExtResource("2_t41c6")
@@ -780,6 +781,7 @@ script = ExtResource("1_ype3m")
 enemy_state_machine = NodePath("EnemyStateMachine")
 movement_speed = 25.0
 detection_range = 50.0
+loot_table = ExtResource("2_34is1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1641038735]
 sprite_frames = SubResource("SpriteFrames_ebgy8")

@@ -2,9 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c7gwryd7gwqnf" path="res://scripts/shop.gd" id="1_1l46r"]
 [ext_resource type="Texture2D" uid="uid://c8x27mioq3nv6" path="res://assets/UI/PNG/Shop.png" id="2_1l46r"]
-[ext_resource type="Script" uid="uid://c5dh1m3p8jocx" path="res://scripts/item_data.gd" id="2_8r1wq"]
 [ext_resource type="Texture2D" uid="uid://bqrlfixtam86r" path="res://assets/UI/PNG/Main_menu.png" id="2_032fp"]
-[ext_resource type="Resource" uid="uid://dosqth0xiulr2" path="res://resources/items/gold_bar.tres" id="3_ajxib"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8r1wq"]
 atlas = ExtResource("2_1l46r")
@@ -26,8 +24,6 @@ region = Rect2(135, 240, 115, 149)
 script = ExtResource("1_1l46r")
 buy_window_texture = SubResource("AtlasTexture_8r1wq")
 sell_window_texture = SubResource("AtlasTexture_ajxib")
-buy_shop_items = Array[ExtResource("2_8r1wq")]([ExtResource("3_ajxib"), ExtResource("3_ajxib")])
-sell_shop_items = Array[ExtResource("2_8r1wq")]([ExtResource("3_ajxib")])
 
 [node name="BackgroundBlurTexture" type="TextureRect" parent="." unique_id=587844792]
 anchors_preset = 8

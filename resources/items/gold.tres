@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://874umfxa844r"]
+
+[ext_resource type="Script" uid="uid://c5dh1m3p8jocx" path="res://scripts/item_data.gd" id="1_2fr0f"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hhmvb"]
+load_path = "res://.godot/imported/Inventory.png-b18baee9e34592f8fcac9f1c528513e6.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0mcx4"]
+atlas = SubResource("CompressedTexture2D_hhmvb")
+region = Rect2(243, 115, 10, 10)
+
+[resource]
+script = ExtResource("1_2fr0f")
+name = "Gold"
+icon = SubResource("AtlasTexture_0mcx4")
+metadata/_custom_type_script = "uid://c5dh1m3p8jocx"
