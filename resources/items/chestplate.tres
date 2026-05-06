@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bmvukfhouwwy6"]
+
+[ext_resource type="Texture2D" uid="uid://ceihg10rb2g62" path="res://assets/demon_loot/PNG/Transperent/Icon33.png" id="1_j338j"]
+[ext_resource type="Script" uid="uid://c5dh1m3p8jocx" path="res://scripts/item_data.gd" id="1_v73vw"]
+
+[resource]
+script = ExtResource("1_v73vw")
+name = "Chestplate"
+icon = ExtResource("1_j338j")
+stackable = false
+value = 35
+metadata/_custom_type_script = "uid://c5dh1m3p8jocx"

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://qfu3ll4yk2e6"]
+
+[ext_resource type="Script" uid="uid://c5dh1m3p8jocx" path="res://scripts/item_data.gd" id="1_mr6qb"]
+[ext_resource type="Texture2D" uid="uid://dq5bbe2g3dql0" path="res://assets/loot_icon/PNG/Transperent/Icon20.png" id="1_tip3f"]
+
+[resource]
+script = ExtResource("1_mr6qb")
+name = "Health Potion"
+icon = ExtResource("1_tip3f")
+stackable = false
+value = 15
+metadata/_custom_type_script = "uid://c5dh1m3p8jocx"

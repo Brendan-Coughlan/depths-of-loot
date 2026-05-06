@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://cwd6e5gd1d2x8"]
+
+[ext_resource type="Texture2D" uid="uid://bkqst3y2dnm6a" path="res://assets/magic_gem/PNG/Transperent/Icon12.png" id="1_36rg8"]
+[ext_resource type="Script" uid="uid://c5dh1m3p8jocx" path="res://scripts/item_data.gd" id="1_f2mv1"]
+
+[resource]
+script = ExtResource("1_f2mv1")
+name = "Speed Gem"
+icon = ExtResource("1_36rg8")
+stackable = false
+value = 50
+metadata/_custom_type_script = "uid://c5dh1m3p8jocx"

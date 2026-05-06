@@ -5,8 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://bk68ewvu5yrd5" path="res://scenes/interactable.tscn" id="2_imqmu"]
 [ext_resource type="PackedScene" uid="uid://bck1sh6wlvpsn" path="res://scenes/shop.tscn" id="3_wfluk"]
 [ext_resource type="Script" uid="uid://c5dh1m3p8jocx" path="res://scripts/item_data.gd" id="4_3yx17"]
-[ext_resource type="Texture2D" uid="uid://bnvqflj4bto04" path="res://assets/demon_loot/PNG/Transperent/Icon2.png" id="6_1pqqf"]
-[ext_resource type="Texture2D" uid="uid://c3qbicdktwsmw" path="res://assets/demon_loot/PNG/Transperent/Icon6.png" id="7_i1b4j"]
+[ext_resource type="Resource" uid="uid://qfu3ll4yk2e6" path="res://resources/items/health_potion.tres" id="6_wfluk"]
+[ext_resource type="Resource" uid="uid://bigbk44pyma4d" path="res://resources/items/speed_potion.tres" id="7_3yx17"]
+[ext_resource type="Resource" uid="uid://cwd6e5gd1d2x8" path="res://resources/items/speed_gem.tres" id="8_3yx17"]
+[ext_resource type="Resource" uid="uid://cgpc0h6uleevh" path="res://resources/items/bones.tres" id="9_3yx17"]
+[ext_resource type="Resource" uid="uid://bantt2hw3854l" path="res://resources/items/amulet.tres" id="10_3yx17"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l1fc2"]
 atlas = ExtResource("1_01y3n")
@@ -78,21 +81,6 @@ size = Vector2(17, 12)
 [sub_resource type="CircleShape2D" id="CircleShape2D_8wa72"]
 radius = 20.0
 
-[sub_resource type="Resource" id="Resource_i54af"]
-script = ExtResource("4_3yx17")
-name = "Bones"
-icon = ExtResource("6_1pqqf")
-value = 2
-metadata/_custom_type_script = "uid://c5dh1m3p8jocx"
-
-[sub_resource type="Resource" id="Resource_2xu6i"]
-script = ExtResource("4_3yx17")
-name = "Amulet"
-icon = ExtResource("7_i1b4j")
-max_stack_size = 5
-value = 35
-metadata/_custom_type_script = "uid://c5dh1m3p8jocx"
-
 [node name="MagicTrader" type="StaticBody2D" unique_id=600359875]
 script = ExtResource("1_imqmu")
 
@@ -113,4 +101,5 @@ interact_name = "Trade"
 shape = SubResource("CircleShape2D_8wa72")
 
 [node name="Shop" parent="." unique_id=567974528 instance=ExtResource("3_wfluk")]
-sell_shop_items = Array[ExtResource("4_3yx17")]([SubResource("Resource_i54af"), SubResource("Resource_2xu6i")])
+buy_shop_items = Array[ExtResource("4_3yx17")]([ExtResource("6_wfluk"), ExtResource("7_3yx17"), ExtResource("8_3yx17")])
+sell_shop_items = Array[ExtResource("4_3yx17")]([ExtResource("9_3yx17"), ExtResource("10_3yx17")])
