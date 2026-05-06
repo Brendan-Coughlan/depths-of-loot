@@ -11,6 +11,12 @@ var tween: Tween
 func _ready() -> void:
 	add_to_group("floor_popup_ui")
 
+	# Important: this popup must keep working while the game tree is paused.
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	popup_root.process_mode = Node.PROCESS_MODE_ALWAYS
+	background.process_mode = Node.PROCESS_MODE_ALWAYS
+	label.process_mode = Node.PROCESS_MODE_ALWAYS
+
 	popup_root.modulate.a = 0.0
 	popup_root.visible = false
 
@@ -23,6 +29,16 @@ func show_floor_message(current_floor: int, max_floor: int) -> void:
 	else:
 		label.text = "Floor %d\n%d floors left" % [current_floor, floors_left]
 
+	show_event_message(label.text)
+
+	await get_tree().create_timer(3.0, true).timeout
+
+	await hide_event_message()
+
+
+func show_event_message(message: String) -> void:
+	label.text = message
+
 	popup_root.visible = true
 
 	if tween != null:
@@ -31,11 +47,18 @@ func show_floor_message(current_floor: int, max_floor: int) -> void:
 	popup_root.modulate.a = 0.0
 
 	tween = create_tween()
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_property(popup_root, "modulate:a", 1.0, 0.4)
-	tween.tween_interval(3.0)
+
+
+func hide_event_message() -> void:
+	if tween != null:
+		tween.kill()
+
+	tween = create_tween()
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_property(popup_root, "modulate:a", 0.0, 0.8)
-	tween.finished.connect(_on_tween_finished)
 
+	await tween.finished
 
-func _on_tween_finished() -> void:
 	popup_root.visible = false
