@@ -1,6 +1,6 @@
-[gd_scene format=4 uid="uid://c3c4ipp7k1ymo"]
+[gd_scene format=4 uid="uid://ckhv07l6pofeo"]
 
-[ext_resource type="Script" uid="uid://dh3w7u6tiox5d" path="res://scripts/random_event.gd" id="1_6m225"]
+[ext_resource type="Script" path="res://scripts/random_event.gd" id="1_6m225"]
 [ext_resource type="Texture2D" uid="uid://ruk5ngm8yjsp" path="res://assets/dungeon/PNG/walls_floor.png" id="1_r4pcj"]
 [ext_resource type="PackedScene" uid="uid://bd4ugym8rbdkw" path="res://scenes/enemies/boneblade_stalker.tscn" id="2_5hx7y"]
 [ext_resource type="PackedScene" uid="uid://dcb603ur3pbnr" path="res://scenes/treasure_chest.tscn" id="3_x56ue"]

@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://d4laxxywaicm6"]
+
+[ext_resource type="Script" uid="uid://cuhvpfi11u0ab" path="res://scripts/pause_menu.gd" id="1_n87rw"]
+[ext_resource type="Texture2D" uid="uid://bqrlfixtam86r" path="res://assets/UI/PNG/Main_menu.png" id="2_myx47"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4r4p"]
+atlas = ExtResource("2_myx47")
+region = Rect2(240, 176, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7l7mv"]
+atlas = ExtResource("2_myx47")
+region = Rect2(96, 180, 80, 88)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kukqi"]
+atlas = ExtResource("2_myx47")
+region = Rect2(189, 18, 56, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5d2l8"]
+atlas = ExtResource("2_myx47")
+region = Rect2(189, 50, 56, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_myx47"]
+atlas = ExtResource("2_myx47")
+region = Rect2(189, 146, 56, 12)
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=1091750795]
+process_mode = 3
+layer = 3
+script = ExtResource("1_n87rw")
+
+[node name="BackgroundBlurTexture" type="TextureRect" parent="." unique_id=1114350954]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1010.0
+offset_top = -577.0
+offset_right = 1011.0
+offset_bottom = 609.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_v4r4p")
+
+[node name="MenuTexture" type="TextureRect" parent="." unique_id=545030263]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_7l7mv")
+stretch_mode = 5
+
+[node name="Menu" type="VBoxContainer" parent="." unique_id=881408193]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -160.0
+offset_right = 192.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Resume" type="TextureButton" parent="Menu" unique_id=1849665209]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = SubResource("AtlasTexture_kukqi")
+stretch_mode = 5
+
+[node name="Settings" type="TextureButton" parent="Menu" unique_id=1573078386]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = SubResource("AtlasTexture_5d2l8")
+stretch_mode = 5
+
+[node name="Quit" type="TextureButton" parent="Menu" unique_id=921837096]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = SubResource("AtlasTexture_myx47")
+stretch_mode = 5
+
+[node name="ExitButton" type="Button" parent="." unique_id=1269486367]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+anchor_left = 0.58489585
+anchor_top = 0.27407408
+anchor_right = 0.6119792
+anchor_bottom = 0.32222223
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Menu/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Menu/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Menu/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

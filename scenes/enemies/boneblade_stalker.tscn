@@ -15,9 +15,9 @@
 [ext_resource type="Script" uid="uid://dh1eqpo6p6vd6" path="res://scripts/enemy_state_machine/enemy_chase.gd" id="7_lr5x0"]
 [ext_resource type="Script" uid="uid://ctvisqq68ob1j" path="res://scripts/enemy_state_machine/enemy_wander.gd" id="8_6vjlt"]
 [ext_resource type="Script" uid="uid://bocttuif2c7yu" path="res://scripts/enemy_state_machine/enemy_attack.gd" id="11_4cset"]
-[ext_resource type="Script" uid="uid://bnh5kspkv7e3t" path="res://scripts/enemy_state_machine/enemy_hurt.gd" id="15_dsf8j"]
-[ext_resource type="Script" uid="uid://cyvmfqey7r7qs" path="res://scripts/health_component.gd" id="15_ser5m"]
-[ext_resource type="Script" uid="uid://c6n6hxcthkhwq" path="res://scripts/ui/EnemyHealthBar.gd" id="17_vb1bo"]
+[ext_resource type="Script" path="res://scripts/enemy_state_machine/enemy_hurt.gd" id="15_dsf8j"]
+[ext_resource type="Script" path="res://scripts/health_component.gd" id="15_ser5m"]
+[ext_resource type="Script" path="res://scripts/ui/EnemyHealthBar.gd" id="17_vb1bo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6wfl1"]
 atlas = ExtResource("2_t41c6")
@@ -851,12 +851,11 @@ enemy = NodePath("../..")
 enemy_sprite = NodePath("../../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://ctvisqq68ob1j"
 
-[node name="Attack" type="Node" parent="EnemyStateMachine" unique_id=1612184476 node_paths=PackedStringArray("enemy", "enemy_sprite", "enemy_hitboxes")]
+[node name="Attack" type="Node" parent="EnemyStateMachine" unique_id=1612184476 node_paths=PackedStringArray("enemy", "enemy_sprite")]
 script = ExtResource("11_4cset")
+attack_cooldown = 2.0
 enemy = NodePath("../..")
 enemy_sprite = NodePath("../../AnimatedSprite2D")
-enemy_hitboxes = [NodePath("../../HitArea2D/RightHitBox"), NodePath("../../HitArea2D/LeftHitBox"), NodePath("../../HitArea2D/UpHitBox"), NodePath("../../HitArea2D/DownHitBox")]
-attack_cooldown = 2.0
 metadata/_custom_type_script = "uid://bocttuif2c7yu"
 
 [node name="Hurt" type="Node" parent="EnemyStateMachine" unique_id=221452522 node_paths=PackedStringArray("enemy", "enemy_sprite", "health")]

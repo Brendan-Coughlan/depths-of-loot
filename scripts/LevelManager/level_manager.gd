@@ -29,8 +29,13 @@ var floor_popup_ui: FloorPopupUI = null
 
 func _ready() -> void:
 	add_to_group("level_manager")
-	floor_popup_ui = get_tree().get_first_node_in_group("floor_popup_ui")
+
 	setup_level()
+
+	# Wait one frame so FloorPopupUI has time to run _ready()
+	# and add itself to the group "floor_popup_ui".
+	await get_tree().process_frame
+	await show_floor_popup()
 
 
 func setup_level() -> void:
@@ -53,15 +58,16 @@ func setup_level() -> void:
 	spawn_exit()
 	place_player()
 	spawn_random_objects()
-	show_floor_popup()
 
 
 func show_floor_popup() -> void:
+	await get_tree().process_frame
+
 	if floor_popup_ui == null:
-		floor_popup_ui = get_tree().get_first_node_in_group("floor_popup_ui")
+		floor_popup_ui = get_tree().get_first_node_in_group("floor_popup_ui") as FloorPopupUI
 
 	if floor_popup_ui != null:
-		floor_popup_ui.show_floor_message(current_floor, max_floor)
+		await floor_popup_ui.show_floor_message(current_floor, max_floor)
 	else:
 		push_warning("LevelManager: FloorPopupUI was not found.")
 
@@ -75,6 +81,9 @@ func next_floor() -> void:
 	print("Going to floor: ", current_floor)
 
 	setup_level()
+
+	await get_tree().process_frame
+	await show_floor_popup()
 
 
 func game_completed() -> void:
