@@ -1,13 +1,12 @@
 [gd_scene format=3 uid="uid://syjqsdbp3yr6"]
 
-[ext_resource type="Script" uid="uid://bon1xo4f356r2" path="res://scenes/equipment_trader.gd" id="1_leq08"]
+[ext_resource type="Script" uid="uid://bon1xo4f356r2" path="res://scripts/equipment_trader.gd" id="1_leq08"]
 [ext_resource type="Texture2D" uid="uid://dtwdku55crtvr" path="res://assets/market/PNG/Characters/Character_others_animation/Trader_weapon_animation_with_shadow.png" id="2_nxmok"]
 [ext_resource type="PackedScene" uid="uid://bk68ewvu5yrd5" path="res://scenes/interactable.tscn" id="3_nxmok"]
 [ext_resource type="PackedScene" uid="uid://bck1sh6wlvpsn" path="res://scenes/shop.tscn" id="4_rvu15"]
 [ext_resource type="Script" uid="uid://c5dh1m3p8jocx" path="res://scripts/item_data.gd" id="5_ls7ef"]
 [ext_resource type="Texture2D" uid="uid://li6ke2mkodp" path="res://assets/loot/PNG/Transperent/Icon19.png" id="6_mkyjo"]
-[ext_resource type="Texture2D" uid="uid://bnvqflj4bto04" path="res://assets/loot/PNG/Transperent/Icon2.png" id="7_dgq7x"]
-[ext_resource type="Texture2D" uid="uid://c3qbicdktwsmw" path="res://assets/loot/PNG/Transperent/Icon6.png" id="8_y7qcv"]
+[ext_resource type="Resource" uid="uid://cgpc0h6uleevh" path="res://resources/items/bones.tres" id="7_ol65i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_leq08"]
 atlas = ExtResource("2_nxmok")
@@ -78,21 +77,6 @@ stackable = false
 value = 25
 metadata/_custom_type_script = "uid://c5dh1m3p8jocx"
 
-[sub_resource type="Resource" id="Resource_i54af"]
-script = ExtResource("5_ls7ef")
-name = "Bones"
-icon = ExtResource("7_dgq7x")
-value = 2
-metadata/_custom_type_script = "uid://c5dh1m3p8jocx"
-
-[sub_resource type="Resource" id="Resource_2xu6i"]
-script = ExtResource("5_ls7ef")
-name = "Amulet"
-icon = ExtResource("8_y7qcv")
-max_stack_size = 5
-value = 35
-metadata/_custom_type_script = "uid://c5dh1m3p8jocx"
-
 [node name="EquipmentTrader" type="StaticBody2D" unique_id=600359875]
 script = ExtResource("1_leq08")
 
@@ -114,4 +98,4 @@ shape = SubResource("CircleShape2D_8wa72")
 
 [node name="Shop" parent="." unique_id=567974528 instance=ExtResource("4_rvu15")]
 buy_shop_items = Array[ExtResource("5_ls7ef")]([SubResource("Resource_kj3na")])
-sell_shop_items = Array[ExtResource("5_ls7ef")]([SubResource("Resource_i54af"), SubResource("Resource_2xu6i")])
+sell_shop_items = Array[ExtResource("5_ls7ef")]([ExtResource("7_ol65i")])
