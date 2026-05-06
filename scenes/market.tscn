@@ -10,8 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://d2auwmt7xo2j2" path="res://scenes/player.tscn" id="7_1syoy"]
 [ext_resource type="Texture2D" uid="uid://bifvxtxlf4h5y" path="res://assets/market/PNG/Objects.png" id="8_hvm52"]
 [ext_resource type="PackedScene" uid="uid://b231i761fpqtl" path="res://scenes/food_trader.tscn" id="9_4msli"]
+[ext_resource type="PackedScene" uid="uid://syjqsdbp3yr6" path="res://scenes/equipment_trader.tscn" id="11_1syoy"]
 [ext_resource type="PackedScene" uid="uid://102euhoyfxjy" path="res://scenes/environment/DungeonEntry.tscn" id="11_k7ps5"]
 [ext_resource type="PackedScene" uid="uid://d4laxxywaicm6" path="res://scenes/pause_menu.tscn" id="11_wa5cj"]
+[ext_resource type="PackedScene" uid="uid://lv52d8u7pty2" path="res://scenes/magic_trader.tscn" id="12_4okcq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("1_co8of")
@@ -2356,6 +2358,12 @@ position = Vector2(0, 50)
 
 [node name="FoodTrader" parent="World/Entities" unique_id=600359875 instance=ExtResource("9_4msli")]
 position = Vector2(4, -47)
+
+[node name="EquipmentTrader" parent="World/Entities" unique_id=826918144 instance=ExtResource("11_1syoy")]
+position = Vector2(230, -47)
+
+[node name="MagicTrader" parent="World/Entities" unique_id=1650544525 instance=ExtResource("12_4okcq")]
+position = Vector2(122, -47)
 
 [node name="DungeonEntry" parent="World/Entities" unique_id=1794178792 instance=ExtResource("11_k7ps5")]
 position = Vector2(-11, 134)

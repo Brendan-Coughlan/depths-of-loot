@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://lv52d8u7pty2"]
+
+[ext_resource type="Texture2D" uid="uid://dadch0rqdcixu" path="res://assets/market/PNG/Characters/Character_others_animation/Trader_magic_animation_with_shadow.png" id="1_01y3n"]
+[ext_resource type="Script" uid="uid://dp2dxm7es0xxc" path="res://scripts/magic_trader.gd" id="1_imqmu"]
+[ext_resource type="PackedScene" uid="uid://bk68ewvu5yrd5" path="res://scenes/interactable.tscn" id="2_imqmu"]
+[ext_resource type="PackedScene" uid="uid://bck1sh6wlvpsn" path="res://scenes/shop.tscn" id="3_wfluk"]
+[ext_resource type="Script" uid="uid://c5dh1m3p8jocx" path="res://scripts/item_data.gd" id="4_3yx17"]
+[ext_resource type="Texture2D" uid="uid://li6ke2mkodp" path="res://assets/loot/PNG/Transperent/Icon19.png" id="5_fp6tb"]
+[ext_resource type="Texture2D" uid="uid://bnvqflj4bto04" path="res://assets/loot/PNG/Transperent/Icon2.png" id="6_1pqqf"]
+[ext_resource type="Texture2D" uid="uid://c3qbicdktwsmw" path="res://assets/loot/PNG/Transperent/Icon6.png" id="7_i1b4j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1fc2"]
+atlas = ExtResource("1_01y3n")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7r7l"]
+atlas = ExtResource("1_01y3n")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62h3b"]
+atlas = ExtResource("1_01y3n")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hba17"]
+atlas = ExtResource("1_01y3n")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7gq1a"]
+atlas = ExtResource("1_01y3n")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ho7hb"]
+atlas = ExtResource("1_01y3n")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bawnh"]
+atlas = ExtResource("1_01y3n")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qe6j4"]
+atlas = ExtResource("1_01y3n")
+region = Rect2(336, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n5jx8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1fc2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7r7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62h3b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hba17")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7gq1a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ho7hb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bawnh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qe6j4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jqh7t"]
+size = Vector2(17, 12)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8wa72"]
+radius = 20.0
+
+[sub_resource type="Resource" id="Resource_kj3na"]
+script = ExtResource("4_3yx17")
+name = "Glasses"
+icon = ExtResource("5_fp6tb")
+stackable = false
+value = 25
+metadata/_custom_type_script = "uid://c5dh1m3p8jocx"
+
+[sub_resource type="Resource" id="Resource_i54af"]
+script = ExtResource("4_3yx17")
+name = "Bones"
+icon = ExtResource("6_1pqqf")
+value = 2
+metadata/_custom_type_script = "uid://c5dh1m3p8jocx"
+
+[sub_resource type="Resource" id="Resource_2xu6i"]
+script = ExtResource("4_3yx17")
+name = "Amulet"
+icon = ExtResource("7_i1b4j")
+max_stack_size = 5
+value = 35
+metadata/_custom_type_script = "uid://c5dh1m3p8jocx"
+
+[node name="MagicTrader" type="StaticBody2D" unique_id=600359875]
+script = ExtResource("1_imqmu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1505887675]
+sprite_frames = SubResource("SpriteFrames_n5jx8")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.5332718
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1098770059]
+position = Vector2(-0.5, 5)
+shape = SubResource("RectangleShape2D_jqh7t")
+
+[node name="Interactable" parent="." unique_id=1605018207 instance=ExtResource("2_imqmu")]
+interact_name = "Trade"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=874613398]
+shape = SubResource("CircleShape2D_8wa72")
+
+[node name="Shop" parent="." unique_id=567974528 instance=ExtResource("3_wfluk")]
+buy_shop_items = Array[ExtResource("4_3yx17")]([SubResource("Resource_kj3na")])
+sell_shop_items = Array[ExtResource("4_3yx17")]([SubResource("Resource_i54af"), SubResource("Resource_2xu6i")])

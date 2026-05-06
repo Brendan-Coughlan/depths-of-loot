@@ -15,6 +15,7 @@ script = ExtResource("1_lgqak")
 gold_item = ExtResource("2_72sof")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1622597849]
+y_sort_enabled = true
 
 [node name="Interactable" parent="." unique_id=1605018207 instance=ExtResource("2_yiukj")]
 interact_name = "Pickup Item"
