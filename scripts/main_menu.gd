@@ -7,7 +7,7 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_start_game_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/market.tscn")
+	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 func _on_options_pressed() -> void:
 	print("Options pressed")

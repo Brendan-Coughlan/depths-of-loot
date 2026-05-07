@@ -28,8 +28,9 @@ var floor_popup_ui: FloorPopupUI = null
 
 
 func _ready() -> void:
+	player = get_tree().get_first_node_in_group("player")
+	
 	add_to_group("level_manager")
-
 	setup_level()
 
 	# Wait one frame so FloorPopupUI has time to run _ready()

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cwmvk3wc5vs2l"]
+
+[ext_resource type="Script" uid="uid://b63x44a6l2xeg" path="res://scripts/game.gd" id="1_o5qli"]
+
+[node name="Main" type="Node2D" unique_id=1638226850]
+script = ExtResource("1_o5qli")
+
+[node name="SceneHolder" type="Node2D" parent="." unique_id=452549549]

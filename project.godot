@@ -22,6 +22,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 LootManager="*uid://btvrrnkfub3kj"
+Game="*uid://cq06tj80rxcuy"
 
 [display]
 

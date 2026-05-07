@@ -10,4 +10,4 @@ func interact() -> void:
 	if not is_interactable:
 		return
 
-	get_tree().change_scene_to_file(target_scene_path)
+	get_tree().root.get_node("Main").load_scene(target_scene_path)
