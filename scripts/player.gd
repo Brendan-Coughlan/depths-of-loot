@@ -5,10 +5,15 @@ var last_direction: Vector2 = Vector2.DOWN
 
 @onready var health: HealthComponent = $HealthComponent
 @onready var player_state_machine: Node = $PlayerStateMachine
+@onready var inventory: Inventory = $Inventory
+
+@export var base_movement_speed: float = 5000.0
+var movement_speed: float = 5000.0
 
 func _ready() -> void:
 	health.died.connect(_on_died)
 	health.damaged.connect(_on_damaged)
+	recalculate_stats()
 
 func _on_died() -> void:
 	#queue_free()
@@ -32,3 +37,12 @@ func update_last_direction(direction: Vector2) -> void:
 			last_direction = Vector2(sign(direction.x), 0)
 		else:
 			last_direction = Vector2(0, sign(direction.y))
+
+func recalculate_stats():
+	movement_speed = base_movement_speed
+
+	var speed_item = preload("res://resources/items/speed_gem.tres")
+
+	var amount = inventory.get_number_of_item(speed_item)
+
+	movement_speed += amount * 500.0

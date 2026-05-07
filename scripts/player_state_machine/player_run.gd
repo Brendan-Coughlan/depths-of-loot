@@ -3,7 +3,6 @@ class_name PlayerRun
 
 @export var player: Player
 @export var player_sprite: AnimatedSprite2D
-@export var movement_speed: float = 5000.0
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack"):
@@ -23,7 +22,7 @@ func physics_update(delta: float) -> void:
 		player.update_last_direction(direction)
 
 		# Apply movement
-		player.velocity = direction.normalized() * movement_speed * delta
+		player.velocity = direction.normalized() * player.movement_speed * delta
 		player.move_and_slide()
 
 		# Update animation

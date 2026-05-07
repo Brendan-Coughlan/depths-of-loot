@@ -57,6 +57,8 @@ func add_item(item : ItemData):
 		slot.set_item(item)
 	elif slot.item == item:
 		slot.add_item()
+		
+	get_parent().recalculate_stats()
 
 func remove_item(item : ItemData):
 	var slot = get_slot_to_remove(item)
