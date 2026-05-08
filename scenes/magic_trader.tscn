@@ -1,13 +1,14 @@
 [gd_scene format=3 uid="uid://lv52d8u7pty2"]
 
 [ext_resource type="Texture2D" uid="uid://dadch0rqdcixu" path="res://assets/market/PNG/Characters/Character_others_animation/Trader_magic_animation_with_shadow.png" id="1_01y3n"]
-[ext_resource type="Script" uid="uid://dp2dxm7es0xxc" path="res://scripts/magic_trader.gd" id="1_imqmu"]
+[ext_resource type="Script" path="res://scripts/magic_trader.gd" id="1_imqmu"]
 [ext_resource type="PackedScene" uid="uid://bk68ewvu5yrd5" path="res://scenes/interactable.tscn" id="2_imqmu"]
 [ext_resource type="PackedScene" uid="uid://bck1sh6wlvpsn" path="res://scenes/shop.tscn" id="3_wfluk"]
 [ext_resource type="Script" uid="uid://c5dh1m3p8jocx" path="res://scripts/item_data.gd" id="4_3yx17"]
 [ext_resource type="Resource" uid="uid://qfu3ll4yk2e6" path="res://resources/items/health_potion.tres" id="6_wfluk"]
 [ext_resource type="Resource" uid="uid://bigbk44pyma4d" path="res://resources/items/speed_potion.tres" id="7_3yx17"]
 [ext_resource type="Resource" uid="uid://cwd6e5gd1d2x8" path="res://resources/items/speed_gem.tres" id="8_3yx17"]
+[ext_resource type="Resource" uid="uid://bvr0nd33hx328" path="res://resources/items/health_gem.tres" id="8_fp6tb"]
 [ext_resource type="Resource" uid="uid://cgpc0h6uleevh" path="res://resources/items/bones.tres" id="9_3yx17"]
 [ext_resource type="Resource" uid="uid://bantt2hw3854l" path="res://resources/items/amulet.tres" id="10_3yx17"]
 
@@ -101,5 +102,5 @@ interact_name = "Trade"
 shape = SubResource("CircleShape2D_8wa72")
 
 [node name="Shop" parent="." unique_id=567974528 instance=ExtResource("3_wfluk")]
-buy_shop_items = Array[ExtResource("4_3yx17")]([ExtResource("6_wfluk"), ExtResource("7_3yx17"), ExtResource("8_3yx17")])
+buy_shop_items = Array[ExtResource("4_3yx17")]([ExtResource("6_wfluk"), ExtResource("7_3yx17"), ExtResource("8_fp6tb"), ExtResource("8_3yx17")])
 sell_shop_items = Array[ExtResource("4_3yx17")]([ExtResource("9_3yx17"), ExtResource("10_3yx17")])

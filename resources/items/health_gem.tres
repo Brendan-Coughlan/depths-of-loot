@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bvr0nd33hx328"]
+
+[ext_resource type="Script" uid="uid://c5dh1m3p8jocx" path="res://scripts/item_data.gd" id="1_0yo2v"]
+[ext_resource type="Texture2D" uid="uid://bhn8bea71e477" path="res://assets/magic_gem/PNG/Transperent/Icon8.png" id="1_35c6t"]
+
+[resource]
+script = ExtResource("1_0yo2v")
+name = "Health Gem"
+icon = ExtResource("1_35c6t")
+value = 50
+metadata/_custom_type_script = "uid://c5dh1m3p8jocx"

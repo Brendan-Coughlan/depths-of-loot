@@ -41,8 +41,13 @@ func update_last_direction(direction: Vector2) -> void:
 func recalculate_stats():
 	movement_speed = base_movement_speed
 
-	var speed_item = preload("res://resources/items/speed_gem.tres")
+	var health_gem_item = preload("res://resources/items/health_gem.tres")
+	var speed_gem_item = preload("res://resources/items/speed_gem.tres")
 
-	var amount = inventory.get_number_of_item(speed_item)
+	var health_gem_amount = inventory.get_number_of_item(health_gem_item)
+	var speed_gem_amount = inventory.get_number_of_item(speed_gem_item)
 
-	movement_speed += amount * 500.0
+	movement_speed += speed_gem_amount * 500.0
+	
+	health.max_health += health_gem_amount * 25
+	health.set_health(health.current_health + health_gem_amount * 25)

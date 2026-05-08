@@ -22,7 +22,7 @@ func take_damage(amount: int) -> void:
 		return
 		
 	current_health -= amount
-	current_health = max(current_health, 0)
+	current_health = clamp(current_health, 0, max_health)
 
 	emit_signal("damaged", amount)
 	emit_signal("health_changed", current_health, max_health)
