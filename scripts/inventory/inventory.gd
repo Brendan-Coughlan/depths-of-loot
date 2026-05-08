@@ -16,6 +16,8 @@ var hovered_slot: TextureButton = null
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("inventory"):
 		toggle_window(!window.visible)
+	elif event.is_action_pressed("interact") and hovered_slot:
+		get_parent().use_item(hovered_slot.item)
 
 func _on_exit_button_pressed():
 	toggle_window(false)
@@ -67,6 +69,8 @@ func remove_item(item : ItemData):
 		return
 	
 	slot.remove_item()
+	
+	get_parent().recalculate_stats()
 
 func get_slot_to_add(item : ItemData) -> InventorySlot:
 	for slot in slots:

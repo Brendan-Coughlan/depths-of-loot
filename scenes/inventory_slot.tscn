@@ -59,3 +59,6 @@ text = "2"
 label_settings = SubResource("LabelSettings_hddt5")
 horizontal_alignment = 2
 vertical_alignment = 2
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

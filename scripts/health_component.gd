@@ -6,6 +6,7 @@ signal damaged(amount)
 signal healed(amount)
 signal died
 
+@export var base_health: int = 100
 @export var max_health: int = 100
 @export var current_health: int = 100
 @export var invulnerable: bool = false

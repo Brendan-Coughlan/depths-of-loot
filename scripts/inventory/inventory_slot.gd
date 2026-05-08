@@ -9,9 +9,6 @@ var inventory : Inventory
 
 signal slot_hovered(slot)
 
-func _ready():
-	mouse_entered.connect(_on_mouse_entered)
-
 func _on_mouse_entered():
 	emit_signal("slot_hovered", self)
 
@@ -43,3 +40,7 @@ func update_quantity_text():
 		quantity_text.text = ""
 	else:
 		quantity_text.text = str(quantity)
+
+
+func _on_pressed() -> void:
+	remove_item()
