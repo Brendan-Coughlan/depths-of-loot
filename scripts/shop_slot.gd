@@ -5,6 +5,7 @@ var item : ItemData
 var quantity : int
 @onready var item_icon : TextureRect = get_node("Icon")
 @onready var quantity_text : Label = get_node("QuantityText")
+@onready var value_text : Label = get_node("ValueText")
 
 func set_item(new_item : ItemData):
 	item = new_item
@@ -17,12 +18,19 @@ func set_item(new_item : ItemData):
 		item_icon.texture = item.icon
   
 	update_quantity_text()
+	update_value_text()
 
 func update_quantity_text():
 	if quantity <= 1:
 		quantity_text.text = ""
 	else:
 		quantity_text.text = str(quantity)
+		
+func update_value_text():
+	if item == null:
+		return
+	
+	value_text.text = "$" + str(item.value)
 
 func _on_buy_button_pressed() -> void:
 	if item == null:

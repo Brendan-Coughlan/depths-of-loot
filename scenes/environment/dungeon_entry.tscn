@@ -1,9 +1,9 @@
 [gd_scene format=4 uid="uid://102euhoyfxjy"]
 
-[ext_resource type="Script" uid="uid://v4flewju0u18" path="res://scripts/environment/dungeon_entry.gd" id="1_cyu2g"]
 [ext_resource type="Texture2D" uid="uid://i76s3qqjarou" path="res://assets/dungeon/PNG/Arches_columns.png" id="1_mfwis"]
 [ext_resource type="PackedScene" uid="uid://bh8ckkrt2hcek" path="res://scenes/environment/Statue.tscn" id="2_oftsx"]
-[ext_resource type="Script" uid="uid://c5jnbjrkgaj86" path="res://scripts/environment/InteractableArea.gd" id="4_pto58"]
+[ext_resource type="PackedScene" uid="uid://bk68ewvu5yrd5" path="res://scenes/interactable.tscn" id="4_euw21"]
+[ext_resource type="Script" uid="uid://c5jnbjrkgaj86" path="res://scripts/environment/dungeon_entry.gd" id="4_pto58"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oftsx"]
 texture = ExtResource("1_mfwis")
@@ -223,7 +223,7 @@ size = Vector2(52, 19)
 [node name="DungeonEntry" type="StaticBody2D" unique_id=373061646]
 collision_layer = 256
 collision_mask = 2
-script = ExtResource("1_cyu2g")
+script = ExtResource("4_pto58")
 
 [node name="TileMapObjects" type="TileMapLayer" parent="." unique_id=916452567]
 tile_map_data = PackedByteArray("AAD+////AAAAAAYAAAD+/wAAAAAAAAcAAAD/////AAAAAAEAAAD//wAAAAAAAAIAAAAAAP//AAABAAEAAAAAAAAAAAABAAIAAAABAP//AAADAAYAAAABAAAAAAADAAcAAAD///7/AAABAAUAAAAAAP7/AAACAAUAAAD///3/AAABAAQAAAAAAP3/AAACAAQAAAD+//7/AAAAAAUAAAABAP7/AAADAAUAAAA=")
@@ -239,11 +239,9 @@ position = Vector2(-45, -18)
 [node name="RightStatue" parent="." unique_id=1668966798 instance=ExtResource("2_oftsx")]
 position = Vector2(44, -18)
 
-[node name="EntryArea2D" type="Area2D" parent="." unique_id=423518436]
-collision_layer = 2048
-collision_mask = 2
-script = ExtResource("4_pto58")
+[node name="Interactable" parent="." unique_id=1605018207 instance=ExtResource("4_euw21")]
+interact_name = "Enter"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EntryArea2D" unique_id=942178435]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=942178435]
 position = Vector2(0, 24)
 shape = SubResource("RectangleShape2D_oftsx")

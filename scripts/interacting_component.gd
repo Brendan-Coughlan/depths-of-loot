@@ -35,7 +35,7 @@ func _process(_delta: float) -> void:
 	var interactable := get_nearest_interactable()
 
 	if interactable != null and can_interact:
-		interact_label.text = "Press E to " + interactable.interact_name
+		interact_label.text = interactable.interact_name
 		interact_label.show()
 	else:
 		interact_label.hide()

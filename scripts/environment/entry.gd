@@ -1,11 +1,16 @@
-extends Area2D
+extends Node2D
 class_name Entry
 
-# Called when the node enters the scene tree for the first time.
+@onready var level_manager: Node = get_tree().get_first_node_in_group("level_manager")
+@export var target_scene_path: String = "res://scenes/market.tscn"
+
+func return_to_surface() -> void:
+	get_tree().root.get_node("Main").load_scene(target_scene_path)
+		
+@onready var interactable: Area2D = $Interactable
+
 func _ready() -> void:
-	pass # Replace with function body.
+	interactable.interact = _on_interact
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _on_interact():
+	return_to_surface()

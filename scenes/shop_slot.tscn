@@ -10,6 +10,7 @@ region = Rect2(177, 113, 14, 14)
 
 [sub_resource type="LabelSettings" id="LabelSettings_hj2ta"]
 font_size = 28
+font_color = Color(0, 0, 0, 1)
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
@@ -85,6 +86,25 @@ label_settings = SubResource("LabelSettings_hj2ta")
 horizontal_alignment = 2
 vertical_alignment = 2
 
+[node name="ValueText" type="Label" parent="." unique_id=1704102291]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -60.0
+offset_right = 16.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "$0"
+label_settings = SubResource("LabelSettings_hj2ta")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="BuyButton" type="TextureButton" parent="." unique_id=762311136]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 1
@@ -94,9 +114,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -44.0
-offset_top = 28.5
+offset_top = 57.5
 offset_right = 44.0
-offset_bottom = 116.5
+offset_bottom = 145.5
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = SubResource("AtlasTexture_ckp8l")
@@ -111,9 +131,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -44.0
-offset_top = 28.5
+offset_top = 57.5
 offset_right = 44.0
-offset_bottom = 116.5
+offset_bottom = 145.5
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = SubResource("AtlasTexture_jns18")

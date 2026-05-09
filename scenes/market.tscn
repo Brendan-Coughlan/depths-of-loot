@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bifvxtxlf4h5y" path="res://assets/market/PNG/Objects.png" id="8_hvm52"]
 [ext_resource type="PackedScene" uid="uid://b231i761fpqtl" path="res://scenes/food_trader.tscn" id="9_4msli"]
 [ext_resource type="PackedScene" uid="uid://syjqsdbp3yr6" path="res://scenes/equipment_trader.tscn" id="11_1syoy"]
-[ext_resource type="PackedScene" uid="uid://102euhoyfxjy" path="res://scenes/environment/DungeonEntry.tscn" id="11_k7ps5"]
+[ext_resource type="PackedScene" uid="uid://102euhoyfxjy" path="res://scenes/environment/dungeon_entry.tscn" id="11_k7ps5"]
 [ext_resource type="PackedScene" uid="uid://d4laxxywaicm6" path="res://scenes/pause_menu.tscn" id="11_wa5cj"]
 [ext_resource type="PackedScene" uid="uid://lv52d8u7pty2" path="res://scenes/magic_trader.tscn" id="12_4okcq"]
 

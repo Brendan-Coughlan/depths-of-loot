@@ -13,9 +13,10 @@ func _ready():
 	
 	load_scene(market_scene)
 
-func load_scene(path):
+func load_scene(path: String, player_position: Vector2 = Vector2(0, 0)):
 	if scene_holder.get_child_count() > 0:
 		scene_holder.get_child(0).queue_free()
 
+	Game.player.position = player_position
 	var scene = load(path).instantiate()
 	scene_holder.add_child(scene)

@@ -2,31 +2,21 @@
 
 [ext_resource type="Script" uid="uid://ca1ubbk3hbgn7" path="res://scripts/environment/exit.gd" id="1_1u3mm"]
 [ext_resource type="Texture2D" uid="uid://vpcieeu73n5p" path="res://assets/Minimal Dungeon - Asset Pack (v2)/Tileset, Props & UI/tileset, props & ui x2.png" id="2_rl3pt"]
+[ext_resource type="PackedScene" uid="uid://bk68ewvu5yrd5" path="res://scenes/interactable.tscn" id="3_xg7mv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rl3pt"]
 
-[node name="Exit" type="Area2D" unique_id=1307036372 node_paths=PackedStringArray("interact_label")]
+[node name="Exit" type="Area2D" unique_id=1307036372]
 z_index = 1
 script = ExtResource("1_1u3mm")
-interact_label = NodePath("Label")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=918676432]
 texture = ExtResource("2_rl3pt")
 region_enabled = true
 region_rect = Rect2(448, 224, 32, 32)
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1499093179]
-collision_layer = 4096
-collision_mask = 2
+[node name="Interactable" parent="." unique_id=1605018207 instance=ExtResource("3_xg7mv")]
+interact_name = "Press E to go to next floo"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1338973095]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=26128138]
 shape = SubResource("RectangleShape2D_rl3pt")
-
-[node name="Label" type="Label" parent="." unique_id=285688653]
-offset_left = -21.0
-offset_top = -35.0
-offset_right = 19.0
-offset_bottom = -12.0
-theme_override_font_sizes/font_size = 8
-horizontal_alignment = 1
-vertical_alignment = 1
