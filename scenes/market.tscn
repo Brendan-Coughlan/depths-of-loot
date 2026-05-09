@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://i76s3qqjarou" path="res://assets/dungeon/PNG/Arches_columns.png" id="3_hvm52"]
 [ext_resource type="PackedScene" uid="uid://dcb603ur3pbnr" path="res://scenes/treasure_chest.tscn" id="4_4msli"]
 [ext_resource type="Texture2D" uid="uid://db3o7th1a0q2h" path="res://assets/market/PNG/Walls_street.png" id="4_ennqm"]
-[ext_resource type="PackedScene" uid="uid://s64h6h53a3ji" path="res://scenes/enemies/slime.tscn" id="5_wa5cj"]
 [ext_resource type="PackedScene" uid="uid://bd4ugym8rbdkw" path="res://scenes/enemies/boneblade_stalker.tscn" id="6_k7ps5"]
 [ext_resource type="Texture2D" uid="uid://bifvxtxlf4h5y" path="res://assets/market/PNG/Objects.png" id="8_hvm52"]
 [ext_resource type="PackedScene" uid="uid://b231i761fpqtl" path="res://scenes/food_trader.tscn" id="9_4msli"]
@@ -1439,8 +1438,6 @@ texture_region_size = Vector2i(32, 32)
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_lnu2h"]
 scenes/1/scene = ExtResource("4_4msli")
 scenes/1/display_placeholder = true
-scenes/2/scene = ExtResource("5_wa5cj")
-scenes/2/display_placeholder = true
 scenes/4/scene = ExtResource("6_k7ps5")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4msli"]

@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://ruk5ngm8yjsp" path="res://assets/dungeon/PNG/walls_floor.png" id="2_0g37a"]
 [ext_resource type="PackedScene" uid="uid://dcb603ur3pbnr" path="res://scenes/treasure_chest.tscn" id="2_jms12"]
 [ext_resource type="Texture2D" uid="uid://i76s3qqjarou" path="res://assets/dungeon/PNG/Arches_columns.png" id="3_l7rmn"]
-[ext_resource type="PackedScene" uid="uid://s64h6h53a3ji" path="res://scenes/enemies/slime.tscn" id="3_y4c37"]
 [ext_resource type="PackedScene" uid="uid://d2auwmt7xo2j2" path="res://scenes/player.tscn" id="5_l4wpr"]
 [ext_resource type="PackedScene" uid="uid://bd4ugym8rbdkw" path="res://scenes/enemies/boneblade_stalker.tscn" id="6_tj4u2"]
 
@@ -1133,7 +1132,6 @@ texture_region_size = Vector2i(32, 32)
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_lnu2h"]
 scenes/1/scene = ExtResource("2_jms12")
 scenes/1/display_placeholder = true
-scenes/2/scene = ExtResource("3_y4c37")
 scenes/2/display_placeholder = true
 scenes/4/scene = ExtResource("6_tj4u2")
 

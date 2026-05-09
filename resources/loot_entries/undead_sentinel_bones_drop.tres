@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LootEntry" format=3 uid="uid://baw5apj60c2jm"]
+
+[ext_resource type="Resource" uid="uid://cgpc0h6uleevh" path="res://resources/items/bones.tres" id="1_30vv3"]
+[ext_resource type="Script" path="res://scripts/loot_entry.gd" id="2_sjkuv"]
+
+[resource]
+script = ExtResource("2_sjkuv")
+item = ExtResource("1_30vv3")
+min_amount = 3
+max_amount = 5

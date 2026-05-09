@@ -21,14 +21,15 @@ func drop_loot():
 		spawn_item(entry.item, entry.amount)
 
 func spawn_item(item: ItemData, amount: int):
-	var instance = preload("res://scenes/item_pickup.tscn").instantiate()
-	instance.item = item
-	instance.amount = amount
+	for i in range(amount):
+		var instance = preload("res://scenes/item_pickup.tscn").instantiate()
+		instance.item = item
+		instance.amount = amount
 
-	var world = get_tree().get_first_node_in_group("world")
-	world.add_child(instance)
+		var world = get_tree().get_first_node_in_group("world")
+		world.add_child(instance)
 
-	instance.global_position = global_position + Vector2(
-		randf_range(-8, 8),
-		randf_range(-8, 8)
-	)
+		instance.global_position = global_position + Vector2(
+			randf_range(-8, 8),
+			randf_range(-8, 8)
+		)

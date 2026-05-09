@@ -169,11 +169,10 @@ func drop_loot():
 	for entry in loot:
 		spawn_item(entry.item, entry.amount)
 
-func spawn_item(item: ItemData, amount: int):
-	var instance = preload("res://scenes/item_pickup.tscn").instantiate()
-	instance.item = item
-	
+func spawn_item(item: ItemData, amount: int):	
 	for i in range(amount):
+		var instance = preload("res://scenes/item_pickup.tscn").instantiate()
+		instance.item = item
 		var world = get_tree().get_first_node_in_group("world")
 		world.add_child(instance)
 

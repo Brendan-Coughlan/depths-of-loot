@@ -785,7 +785,7 @@ loot_table = ExtResource("2_34is1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1641038735]
 sprite_frames = SubResource("SpriteFrames_ebgy8")
-animation = &"death_right"
+animation = &"idle_right"
 autoplay = "idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1964603989]
@@ -859,11 +859,12 @@ enemy_hitboxes = [NodePath("../../HitArea2D/RightHitBox"), NodePath("../../HitAr
 attack_cooldown = 2.0
 metadata/_custom_type_script = "uid://bocttuif2c7yu"
 
-[node name="Hurt" type="Node" parent="EnemyStateMachine" unique_id=221452522 node_paths=PackedStringArray("enemy", "enemy_sprite", "health")]
+[node name="Hurt" type="Node" parent="EnemyStateMachine" unique_id=429835596 node_paths=PackedStringArray("enemy", "enemy_sprite", "health")]
 script = ExtResource("15_dsf8j")
 enemy = NodePath("../..")
 enemy_sprite = NodePath("../../AnimatedSprite2D")
 health = NodePath("../../HealthComponent")
+metadata/_custom_type_script = "uid://bnh5kspkv7e3t"
 
 [node name="Death" type="Node" parent="EnemyStateMachine" unique_id=232159633 node_paths=PackedStringArray("enemy", "enemy_sprite")]
 script = ExtResource("6_sokwp")
@@ -873,6 +874,7 @@ metadata/_custom_type_script = "uid://bj5aisjxhom3l"
 
 [node name="HealthComponent" type="Node" parent="." unique_id=2087082735]
 script = ExtResource("15_ser5m")
+base_health = 30
 max_health = 30
 current_health = 30
 

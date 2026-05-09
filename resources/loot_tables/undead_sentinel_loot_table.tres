@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LootTable" format=3 uid="uid://c8in22xvwn1dg"]
+
+[ext_resource type="Script" path="res://scripts/loot_entry.gd" id="1_x67kl"]
+[ext_resource type="Resource" uid="uid://baw5apj60c2jm" path="res://resources/loot_entries/undead_sentinel_bones_drop.tres" id="2_rg3ac"]
+[ext_resource type="Script" path="res://scripts/loot_table.gd" id="2_y7ajb"]
+
+[resource]
+script = ExtResource("2_y7ajb")
+drops = Array[ExtResource("1_x67kl")]([ExtResource("2_rg3ac")])
