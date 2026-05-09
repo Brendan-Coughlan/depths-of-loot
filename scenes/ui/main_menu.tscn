@@ -1,42 +1,23 @@
 [gd_scene format=3 uid="uid://bywhgtvmcxm2a"]
 
 [ext_resource type="Script" uid="uid://bb0yqkysrknoi" path="res://scripts/main_menu.gd" id="1_fe2o3"]
-[ext_resource type="Texture2D" uid="uid://de1c7b61wlb8w" path="res://assets/Minimal Dungeon - Asset Pack (v2)/UI/main_menu_bg.png" id="2_1g8jr"]
+[ext_resource type="Texture2D" uid="uid://dj4mxcgw4ykjv" path="res://assets/UI/PNG/Main_menu_bg.png" id="2_1g8jr"]
+[ext_resource type="Texture2D" uid="uid://bqrlfixtam86r" path="res://assets/UI/PNG/Main_menu.png" id="3_1g8jr"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ekxnf"]
 texture = ExtResource("2_1g8jr")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vue75"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_color = Color(0, 0, 0, 0.20392157)
-shadow_size = 5
-shadow_offset = Vector2(0, 3.41)
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1kxf"]
+atlas = ExtResource("3_1g8jr")
+region = Rect2(189, 162, 56, 12)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6cm7"]
-bg_color = Color(0.63529414, 0.63529414, 0.63529414, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_color = Color(0, 0, 0, 0.20392157)
-shadow_size = 5
-shadow_offset = Vector2(0, 3.41)
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2yvf"]
+atlas = ExtResource("3_1g8jr")
+region = Rect2(189, 50, 56, 12)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekxnf"]
-bg_color = Color(0.8235294, 0.8235294, 0.8235294, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_color = Color(0, 0, 0, 0.20392157)
-shadow_size = 5
-shadow_offset = Vector2(0, 3.41)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l6cm7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhagc"]
+atlas = ExtResource("3_1g8jr")
+region = Rect2(189, 146, 56, 12)
 
 [node name="MainMenu" type="Control" unique_id=1635245020]
 layout_mode = 3
@@ -60,63 +41,38 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_ekxnf")
 
-[node name="Menu" type="VBoxContainer" parent="." unique_id=1901814558]
+[node name="Menu" type="VBoxContainer" parent="." unique_id=26630584]
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -463.0
-offset_top = 22.0
-offset_right = -227.0
-offset_bottom = 201.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_constants/separation = 9
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -192.0
+offset_top = -366.0
+offset_right = 192.0
+offset_bottom = -46.0
+grow_horizontal = 2
+grow_vertical = 0
 
-[node name="StartGame" type="Button" parent="Menu" unique_id=1476172344]
+[node name="StartGame" type="TextureButton" parent="Menu" unique_id=2060526675]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_vue75")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_l6cm7")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ekxnf")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_l6cm7")
-text = "Start Game"
+texture_normal = SubResource("AtlasTexture_m1kxf")
+stretch_mode = 5
 
-[node name="Options" type="Button" parent="Menu" unique_id=761624881]
+[node name="Settings" type="TextureButton" parent="Menu" unique_id=2103082684]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_vue75")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_l6cm7")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ekxnf")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_l6cm7")
-text = "Options"
+texture_normal = SubResource("AtlasTexture_x2yvf")
+stretch_mode = 5
 
-[node name="Exit" type="Button" parent="Menu" unique_id=839755601]
+[node name="Quit" type="TextureButton" parent="Menu" unique_id=1339258202]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_vue75")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_l6cm7")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ekxnf")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_l6cm7")
-text = "Exit"
+texture_normal = SubResource("AtlasTexture_uhagc")
+stretch_mode = 5
 
 [connection signal="pressed" from="Menu/StartGame" to="." method="_on_start_game_pressed"]
-[connection signal="pressed" from="Menu/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="Menu/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Menu/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Menu/Quit" to="." method="_on_quit_pressed"]

@@ -708,13 +708,12 @@ tile_set = SubResource("TileSet_yqjtg")
 gen_seed = 2468369149
 total_steps = 2000
 
-[node name="LevelManager" type="Node" parent="." unique_id=914234243 node_paths=PackedStringArray("map_generator", "object_container", "player")]
+[node name="LevelManager" type="Node" parent="." unique_id=914234243 node_paths=PackedStringArray("map_generator", "object_container")]
 script = ExtResource("6_u5sy4")
 map_generator = NodePath("../MapGenerator")
 entry_scene = ExtResource("8_0tnpc")
 exit_scene = ExtResource("9_vtaks")
 object_container = NodePath("../World/Entities")
-player = NodePath("")
 enemy_scene = ExtResource("4_u5sy4")
 chest_scene = ExtResource("3_lnu2h")
 enemy_count = 1
@@ -740,12 +739,11 @@ size_2d_override_stretch = true
 render_target_update_mode = 4
 script = ExtResource("10_kvpfn")
 
-[node name="MiniMapCamera" type="Camera2D" parent="GUI/MiniMapContainer/MiniMapViewport" unique_id=539393358 node_paths=PackedStringArray("player")]
+[node name="MiniMapCamera" type="Camera2D" parent="GUI/MiniMapContainer/MiniMapViewport" unique_id=539393358]
 light_mask = 3
 visibility_layer = 3
 scale = Vector2(52.021748, 1905.6744)
 script = ExtResource("10_vtaks")
-player = NodePath("")
 
 [node name="PauseMenu" parent="." unique_id=1847698206 instance=ExtResource("12_dinhu")]
 
