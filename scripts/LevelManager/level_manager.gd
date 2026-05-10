@@ -3,25 +3,37 @@ class_name LevelManager
 
 @export var map_generator: MapGenerator
 @export var entry_scene: PackedScene
-@export var exit_scene: PackedScene
+
+# Two different exits
+@export var normal_exit_scene: PackedScene
+@export var dungeon_exit_scene: PackedScene
+
 @export var object_container: Node2D
 @export var player: CharacterBody2D
 
 # Add all enemy scenes in the Inspector.
 @export var enemy_scenes: Array[PackedScene] = []
 
+# Boss room settings
+@export var boss_floor: int = 5
+@export var boss_room_scene: PackedScene
+@export var boss_scene: PackedScene
+
 @export var chest_scene: PackedScene
 @export var enemy_count: int = 5
 @export var chest_count: int = 3
 @export var min_spawn_distance_from_entry: int = 6
 
-@export var max_floor: int = 10
+# final floor as the boss floor
+@export var max_floor: int = 5
 @export var current_floor: int = 1
 
 @export var min_entry_exit_distance: int = 10
 @export var player_z_index: int = 10
 @export var enemy_z_index: int = 5
 @export var chest_z_index: int = 4
+
+@export var surface_scene_path: String = "res://scenes/market.tscn"
 
 var entry_cell: Vector2i = Vector2i.ZERO
 var exit_cell: Vector2i = Vector2i.ZERO
@@ -31,20 +43,42 @@ var exit_instance: Node2D = null
 
 var floor_popup_ui: FloorPopupUI = null
 
+# Boss room variables
+var boss_room_instance: Node2D = null
+var current_boss: Node2D = null
+var boss_defeated: bool = false
+
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player") as CharacterBody2D
 
 	add_to_group("level_manager")
+
 	setup_level()
 
-	# Wait one frame so FloorPopupUI has time to run _ready()
-	# and add itself to the group "floor_popup_ui".
 	await get_tree().process_frame
 	await show_floor_popup()
 
 
 func setup_level() -> void:
+	if player == null:
+		push_error("LevelManager: player is not assigned.")
+		return
+
+	clear_level()
+
+	entry_instance = null
+	exit_instance = null
+	current_boss = null
+	boss_defeated = false
+
+	if current_floor == boss_floor:
+		setup_boss_room()
+	else:
+		setup_normal_dungeon()
+
+
+func setup_normal_dungeon() -> void:
 	if map_generator == null:
 		push_error("LevelManager: map_generator is not assigned.")
 		return
@@ -53,21 +87,194 @@ func setup_level() -> void:
 		push_error("LevelManager: object_container is not assigned.")
 		return
 
-	if player == null:
-		push_error("LevelManager: player is not assigned.")
-		return
-
-	clear_objects()
-
-	entry_instance = null
-	exit_instance = null
+	map_generator.visible = true
 
 	map_generator.generate_map()
 	choose_entry_and_exit()
 	spawn_entry()
-	spawn_exit()
+	spawn_normal_exit()
 	place_player()
 	spawn_random_objects()
+
+
+func setup_boss_room() -> void:
+	print("Loading boss room on floor: ", current_floor)
+
+	if boss_room_scene == null:
+		push_error("LevelManager: boss_room_scene is not assigned.")
+		return
+
+	if boss_scene == null:
+		push_error("LevelManager: boss_scene is not assigned.")
+		return
+
+	if dungeon_exit_scene == null:
+		push_error("LevelManager: dungeon_exit_scene is not assigned.")
+		return
+
+	# Hide procedural dungeon map while using handmade boss room.
+	if map_generator != null:
+		map_generator.visible = false
+
+	boss_room_instance = boss_room_scene.instantiate() as Node2D
+
+	if boss_room_instance == null:
+		push_error("LevelManager: boss_room_scene root must be Node2D.")
+		return
+
+	# IMPORTANT:
+	# Do NOT use get_tree().current_scene.add_child(boss_room_instance)
+	# because current_scene may be Main.
+	# Add the boss room under LevelManager, so it is deleted with game.tscn.
+	add_child(boss_room_instance)
+
+	var player_spawn: Marker2D = boss_room_instance.get_node_or_null("PlayerSpawnPoint") as Marker2D
+	var boss_spawn: Marker2D = boss_room_instance.get_node_or_null("BossSpawnPoint") as Marker2D
+	var exit_spawn: Marker2D = boss_room_instance.get_node_or_null("ExitSpawnPoint") as Marker2D
+	var boss_container: Node2D = boss_room_instance.get_node_or_null("BossContainer") as Node2D
+	var boss_object_container: Node2D = boss_room_instance.get_node_or_null("ObjectContainer") as Node2D
+
+	if player_spawn == null:
+		push_error("BossRoom: PlayerSpawnPoint was not found.")
+		return
+
+	if boss_spawn == null:
+		push_error("BossRoom: BossSpawnPoint was not found.")
+		return
+
+	if exit_spawn == null:
+		push_error("BossRoom: ExitSpawnPoint was not found.")
+		return
+
+	if boss_container == null:
+		push_error("BossRoom: BossContainer was not found.")
+		return
+
+	if boss_object_container == null:
+		push_error("BossRoom: ObjectContainer was not found.")
+		return
+
+	place_player_at_marker(player_spawn)
+	spawn_boss(boss_spawn, boss_container)
+	spawn_boss_room_dungeon_exit(exit_spawn, boss_object_container)
+
+	if floor_popup_ui == null:
+		floor_popup_ui = get_tree().get_first_node_in_group("floor_popup_ui") as FloorPopupUI
+
+	if floor_popup_ui != null:
+		floor_popup_ui.show_event_message("Boss Room\nDefeat the boss!")
+
+
+func spawn_boss(boss_spawn: Marker2D, boss_container: Node2D) -> void:
+	current_boss = boss_scene.instantiate() as Node2D
+
+	if current_boss == null:
+		push_error("LevelManager: boss_scene root must be Node2D.")
+		return
+
+	boss_container.add_child(current_boss)
+
+	current_boss.global_position = boss_spawn.global_position
+	current_boss.z_index = enemy_z_index
+	current_boss.add_to_group("enemies")
+	current_boss.add_to_group("boss")
+
+	if current_boss is Enemy:
+		setup_enemy(current_boss as Enemy)
+	else:
+		if "target" in current_boss:
+			current_boss.target = player
+
+	connect_boss_death_signal(current_boss)
+
+	print("Boss spawned at: ", current_boss.global_position)
+
+
+func connect_boss_death_signal(boss: Node2D) -> void:
+	var health = boss.get_node_or_null("HealthComponent")
+
+	if health == null:
+		push_warning("LevelManager: Boss HealthComponent was not found. Boss death cannot open door.")
+		return
+
+	if health.has_signal("died"):
+		if not health.died.is_connected(_on_boss_died):
+			health.died.connect(_on_boss_died)
+	else:
+		push_warning("LevelManager: Boss HealthComponent does not have died signal.")
+
+
+func spawn_boss_room_dungeon_exit(exit_spawn: Marker2D, boss_object_container: Node2D) -> void:
+	if dungeon_exit_scene == null:
+		push_error("LevelManager: dungeon_exit_scene is not assigned.")
+		return
+
+	exit_instance = dungeon_exit_scene.instantiate() as Node2D
+
+	if exit_instance == null:
+		push_error("LevelManager: dungeon_exit_scene root must be Node2D.")
+		return
+
+	boss_object_container.add_child(exit_instance)
+
+	exit_instance.global_position = exit_spawn.global_position
+	exit_instance.z_index = chest_z_index
+	exit_instance.add_to_group("dungeon_exit")
+
+	if exit_instance is DungeonExit:
+		var dungeon_exit := exit_instance as DungeonExit
+		dungeon_exit.exit_mode = DungeonExit.ExitMode.RETURN_TO_SURFACE
+		dungeon_exit.surface_scene_path = surface_scene_path
+		dungeon_exit.set_locked(true)
+	else:
+		if exit_instance.has_method("set_locked"):
+			exit_instance.set_locked(true)
+		else:
+			push_warning("LevelManager: dungeon_exit_scene does not have set_locked(value).")
+
+	print("Boss room dungeon exit spawned at: ", exit_instance.global_position)
+
+
+func _on_boss_died() -> void:
+	if boss_defeated:
+		return
+
+	boss_defeated = true
+
+	print("Boss defeated. Dungeon door opened.")
+
+	if exit_instance != null:
+		if exit_instance.has_method("set_locked"):
+			exit_instance.set_locked(false)
+		else:
+			push_warning("LevelManager: Boss room exit has no set_locked method.")
+
+	if floor_popup_ui == null:
+		floor_popup_ui = get_tree().get_first_node_in_group("floor_popup_ui") as FloorPopupUI
+
+	if floor_popup_ui != null:
+		floor_popup_ui.show_event_message("Boss defeated!\nDoor opened")
+
+
+func place_player_at_marker(spawn_point: Marker2D) -> void:
+	if player == null:
+		push_error("LevelManager: player is not assigned.")
+		return
+
+	player.global_position = spawn_point.global_position
+
+	var player_anchor: Marker2D = player.get_node_or_null("SpawnAnchor") as Marker2D
+
+	if player_anchor != null:
+		var offset: Vector2 = spawn_point.global_position - player_anchor.global_position
+		player.global_position += offset
+
+	player.z_index = player_z_index
+
+	if not player.is_in_group("player"):
+		player.add_to_group("player")
+
+	print("Player spawned at boss room position: ", player.global_position)
 
 
 func show_floor_popup() -> void:
@@ -97,14 +304,29 @@ func next_floor() -> void:
 
 
 func game_completed() -> void:
-	print("Game completed! You cleared all floors.")
-	# Later change this to a win screen:
-	# get_tree().change_scene_to_file("res://scenes/ui/win_screen.tscn")
+	print("Game completed! Returning to surface.")
+	return_to_surface()
 
 
-func clear_objects() -> void:
-	for child in object_container.get_children():
-		child.queue_free()
+func return_to_surface() -> void:
+	var main = get_tree().root.get_node_or_null("Main")
+
+	if main != null and main.has_method("load_scene"):
+		main.load_scene(surface_scene_path)
+	else:
+		push_warning("LevelManager: Main was not found. Cannot return to surface.")
+
+
+func clear_level() -> void:
+	if object_container != null:
+		for child in object_container.get_children():
+			child.queue_free()
+
+	if boss_room_instance != null:
+		boss_room_instance.queue_free()
+		boss_room_instance = null
+
+	current_boss = null
 
 
 func choose_entry_and_exit() -> void:
@@ -184,15 +406,15 @@ func spawn_entry() -> void:
 	print("Entry spawned at: ", entry_instance.position)
 
 
-func spawn_exit() -> void:
-	if exit_scene == null:
-		push_warning("LevelManager: exit_scene is not assigned.")
+func spawn_normal_exit() -> void:
+	if normal_exit_scene == null:
+		push_warning("LevelManager: normal_exit_scene is not assigned.")
 		return
 
-	exit_instance = exit_scene.instantiate() as Node2D
+	exit_instance = normal_exit_scene.instantiate() as Node2D
 
 	if exit_instance == null:
-		push_error("LevelManager: exit_scene root must be Node2D or inherit from Node2D.")
+		push_error("LevelManager: normal_exit_scene root must be Node2D or inherit from Node2D.")
 		return
 
 	object_container.add_child(exit_instance)
@@ -200,7 +422,8 @@ func spawn_exit() -> void:
 	exit_instance.position = get_2x2_center(exit_cell)
 	exit_instance.z_index = chest_z_index
 
-	print("Exit spawned at: ", exit_instance.position)
+	print("Normal floor exit spawned at: ", exit_instance.position)
+
 
 func place_player() -> void:
 	if player == null:
@@ -217,10 +440,8 @@ func place_player() -> void:
 		push_warning("LevelManager: PlayerSpawnPoint was not found inside entry scene. Using entry position instead.")
 		player.global_position = entry_instance.global_position
 	else:
-		# First move the player's root to the spawn point.
 		player.global_position = spawn_point.global_position
 
-		# Then adjust using the player's own SpawnAnchor if it exists.
 		var player_anchor: Marker2D = player.get_node_or_null("SpawnAnchor") as Marker2D
 
 		if player_anchor != null:
@@ -239,7 +460,7 @@ func place_player() -> void:
 
 	print("Player spawned at root position: ", player.global_position)
 
-	
+
 func spawn_random_objects() -> void:
 	var available_cells: Array[Vector2i] = map_generator.get_floor_cells().duplicate()
 
@@ -252,7 +473,6 @@ func spawn_random_objects() -> void:
 
 	available_cells.shuffle()
 
-	# Spawn enemies
 	for i in range(enemy_count):
 		if available_cells.is_empty():
 			return
@@ -266,7 +486,6 @@ func spawn_random_objects() -> void:
 
 		spawn_scene_at_cell(random_enemy_scene, cell, enemy_z_index)
 
-	# Spawn chests
 	for i in range(chest_count):
 		if available_cells.is_empty():
 			return

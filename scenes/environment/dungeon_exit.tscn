@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://b2upaaegkp2ut"]
+
+[ext_resource type="Script" uid="uid://d02ttvhabkxff" path="res://scripts/environment/dungeon_exit.gd" id="1_oxprd"]
+[ext_resource type="Texture2D" uid="uid://dl3qdorbbp6n0" path="res://assets/dungeon/PNG/doors.png" id="1_vfwwy"]
+[ext_resource type="Script" uid="uid://lu75bdyrewtq" path="res://scripts/interactable.gd" id="3_bpp5x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxprd"]
+atlas = ExtResource("1_vfwwy")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpp5x"]
+atlas = ExtResource("1_vfwwy")
+region = Rect2(64, 144, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hduuu"]
+atlas = ExtResource("1_vfwwy")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7nyir"]
+atlas = ExtResource("1_vfwwy")
+region = Rect2(64, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1xcb"]
+atlas = ExtResource("1_vfwwy")
+region = Rect2(64, 96, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_di1gq"]
+atlas = ExtResource("1_vfwwy")
+region = Rect2(64, 144, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xf37d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxprd")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpp5x")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hduuu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7nyir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1xcb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_di1gq")
+}],
+"loop": false,
+"name": &"opening",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oxprd"]
+size = Vector2(46, 26.5)
+
+[node name="DungeonExit" type="Node2D" unique_id=1044561830]
+script = ExtResource("1_oxprd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=744332012]
+sprite_frames = SubResource("SpriteFrames_xf37d")
+animation = &"closed"
+
+[node name="Interactable" type="Area2D" parent="." unique_id=285857936]
+collision_layer = 2048
+collision_mask = 0
+script = ExtResource("3_bpp5x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=1840505411]
+position = Vector2(0, 31.75)
+shape = SubResource("RectangleShape2D_oxprd")
