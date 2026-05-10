@@ -984,3 +984,6 @@ script = ExtResource("13_jej6c")
 
 [node name="TargetPoint" type="Marker2D" parent="." unique_id=2115873881]
 position = Vector2(0, -36)
+
+[node name="SpawnAnchor" type="Marker2D" parent="." unique_id=922264998]
+position = Vector2(0, -36)

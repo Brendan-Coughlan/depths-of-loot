@@ -20,3 +20,5 @@ interact_name = "Return to Surface"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=1739083983]
 shape = SubResource("RectangleShape2D_ug4wg")
+
+[node name="PlayerSpawnPoint" type="Marker2D" parent="." unique_id=1413531867]

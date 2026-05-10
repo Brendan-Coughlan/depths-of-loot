@@ -7,7 +7,9 @@ class_name LevelManager
 @export var object_container: Node2D
 @export var player: CharacterBody2D
 
-@export var enemy_scene: PackedScene
+# Add all enemy scenes in the Inspector.
+@export var enemy_scenes: Array[PackedScene] = []
+
 @export var chest_scene: PackedScene
 @export var enemy_count: int = 5
 @export var chest_count: int = 3
@@ -24,12 +26,15 @@ class_name LevelManager
 var entry_cell: Vector2i = Vector2i.ZERO
 var exit_cell: Vector2i = Vector2i.ZERO
 
+var entry_instance: Node2D = null
+var exit_instance: Node2D = null
+
 var floor_popup_ui: FloorPopupUI = null
 
 
 func _ready() -> void:
-	player = get_tree().get_first_node_in_group("player")
-	
+	player = get_tree().get_first_node_in_group("player") as CharacterBody2D
+
 	add_to_group("level_manager")
 	setup_level()
 
@@ -53,6 +58,10 @@ func setup_level() -> void:
 		return
 
 	clear_objects()
+
+	entry_instance = null
+	exit_instance = null
+
 	map_generator.generate_map()
 	choose_entry_and_exit()
 	spawn_entry()
@@ -89,7 +98,7 @@ func next_floor() -> void:
 
 func game_completed() -> void:
 	print("Game completed! You cleared all floors.")
-	# Later you can change this to a win screen:
+	# Later change this to a win screen:
 	# get_tree().change_scene_to_file("res://scenes/ui/win_screen.tscn")
 
 
@@ -161,13 +170,18 @@ func spawn_entry() -> void:
 		push_warning("LevelManager: entry_scene is not assigned.")
 		return
 
-	var instance = entry_scene.instantiate()
-	object_container.add_child(instance)
+	entry_instance = entry_scene.instantiate() as Node2D
 
-	instance.position = get_2x2_center(entry_cell)
-	instance.z_index = chest_z_index
+	if entry_instance == null:
+		push_error("LevelManager: entry_scene root must be Node2D or inherit from Node2D.")
+		return
 
-	print("Entry spawned at: ", instance.position)
+	object_container.add_child(entry_instance)
+
+	entry_instance.position = get_2x2_center(entry_cell)
+	entry_instance.z_index = chest_z_index
+
+	print("Entry spawned at: ", entry_instance.position)
 
 
 func spawn_exit() -> void:
@@ -175,33 +189,57 @@ func spawn_exit() -> void:
 		push_warning("LevelManager: exit_scene is not assigned.")
 		return
 
-	var instance = exit_scene.instantiate()
-	object_container.add_child(instance)
+	exit_instance = exit_scene.instantiate() as Node2D
 
-	instance.position = get_2x2_center(exit_cell)
-	instance.z_index = chest_z_index
+	if exit_instance == null:
+		push_error("LevelManager: exit_scene root must be Node2D or inherit from Node2D.")
+		return
 
-	print("Exit spawned at: ", instance.position)
+	object_container.add_child(exit_instance)
 
+	exit_instance.position = get_2x2_center(exit_cell)
+	exit_instance.z_index = chest_z_index
+
+	print("Exit spawned at: ", exit_instance.position)
 
 func place_player() -> void:
 	if player == null:
 		push_error("LevelManager: player is not assigned.")
 		return
 
-	if not is_valid_2x2_floor(entry_cell):
-		push_error("LevelManager: entry_cell is not a valid 2x2 floor area.")
+	if entry_instance == null:
+		push_error("LevelManager: entry_instance is null. Cannot place player.")
 		return
 
-	player.position = get_tile_center(entry_cell)
+	var spawn_point: Marker2D = entry_instance.get_node_or_null("PlayerSpawnPoint") as Marker2D
+
+	if spawn_point == null:
+		push_warning("LevelManager: PlayerSpawnPoint was not found inside entry scene. Using entry position instead.")
+		player.global_position = entry_instance.global_position
+	else:
+		# First move the player's root to the spawn point.
+		player.global_position = spawn_point.global_position
+
+		# Then adjust using the player's own SpawnAnchor if it exists.
+		var player_anchor: Marker2D = player.get_node_or_null("SpawnAnchor") as Marker2D
+
+		if player_anchor != null:
+			var offset: Vector2 = spawn_point.global_position - player_anchor.global_position
+			player.global_position += offset
+
+			print("PlayerSpawnPoint global position: ", spawn_point.global_position)
+			print("Player SpawnAnchor global position after correction: ", player_anchor.global_position)
+		else:
+			push_warning("LevelManager: Player SpawnAnchor was not found. Using player root origin.")
+
 	player.z_index = player_z_index
 
 	if not player.is_in_group("player"):
 		player.add_to_group("player")
 
-	print("Player spawned at: ", player.position)
+	print("Player spawned at root position: ", player.global_position)
 
-
+	
 func spawn_random_objects() -> void:
 	var available_cells: Array[Vector2i] = map_generator.get_floor_cells().duplicate()
 
@@ -214,13 +252,21 @@ func spawn_random_objects() -> void:
 
 	available_cells.shuffle()
 
+	# Spawn enemies
 	for i in range(enemy_count):
 		if available_cells.is_empty():
 			return
 
-		var cell: Vector2i = available_cells.pop_back()
-		spawn_scene_at_cell(enemy_scene, cell, enemy_z_index)
+		if enemy_scenes.is_empty():
+			push_warning("LevelManager: enemy_scenes is empty. Add enemy scenes in the Inspector.")
+			return
 
+		var cell: Vector2i = available_cells.pop_back()
+		var random_enemy_scene: PackedScene = enemy_scenes.pick_random()
+
+		spawn_scene_at_cell(random_enemy_scene, cell, enemy_z_index)
+
+	# Spawn chests
 	for i in range(chest_count):
 		if available_cells.is_empty():
 			return
@@ -235,14 +281,25 @@ func spawn_scene_at_cell(scene: PackedScene, cell: Vector2i, z_value: int) -> vo
 		return
 
 	var instance = scene.instantiate()
+
+	if instance == null:
+		push_warning("LevelManager: failed to instantiate scene.")
+		return
+
 	object_container.add_child(instance)
 
-	instance.position = get_tile_center(cell)
-	instance.z_index = z_value
+	if instance is Node2D:
+		instance.position = get_tile_center(cell)
+		instance.z_index = z_value
+	else:
+		push_warning("LevelManager: spawned scene root is not Node2D.")
+		return
 
 	if instance is Enemy:
 		instance.add_to_group("enemies")
 		setup_enemy(instance)
+	else:
+		print("Spawned object is not Enemy: ", instance.name)
 
 	print("Spawned object at cell: ", cell, " position: ", instance.position)
 

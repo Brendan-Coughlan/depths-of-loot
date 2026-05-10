@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dc2wj6yxukjol" path="res://scenes/map_generator.tscn" id="5_p57ef"]
 [ext_resource type="Script" uid="uid://cs3l178w5vs2i" path="res://scripts/LevelManager/level_manager.gd" id="6_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://b11ycl41hbu32" path="res://scenes/environment/entry.tscn" id="8_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://boxjv6fteba2k" path="res://scenes/enemies/undead_sentinel.tscn" id="8_dinhu"]
 [ext_resource type="PackedScene" uid="uid://d2jnjhl6cjrql" path="res://scenes/environment/exit.tscn" id="9_vtaks"]
 [ext_resource type="Script" uid="uid://bsonrsr1jia00" path="res://scripts/map/mini_map_viewport.gd" id="10_kvpfn"]
 [ext_resource type="Script" uid="uid://cc2evc56xhm5a" path="res://scripts/map/mini_map_camera.gd" id="10_vtaks"]
@@ -711,7 +712,7 @@ map_generator = NodePath("../MapGenerator")
 entry_scene = ExtResource("8_0tnpc")
 exit_scene = ExtResource("9_vtaks")
 object_container = NodePath("../World/Entities")
-enemy_scene = ExtResource("4_u5sy4")
+enemy_scenes = Array[PackedScene]([ExtResource("4_u5sy4"), ExtResource("8_dinhu")])
 chest_scene = ExtResource("3_lnu2h")
 enemy_count = 1
 chest_count = 10

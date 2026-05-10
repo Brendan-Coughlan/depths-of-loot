@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="LootTable" format=3 uid="uid://dywv7xxrihvjl"]
 
-[ext_resource type="Script" path="res://scripts/loot_entry.gd" id="1_i13qt"]
-[ext_resource type="Script" path="res://scripts/loot_table.gd" id="2_kl064"]
+[ext_resource type="Script" uid="uid://4psh84xkqjcr" path="res://scripts/loot_entry.gd" id="1_i13qt"]
+[ext_resource type="Script" uid="uid://bkhi14pkva4wu" path="res://scripts/loot_table.gd" id="2_kl064"]
 [ext_resource type="Resource" uid="uid://kfe0ln14u72" path="res://resources/loot_entries/boneblade_stalker_bones_drop.tres" id="2_qw4ic"]
 
 [resource]
