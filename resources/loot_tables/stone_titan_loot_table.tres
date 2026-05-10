@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LootTable" format=3 uid="uid://dralq3necerv5"]
+
+[ext_resource type="Script" path="res://scripts/loot_entry.gd" id="1_ankg0"]
+[ext_resource type="Resource" uid="uid://31lnqaw46uuo" path="res://resources/loot_entries/stone_titan_stone_heart_drop.tres" id="2_ka5f4"]
+[ext_resource type="Script" path="res://scripts/loot_table.gd" id="2_yx4pb"]
+
+[resource]
+script = ExtResource("2_yx4pb")
+drops = Array[ExtResource("1_ankg0")]([ExtResource("2_ka5f4")])

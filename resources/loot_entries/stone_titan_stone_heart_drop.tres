@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="LootEntry" format=3 uid="uid://31lnqaw46uuo"]
+
+[ext_resource type="Resource" uid="uid://7s8xdl76jffl" path="res://resources/items/stone_heart.tres" id="1_e20u4"]
+[ext_resource type="Script" path="res://scripts/loot_entry.gd" id="1_rigji"]
+
+[resource]
+script = ExtResource("1_rigji")
+item = ExtResource("1_e20u4")

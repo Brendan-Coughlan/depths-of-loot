@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://7s8xdl76jffl"]
+
+[ext_resource type="Texture2D" uid="uid://y7wfejkiio2s" path="res://assets/magic_gem/PNG/Transperent/Icon49.png" id="1_7pqdi"]
+[ext_resource type="Script" uid="uid://c5dh1m3p8jocx" path="res://scripts/item_data.gd" id="1_gnkkw"]
+
+[resource]
+script = ExtResource("1_gnkkw")
+name = "Stone Heart"
+icon = ExtResource("1_7pqdi")
+stackable = false
+max_stack_size = 1
+value = 200
+metadata/_custom_type_script = "uid://c5dh1m3p8jocx"

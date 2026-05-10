@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://sd4dbbp53aab"]
 
 [ext_resource type="Script" uid="uid://baap6pl3jp53b" path="res://scripts/enemy.gd" id="1_xxh7g"]
-[ext_resource type="Resource" uid="uid://dywv7xxrihvjl" path="res://resources/loot_tables/boneblade_stalker_loot_table.tres" id="2_rikjk"]
+[ext_resource type="Resource" uid="uid://dralq3necerv5" path="res://resources/loot_tables/stone_titan_loot_table.tres" id="2_rxsr2"]
 [ext_resource type="Texture2D" uid="uid://ca6t6xr3ixk8j" path="res://assets/golem/PNG/Golem1/Without_shadow/Golem1_Attack_without_shadow.png" id="3_haclk"]
 [ext_resource type="Texture2D" uid="uid://ctvukbx1uq3e1" path="res://assets/golem/PNG/Golem1/Without_shadow/Golem1_Death_without_shadow.png" id="4_xxh7g"]
 [ext_resource type="Texture2D" uid="uid://bgb4vp6mjtc4w" path="res://assets/golem/PNG/Golem1/Without_shadow/Golem1_Hurt_without_shadow.png" id="5_xxh7g"]
@@ -766,14 +766,14 @@ load_path = "res://.godot/imported/character_panel.png-4e5dab95b05b58878577f801f
 atlas = SubResource("CompressedTexture2D_vb1bo")
 region = Rect2(126, 74, 52, 2)
 
-[node name="stone_titan" type="CharacterBody2D" unique_id=2041274393 node_paths=PackedStringArray("enemy_state_machine") groups=["enemies"]]
+[node name="StoneTitan" type="CharacterBody2D" unique_id=2041274393 node_paths=PackedStringArray("enemy_state_machine") groups=["enemies"]]
 collision_layer = 4
 collision_mask = 256
 script = ExtResource("1_xxh7g")
 enemy_state_machine = NodePath("EnemyStateMachine")
 movement_speed = 25.0
 detection_range = 50.0
-loot_table = ExtResource("2_rikjk")
+loot_table = ExtResource("2_rxsr2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1641038735]
 sprite_frames = SubResource("SpriteFrames_yvtql")
@@ -868,9 +868,9 @@ metadata/_custom_type_script = "uid://bj5aisjxhom3l"
 
 [node name="HealthComponent" type="Node" parent="." unique_id=2087082735]
 script = ExtResource("18_cc6g2")
-base_health = 30
-max_health = 30
-current_health = 30
+base_health = 200
+max_health = 200
+current_health = 200
 
 [node name="AttackOrigin" type="Marker2D" parent="." unique_id=1688768962]
 position = Vector2(1, -2)
