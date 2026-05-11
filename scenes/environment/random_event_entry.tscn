@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://b23fdgb06icwp"]
+
+[ext_resource type="Texture2D" uid="uid://vpcieeu73n5p" path="res://assets/Minimal Dungeon - Asset Pack (v2)/Tileset, Props & UI/tileset, props & ui x2.png" id="1_6cflg"]
+[ext_resource type="Script" uid="uid://dh0xxc7a6smpp" path="res://scripts/environment/random_event_entry.gd" id="1_pkp7j"]
+[ext_resource type="Script" uid="uid://lu75bdyrewtq" path="res://scripts/interactable.gd" id="3_2f1h2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sr2dj"]
+atlas = ExtResource("1_6cflg")
+region = Rect2(512, 162, 32, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pkp7j"]
+size = Vector2(32, 31)
+
+[node name="randomEventEntry" type="Node2D" unique_id=1376089629]
+script = ExtResource("1_pkp7j")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=759968088]
+texture = SubResource("AtlasTexture_sr2dj")
+
+[node name="Interactable" type="Area2D" parent="." unique_id=1080998035]
+collision_layer = 2048
+collision_mask = 0
+script = ExtResource("3_2f1h2")
+interact_name = "Enter Portal"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=774390959]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_pkp7j")

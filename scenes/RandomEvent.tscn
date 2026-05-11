@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ruk5ngm8yjsp" path="res://assets/dungeon/PNG/walls_floor.png" id="1_r4pcj"]
 [ext_resource type="PackedScene" uid="uid://bd4ugym8rbdkw" path="res://scenes/enemies/boneblade_stalker.tscn" id="2_5hx7y"]
 [ext_resource type="PackedScene" uid="uid://dcb603ur3pbnr" path="res://scenes/treasure_chest.tscn" id="3_x56ue"]
-[ext_resource type="PackedScene" uid="uid://d2auwmt7xo2j2" path="res://scenes/player.tscn" id="5_rtvip"]
+[ext_resource type="PackedScene" uid="uid://b23fdgb06icwp" path="res://scenes/environment/random_event_entry.tscn" id="4_de6ts"]
 [ext_resource type="PackedScene" uid="uid://bdkety04mftgw" path="res://scenes/ui/FloorPopupUI.tscn" id="6_de6ts"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_de6ts"]
@@ -260,6 +260,7 @@ sources/1 = SubResource("TileSetAtlasSource_de6ts")
 script = ExtResource("1_6m225")
 large_enemy_scene = ExtResource("2_5hx7y")
 chest_scene = ExtResource("3_x56ue")
+random_event_entry_scene = ExtResource("4_de6ts")
 large_enemy_scale = Vector2(3, 3)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=570107348]
@@ -278,8 +279,10 @@ position = Vector2(283, 99)
 
 [node name="ItemContainer" type="Node2D" parent="." unique_id=517510724]
 
-[node name="Player" parent="." unique_id=1742427560 instance=ExtResource("5_rtvip")]
-visible = false
-
 [node name="FloorPopupUI" parent="." unique_id=640797541 instance=ExtResource("6_de6ts")]
 process_mode = 3
+
+[node name="ExitSpawnPoint" type="Marker2D" parent="." unique_id=1847792852]
+position = Vector2(296, 18)
+
+[node name="EntryContainer" type="Node2D" parent="." unique_id=150216610]
