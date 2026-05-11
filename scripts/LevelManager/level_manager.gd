@@ -61,6 +61,8 @@ var random_event_entry_spawned: bool = false
 var random_event_checked_this_floor: bool = false
 var inside_random_event_room: bool = false
 
+var path_grid: AStarGrid2D = null
+
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player") as CharacterBody2D
@@ -90,6 +92,7 @@ func setup_level() -> void:
 	random_event_entry_spawned = false
 	random_event_checked_this_floor = false
 	inside_random_event_room = false
+	path_grid = null
 
 	if current_floor == boss_floor:
 		setup_boss_room()
@@ -113,6 +116,7 @@ func setup_normal_dungeon() -> void:
 	map_generator.visible = true
 
 	map_generator.generate_map()
+	build_path_grid()
 	choose_entry_and_exit()
 	spawn_entry()
 	spawn_normal_exit()
@@ -176,6 +180,55 @@ func is_valid_2x2_floor(cell: Vector2i) -> bool:
 
 func manhattan_distance(a: Vector2i, b: Vector2i) -> int:
 	return abs(a.x - b.x) + abs(a.y - b.y)
+
+
+func build_path_grid() -> void:
+	if map_generator == null or map_generator.tilemap_layer == null:
+		path_grid = null
+		return
+
+	path_grid = AStarGrid2D.new()
+	path_grid.region = Rect2i(Vector2i.ZERO, map_generator.map_dimensions)
+	path_grid.cell_size = Vector2(map_generator.tilemap_layer.tile_set.tile_size)
+	path_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
+	path_grid.update()
+
+	for x in range(map_generator.map_dimensions.x):
+		for y in range(map_generator.map_dimensions.y):
+			path_grid.set_point_solid(Vector2i(x, y), true)
+
+	for cell in map_generator.get_floor_cells():
+		path_grid.set_point_solid(cell, false)
+
+
+func get_path_between_global_positions(from_global: Vector2, to_global: Vector2) -> Array[Vector2]:
+	var path_points: Array[Vector2] = []
+
+	if path_grid == null or map_generator == null or map_generator.tilemap_layer == null:
+		return path_points
+
+	if inside_random_event_room or not map_generator.visible:
+		return path_points
+
+	var tilemap := map_generator.tilemap_layer
+	var from_cell := tilemap.local_to_map(tilemap.to_local(from_global))
+	var to_cell := tilemap.local_to_map(tilemap.to_local(to_global))
+
+	if not path_grid.is_in_boundsv(from_cell):
+		return path_points
+
+	if not path_grid.is_in_boundsv(to_cell):
+		return path_points
+
+	if path_grid.is_point_solid(from_cell) or path_grid.is_point_solid(to_cell):
+		return path_points
+
+	var cell_path := path_grid.get_id_path(from_cell, to_cell)
+
+	for cell in cell_path:
+		path_points.append(tilemap.to_global(tilemap.map_to_local(cell)))
+
+	return path_points
 
 
 func spawn_entry() -> void:

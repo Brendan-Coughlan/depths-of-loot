@@ -4,9 +4,10 @@ class_name Enemy
 @export var enemy_state_machine: Node
 
 @export var movement_speed: float = 80.0
-@export var attack_range: float = 40.0
+@export var attack_range: float = 52.0
 @export var attack_damage: int = 10
 @export var detection_range: float = 150.0
+@export var chase_stop_range: float = 350.0
 
 @onready var health: HealthComponent = $HealthComponent
 @export var loot_table: LootTable

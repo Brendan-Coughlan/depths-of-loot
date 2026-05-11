@@ -749,7 +749,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mma71"]
-size = Vector2(16, 15)
+size = Vector2(11, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d36jp"]
 size = Vector2(12.5, 18.5)
@@ -780,6 +780,7 @@ collision_mask = 256
 script = ExtResource("1_ype3m")
 enemy_state_machine = NodePath("EnemyStateMachine")
 movement_speed = 25.0
+attack_range = 20.0
 detection_range = 50.0
 loot_table = ExtResource("2_34is1")
 
@@ -787,9 +788,11 @@ loot_table = ExtResource("2_34is1")
 sprite_frames = SubResource("SpriteFrames_ebgy8")
 animation = &"attack_right"
 autoplay = "idle_down"
+frame = 8
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1964603989]
-position = Vector2(0, 1.5)
+position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_mma71")
 
 [node name="HitArea2D" type="Area2D" parent="." unique_id=2117632410]

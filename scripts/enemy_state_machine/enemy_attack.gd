@@ -5,6 +5,7 @@ class_name EnemyAttack
 @export var enemy_sprite: AnimatedSprite2D
 @export var enemy_hitboxes: Array[CollisionShape2D]
 @export var attack_cooldown: float = 0.8
+@export var attack_exit_buffer: float = 12.0
 
 var can_attack: bool = true
 var attacking: bool = false
@@ -40,7 +41,7 @@ func physics_update(_delta: float) -> void:
 
 	var distance := get_attack_distance()
 
-	if distance > enemy.attack_range and not attacking:
+	if distance > enemy.attack_range + attack_exit_buffer and not attacking:
 		Transitioned.emit(self, "chase")
 		return
 
@@ -57,7 +58,10 @@ func get_attack_distance() -> float:
 	if enemy_origin == null or player_target == null:
 		return enemy.global_position.distance_to(enemy.target.global_position)
 
-	return enemy_origin.global_position.distance_to(player_target.global_position)
+	var root_distance := enemy.global_position.distance_to(enemy.target.global_position)
+	var marker_distance := enemy_origin.global_position.distance_to(player_target.global_position)
+
+	return min(root_distance, marker_distance)
 
 
 func attack() -> void:
