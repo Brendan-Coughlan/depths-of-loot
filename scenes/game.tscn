@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://cc2evc56xhm5a" path="res://scripts/map/mini_map_camera.gd" id="10_vtaks"]
 [ext_resource type="PackedScene" uid="uid://d4laxxywaicm6" path="res://scenes/pause_menu.tscn" id="12_dinhu"]
 [ext_resource type="PackedScene" uid="uid://bdkety04mftgw" path="res://scenes/ui/FloorPopupUI.tscn" id="13_kvuet"]
+[ext_resource type="Script" uid="uid://clxcmpys1ahfs" path="res://scripts/map/minimap_markers.gd" id="16_ssvqc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("2_yqjtg")
@@ -755,6 +756,12 @@ light_mask = 3
 visibility_layer = 3
 scale = Vector2(52.021748, 1905.6744)
 script = ExtResource("10_vtaks")
+
+[node name="MiniMapMarkers" type="Control" parent="GUI/MiniMapContainer" unique_id=12781550 node_paths=PackedStringArray("minimap_camera")]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+script = ExtResource("16_ssvqc")
+minimap_camera = NodePath("../MiniMapViewport/MiniMapCamera")
 
 [node name="PauseMenu" parent="." unique_id=1847698206 instance=ExtResource("12_dinhu")]
 

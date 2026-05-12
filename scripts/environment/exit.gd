@@ -15,6 +15,7 @@ func go_to_next_floor() -> void:
 @onready var interactable: Area2D = $Interactable
 
 func _ready() -> void:
+	add_to_group("normal_floor_exit")
 	interactable.interact = _on_interact
 
 func _process(_delta: float) -> void:
