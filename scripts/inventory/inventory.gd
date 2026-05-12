@@ -1,7 +1,7 @@
 extends Node
 class_name Inventory
 
-var gold: int = 100
+@export var gold: int = 25
 
 var slots : Array[InventorySlot]
 var hovered_slot: TextureButton = null
@@ -9,9 +9,6 @@ var hovered_slot: TextureButton = null
 @onready var window : TextureRect = get_node("InventoryWindow")
 @onready var info_text : Label = get_node("InventoryWindow/InfoText")
 @onready var background_blur : TextureRect = get_node("BackgroundBlurTexture")
-
-@export var inactive_slot_texture : AtlasTexture
-@export var active_slot_texture : AtlasTexture
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("inventory"):
@@ -34,9 +31,6 @@ func _ready():
 
 func _on_slot_hovered(slot):
 	hovered_slot = slot
-	#for iter_slot in slots:
-		#iter_slot.get_node("Slot").texture = inactive_slot_texture
-	#hovered_slot.get_node("Slot").texture = inactive_slot_texture
 	update_info_text()
 
 func toggle_window(open : bool):

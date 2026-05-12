@@ -5,20 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://dm3o71k2vlhxd" path="res://scenes/inventory_slot.tscn" id="2_hj2ta"]
 [ext_resource type="Texture2D" uid="uid://bo23885f4qhmr" path="res://assets/UI/PNG/Inventory.png" id="3_ty45s"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ty45s"]
-load_path = "res://.godot/imported/Inventory.png-b18baee9e34592f8fcac9f1c528513e6.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yyk2a"]
-atlas = SubResource("CompressedTexture2D_ty45s")
-region = Rect2(177, 113, 14, 14)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_uae8j"]
-load_path = "res://.godot/imported/Inventory.png-b18baee9e34592f8fcac9f1c528513e6.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s887n"]
-atlas = SubResource("CompressedTexture2D_uae8j")
-region = Rect2(193, 113, 14, 14)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_uae8j"]
 atlas = ExtResource("2_53g1v")
 region = Rect2(240, 176, 16, 16)
@@ -35,8 +21,6 @@ shadow_color = Color(0, 0, 0, 1)
 [node name="Inventory" type="CanvasLayer" unique_id=567974528]
 layer = 2
 script = ExtResource("1_qw0r6")
-inactive_slot_texture = SubResource("AtlasTexture_yyk2a")
-active_slot_texture = SubResource("AtlasTexture_s887n")
 
 [node name="BackgroundBlurTexture" type="TextureRect" parent="." unique_id=1901617191]
 anchors_preset = 8

@@ -7,6 +7,13 @@
 atlas = ExtResource("2_hddt5")
 region = Rect2(177, 113, 14, 14)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_uae8j"]
+load_path = "res://.godot/imported/Inventory.png-b18baee9e34592f8fcac9f1c528513e6.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hddt5"]
+atlas = SubResource("CompressedTexture2D_uae8j")
+region = Rect2(193, 113, 14, 14)
+
 [sub_resource type="LabelSettings" id="LabelSettings_hddt5"]
 font_size = 28
 outline_size = 2
@@ -27,6 +34,7 @@ offset_bottom = 44.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = SubResource("AtlasTexture_bxqf6")
+texture_hover = SubResource("AtlasTexture_hddt5")
 stretch_mode = 5
 script = ExtResource("1_bxqf6")
 
