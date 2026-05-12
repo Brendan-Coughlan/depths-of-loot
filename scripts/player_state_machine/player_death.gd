@@ -11,8 +11,6 @@ func enter() -> void:
 		play_death_animation()
 		await player_sprite.animation_finished
 		print("Player is dead")
-		get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
-
 	else:
 		print("Player sprite not found")
 

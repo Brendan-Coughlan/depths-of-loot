@@ -17,12 +17,12 @@ func _ready() -> void:
 	recalculate_stats()
 
 func _on_died() -> void:
-	#queue_free()
-	
 	player_state_machine.on_child_transition(
 		player_state_machine.current_state,
 		"death"
 	)
+	
+	get_tree().change_scene_to_file("res://scenes/ui/game_over_lose_menu.tscn")
 
 func _on_damaged(amount: int) -> void:
 	print("Took damage:", amount)

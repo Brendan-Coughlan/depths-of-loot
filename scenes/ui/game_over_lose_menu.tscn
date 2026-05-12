@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://b1rm4joha502q"]
+
+[ext_resource type="Script" uid="uid://k7818ab2thms" path="res://scripts/game_over_menu.gd" id="1_s6ayr"]
+[ext_resource type="Texture2D" uid="uid://duyvpy7drttl5" path="res://assets/UI/PNG/game_over_lose_bg.png" id="2_s6ayr"]
+[ext_resource type="Texture2D" uid="uid://bqrlfixtam86r" path="res://assets/UI/PNG/Main_menu.png" id="3_efyim"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ekxnf"]
+texture = ExtResource("2_s6ayr")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1kxf"]
+atlas = ExtResource("3_efyim")
+region = Rect2(189, 34, 56, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhagc"]
+atlas = ExtResource("3_efyim")
+region = Rect2(189, 146, 56, 12)
+
+[node name="GameOverLoseMenu" type="Control" unique_id=1635245020]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 2.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s6ayr")
+
+[node name="Background" type="Panel" parent="." unique_id=580036473]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ekxnf")
+
+[node name="Menu" type="VBoxContainer" parent="." unique_id=26630584]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -192.0
+offset_top = -242.0
+offset_right = 192.0
+offset_bottom = -62.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Restart" type="TextureButton" parent="Menu" unique_id=2060526675]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = SubResource("AtlasTexture_m1kxf")
+stretch_mode = 5
+
+[node name="Quit" type="TextureButton" parent="Menu" unique_id=1339258202]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = SubResource("AtlasTexture_uhagc")
+stretch_mode = 5
+
+[connection signal="pressed" from="Menu/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Menu/Quit" to="." method="_on_quit_pressed"]

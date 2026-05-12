@@ -128,11 +128,12 @@ func go_to_next_floor() -> void:
 
 
 func return_to_surface() -> void:
-	print("DungeonExit: Returning to surface: ", surface_scene_path)
+	#print("DungeonExit: Returning to surface: ", surface_scene_path)
 
-	var main = get_tree().root.get_node_or_null("Main")
-
-	if main != null and main.has_method("load_scene"):
-		main.load_scene(surface_scene_path)
-	else:
-		push_warning("DungeonExit: Main was not found. Cannot return to surface.")
+	#var main = get_tree().root.get_node_or_null("Main")
+#
+	#if main != null and main.has_method("load_scene"):
+		#main.load_scene(surface_scene_path)
+	#else:
+		#push_warning("DungeonExit: Main was not found. Cannot return to surface.")
+	get_tree().change_scene_to_file("res://scenes/ui/game_over_win_menu.tscn")
