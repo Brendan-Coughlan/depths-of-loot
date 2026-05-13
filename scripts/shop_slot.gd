@@ -1,6 +1,8 @@
 extends Control
 class_name ShopSlot
 
+const PURCHASE_SFX = preload("res://assets/Music&Sfx/sfx/purchase.mp3")
+
 var item : ItemData
 var quantity : int
 @onready var item_icon : TextureRect = get_node("Icon")
@@ -43,6 +45,7 @@ func _on_buy_button_pressed() -> void:
 	if player_inventory.gold >= item.value:
 		player_inventory.gold -= item.value
 		player_inventory.add_item(item)
+		play_purchase_sfx()
 
 func _on_sell_button_pressed() -> void:
 	if item == null:
@@ -55,3 +58,10 @@ func _on_sell_button_pressed() -> void:
 	if player_inventory.get_number_of_item(item) > 0:
 		player_inventory.gold += item.value
 		player_inventory.remove_item(item)
+
+func play_purchase_sfx() -> void:
+	var sfx_player := AudioStreamPlayer.new()
+	sfx_player.stream = PURCHASE_SFX
+	sfx_player.finished.connect(sfx_player.queue_free)
+	get_tree().root.add_child(sfx_player)
+	sfx_player.play()

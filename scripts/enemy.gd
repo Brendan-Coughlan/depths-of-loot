@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Enemy
 
+const ENEMY_HURT_SFX = preload("res://assets/Music&Sfx/sfx/enemy_hurt.mp3")
+
 @export var enemy_state_machine: Node
 
 @export var movement_speed: float = 80.0
@@ -15,9 +17,15 @@ class_name Enemy
 var target: Player
 var last_direction: Vector2 = Vector2.DOWN
 var is_dead: bool = false
+var enemy_hurt_sfx_player: AudioStreamPlayer
 
 
 func _ready() -> void:
+	enemy_hurt_sfx_player = AudioStreamPlayer.new()
+	enemy_hurt_sfx_player.name = "EnemyHurtSfxPlayer"
+	enemy_hurt_sfx_player.stream = ENEMY_HURT_SFX
+	add_child(enemy_hurt_sfx_player)
+
 	find_player()
 	disable_all_hitboxes()
 
@@ -61,6 +69,9 @@ func _on_damaged(amount: int) -> void:
 		return
 
 	print("Enemy took damage:", amount)
+
+	if health != null and health.current_health > 0:
+		play_hurt_sfx()
 
 	if enemy_state_machine != null:
 		enemy_state_machine.on_child_transition(
@@ -163,6 +174,13 @@ func enable_hitbox_by_direction(direction: Vector2) -> void:
 
 	if hitbox != null and hitbox is CollisionShape2D:
 		hitbox.disabled = false
+
+func play_hurt_sfx() -> void:
+	if enemy_hurt_sfx_player == null:
+		return
+
+	enemy_hurt_sfx_player.stop()
+	enemy_hurt_sfx_player.play()
 
 func drop_loot():
 	var loot = LootManager.roll_loot(loot_table)

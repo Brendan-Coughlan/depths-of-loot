@@ -1,13 +1,26 @@
 extends State
 class_name PlayerAttack
 
+const PLAYER_ATTACK_SFX = preload("res://assets/Music&Sfx/sfx/player_attack.mp3")
+
 @export var player: Player
 @export var player_sprite: AnimatedSprite2D
 @export var player_hitboxes: Array[CollisionShape2D]
 
+var player_attack_sfx_player: AudioStreamPlayer
+
+
+func _ready() -> void:
+	player_attack_sfx_player = AudioStreamPlayer.new()
+	player_attack_sfx_player.name = "PlayerAttackSfxPlayer"
+	player_attack_sfx_player.stream = PLAYER_ATTACK_SFX
+	add_child(player_attack_sfx_player)
+
+
 func enter() -> void:
 	var dir := player.last_direction
 
+	play_attack_sfx()
 	play_attack_animation()
 	if abs(dir.x) > abs(dir.y):
 		if dir.x < 0:
@@ -56,3 +69,11 @@ func play_attack_animation() -> void:
 func play_if_not_playing(anim: String) -> void:
 	if player_sprite.animation != anim:
 		player_sprite.play(anim)
+
+
+func play_attack_sfx() -> void:
+	if player_attack_sfx_player == null:
+		return
+
+	player_attack_sfx_player.stop()
+	player_attack_sfx_player.play()

@@ -1,5 +1,6 @@
 extends Area2D
 
+const ITEM_PICKUP_SFX = preload("res://assets/Music&Sfx/sfx/item_pickup.mp3")
 
 @export var item: ItemData
 @export var amount: int = 1
@@ -22,4 +23,12 @@ func _on_interact():
 		inventory.add_gold(10)
 	else:
 		inventory.add_item(item)
+	play_item_pickup_sfx()
 	queue_free()
+
+func play_item_pickup_sfx() -> void:
+	var sfx_player := AudioStreamPlayer.new()
+	sfx_player.stream = ITEM_PICKUP_SFX
+	sfx_player.finished.connect(sfx_player.queue_free)
+	get_tree().root.add_child(sfx_player)
+	sfx_player.play()
