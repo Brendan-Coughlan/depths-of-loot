@@ -21,7 +21,7 @@ class_name LevelManager
 @export var enemy_scenes: Array[PackedScene] = []
 
 # Boss room settings
-@export var boss_floor: int = 5
+@export var boss_floor: int = 4
 @export var boss_room_scene: PackedScene
 @export var boss_scene: PackedScene
 
@@ -30,8 +30,19 @@ class_name LevelManager
 @export var chest_count: int = 3
 @export var min_spawn_distance_from_entry: int = 6
 
+@export var reference_floor: int = 3
+@export var reference_map_dimensions: Vector2i = Vector2i(120, 120)
+@export var map_dimension_change_per_floor: Vector2i = Vector2i(15, 15)
+@export var minimum_map_dimensions: Vector2i = Vector2i(60, 60)
+@export var reference_total_steps: int = 2000
+@export var total_steps_change_per_floor: int = 350
+@export var minimum_total_steps: int = 800
+@export var reference_chest_count: int = 8
+@export var chest_count_change_per_floor: int = 2
+@export var minimum_chest_count: int = 1
+
 # Final floor as the boss floor
-@export var max_floor: int = 5
+@export var max_floor: int = 4
 @export var current_floor: int = 1
 
 @export var min_entry_exit_distance: int = 10
@@ -115,6 +126,7 @@ func setup_normal_dungeon() -> void:
 
 	map_generator.visible = true
 
+	apply_floor_scaling()
 	map_generator.generate_map()
 	build_path_grid()
 	choose_entry_and_exit()
@@ -122,6 +134,18 @@ func setup_normal_dungeon() -> void:
 	spawn_normal_exit()
 	place_player()
 	spawn_random_objects()
+
+
+func apply_floor_scaling() -> void:
+	var floor_offset: int = current_floor - reference_floor
+	var scaled_dimensions: Vector2i = reference_map_dimensions + map_dimension_change_per_floor * floor_offset
+
+	scaled_dimensions.x = max(scaled_dimensions.x, minimum_map_dimensions.x)
+	scaled_dimensions.y = max(scaled_dimensions.y, minimum_map_dimensions.y)
+
+	map_generator.map_dimensions = scaled_dimensions
+	map_generator.total_steps = max(reference_total_steps + total_steps_change_per_floor * floor_offset, minimum_total_steps)
+	chest_count = max(reference_chest_count + chest_count_change_per_floor * floor_offset, minimum_chest_count)
 
 
 func choose_entry_and_exit() -> void:
@@ -317,18 +341,15 @@ func spawn_random_objects() -> void:
 
 	available_cells.shuffle()
 
-	for i in range(enemy_count):
+	var enemy_spawn_list: Array[PackedScene] = get_enemy_spawn_list_for_current_floor()
+
+	for enemy_scene in enemy_spawn_list:
 		if available_cells.is_empty():
 			return
 
-		if enemy_scenes.is_empty():
-			push_warning("LevelManager: enemy_scenes is empty. Add enemy scenes in the Inspector.")
-			return
-
 		var cell: Vector2i = available_cells.pop_back()
-		var random_enemy_scene: PackedScene = enemy_scenes.pick_random()
 
-		spawn_scene_at_cell(random_enemy_scene, cell, enemy_z_index)
+		spawn_scene_at_cell(enemy_scene, cell, enemy_z_index)
 
 	for i in range(chest_count):
 		if available_cells.is_empty():
@@ -336,6 +357,41 @@ func spawn_random_objects() -> void:
 
 		var cell: Vector2i = available_cells.pop_back()
 		spawn_scene_at_cell(chest_scene, cell, chest_z_index)
+
+
+func get_enemy_spawn_list_for_current_floor() -> Array[PackedScene]:
+	var spawn_list: Array[PackedScene] = []
+
+	match current_floor:
+		1:
+			add_enemy_scenes_by_index(spawn_list, 0, 2)
+		2:
+			add_enemy_scenes_by_index(spawn_list, 0, 2)
+			add_enemy_scenes_by_index(spawn_list, 1, 1)
+		3:
+			add_enemy_scenes_by_index(spawn_list, 0, 3)
+			add_enemy_scenes_by_index(spawn_list, 1, 2)
+		_:
+			for i in range(enemy_count):
+				if enemy_scenes.is_empty():
+					push_warning("LevelManager: enemy_scenes is empty. Add enemy scenes in the Inspector.")
+					break
+
+				spawn_list.append(enemy_scenes.pick_random())
+
+	spawn_list.shuffle()
+	return spawn_list
+
+
+func add_enemy_scenes_by_index(spawn_list: Array[PackedScene], scene_index: int, count: int) -> void:
+	if scene_index < 0 or scene_index >= enemy_scenes.size():
+		push_warning("LevelManager: enemy_scenes[%d] is missing. Cannot spawn requested floor enemies." % scene_index)
+		return
+
+	var enemy_scene: PackedScene = enemy_scenes[scene_index]
+
+	for i in range(count):
+		spawn_list.append(enemy_scene)
 
 
 func spawn_scene_at_cell(scene: PackedScene, cell: Vector2i, z_value: int) -> void:

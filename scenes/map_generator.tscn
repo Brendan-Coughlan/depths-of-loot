@@ -1542,7 +1542,7 @@ sources/1 = SubResource("TileSetAtlasSource_3r8pq")
 script = ExtResource("2_g3i74")
 gen_seed = 3543887711
 map_dimensions = Vector2i(120, 120)
-total_steps = 6000
+total_steps = 2000
 boundary_padding = 2
 tilemap_layer = NodePath("TileMapLayer")
 
