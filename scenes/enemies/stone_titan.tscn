@@ -383,6 +383,38 @@ region = Rect2(768, 384, 128, 128)
 atlas = ExtResource("7_xxh7g")
 region = Rect2(896, 384, 128, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_uatr7"]
+atlas = ExtResource("7_xxh7g")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xp7f6"]
+atlas = ExtResource("7_xxh7g")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjakl"]
+atlas = ExtResource("7_xxh7g")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0mcag"]
+atlas = ExtResource("7_xxh7g")
+region = Rect2(384, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifp4m"]
+atlas = ExtResource("7_xxh7g")
+region = Rect2(512, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghnaj"]
+atlas = ExtResource("7_xxh7g")
+region = Rect2(640, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngof7"]
+atlas = ExtResource("7_xxh7g")
+region = Rect2(768, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4xwo"]
+atlas = ExtResource("7_xxh7g")
+region = Rect2(896, 128, 128, 128)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_yvtql"]
 animations = [{
 "frames": [{
@@ -728,7 +760,31 @@ animations = [{
 "name": &"run_right",
 "speed": 8.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uatr7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xp7f6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjakl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0mcag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifp4m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghnaj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngof7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4xwo")
+}],
 "loop": true,
 "name": &"run_up",
 "speed": 8.0
@@ -778,10 +834,9 @@ loot_table = ExtResource("2_rxsr2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1641038735]
 sprite_frames = SubResource("SpriteFrames_yvtql")
-animation = &"attack_right"
+animation = &"run_up"
 autoplay = "idle_down"
-frame = 8
-frame_progress = 1.0
+frame_progress = 0.9748573
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1964603989]
 position = Vector2(-1, -3.25)

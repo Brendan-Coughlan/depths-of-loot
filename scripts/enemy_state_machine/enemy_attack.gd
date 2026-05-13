@@ -9,6 +9,7 @@ class_name EnemyAttack
 
 var can_attack: bool = true
 var attacking: bool = false
+var attack_token: int = 0
 
 
 func enter() -> void:
@@ -70,6 +71,8 @@ func attack() -> void:
 
 	can_attack = false
 	attacking = true
+	attack_token += 1
+	var current_attack_token := attack_token
 
 	update_attack_direction()
 
@@ -83,22 +86,32 @@ func attack() -> void:
 
 	await enemy_sprite.animation_finished
 
+	if current_attack_token != attack_token:
+		return
+
 	if hitbox_index != -1:
 		enemy_hitboxes[hitbox_index].disabled = true
 
 	attacking = false
+	play_idle_animation()
 
 	await get_tree().create_timer(attack_cooldown).timeout
+
+	if current_attack_token != attack_token:
+		return
+
 	can_attack = true
 
 
 func exit() -> void:
+	attack_token += 1
 	disable_all_hitboxes()
 
 	if enemy != null:
 		enemy.velocity = Vector2.ZERO
 
 	attacking = false
+	can_attack = true
 
 
 func update_attack_direction() -> void:
@@ -163,16 +176,36 @@ func play_attack_animation() -> void:
 		return
 
 	var dir := enemy.last_direction
+	var animation_name := "attack_down"
 
 	if abs(dir.x) > abs(dir.y):
 		enemy_sprite.flip_h = dir.x < 0
-		enemy_sprite.play("attack_right")
+		animation_name = "attack_right"
 	else:
 		enemy_sprite.flip_h = false
 
 		if dir.y < 0:
-			enemy_sprite.play("attack_up")
+			animation_name = "attack_up"
 		else:
-			enemy_sprite.play("attack_down")
+			animation_name = "attack_down"
 
-	enemy_sprite.frame = 0
+	enemy_sprite.play(animation_name)
+	enemy_sprite.set_frame_and_progress(0, 0.0)
+
+
+func play_idle_animation() -> void:
+	if enemy == null or enemy_sprite == null:
+		return
+
+	var dir := enemy.last_direction
+
+	if abs(dir.x) > abs(dir.y):
+		enemy_sprite.flip_h = dir.x < 0
+		enemy_sprite.play("idle_right")
+	else:
+		enemy_sprite.flip_h = false
+
+		if dir.y < 0:
+			enemy_sprite.play("idle_up")
+		else:
+			enemy_sprite.play("idle_down")
