@@ -30,6 +30,40 @@ The project was developed using the **Godot Engine** and **GDScript**, with an e
 
 ---
 
+## System Architecture
+```mermaid
+flowchart TD
+    Main[Main Scene]
+    Game[Game Singleton]
+    LootManager[LootManager Singleton]
+
+    Main --> Market[Market Scene]
+    Main --> Dungeon[Dungeon Scene]
+    Main --> Music[Background Music System]
+
+    Dungeon --> LevelManager[Level Manager]
+    LevelManager --> MapGenerator[Procedural Map Generator]
+    LevelManager --> Player[Player]
+    LevelManager --> Enemies[Enemies]
+    LevelManager --> Chests[Treasure Chests]
+    LevelManager --> Exits[Dungeon Exits]
+    LevelManager --> RandomEvent[Random Event Room]
+
+    Player --> PlayerSM[Player State Machine]
+    Enemies --> EnemySM[Enemy State Machine]
+
+    Player --> Inventory[Inventory System]
+    Enemies --> Combat[Combat System]
+    Player --> Combat
+    Combat --> Health[Health Component]
+
+    Enemies --> LootManager
+    Chests --> LootManager
+    LootManager --> Items[Item Pickups]
+    Items --> Inventory
+```
+---
+
 ## Gameplay Loop
 
 1. Start in the marketplace
