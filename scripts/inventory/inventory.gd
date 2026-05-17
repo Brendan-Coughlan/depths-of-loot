@@ -1,6 +1,8 @@
 extends Node
 class_name Inventory
 
+signal inventory_changed
+
 @export var gold: int = 25
 
 var slots : Array[InventorySlot]
@@ -22,7 +24,7 @@ func _on_exit_button_pressed():
 func _ready():
 	toggle_window(false)
 	update_info_text()
-	
+
 	for child in get_node("InventoryWindow/SlotContainer").get_children():
 		slots.append(child)
 		child.set_item(null)
@@ -41,30 +43,44 @@ func toggle_window(open : bool):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		
 
-func add_item(item : ItemData):
+
+func add_item(item : ItemData) -> bool:
+	if item == null:
+		return false
+
 	var slot = get_slot_to_add(item)
-	
+
 	if slot == null:
-		return
-		
+		return false
+
 	if slot.item == null:
 		slot.set_item(item)
 	elif slot.item == item:
 		slot.add_item()
-		
-	get_parent().recalculate_stats()
 
-func remove_item(item : ItemData):
+	if get_parent().has_method("recalculate_stats"):
+		get_parent().recalculate_stats()
+
+	inventory_changed.emit()
+	return true
+
+func remove_item(item : ItemData) -> bool:
+	if item == null:
+		return false
+
 	var slot = get_slot_to_remove(item)
-  
+
 	if slot == null or slot.item != item:
-		return
-	
+		return false
+
 	slot.remove_item()
-	
-	get_parent().recalculate_stats()
+
+	if get_parent().has_method("recalculate_stats"):
+		get_parent().recalculate_stats()
+
+	inventory_changed.emit()
+	return true
 
 func get_slot_to_add(item : ItemData) -> InventorySlot:
 	for slot in slots:
@@ -74,30 +90,31 @@ func get_slot_to_add(item : ItemData) -> InventorySlot:
 	for slot in slots:
 		if slot.item == null:
 			return slot
-	
+
 	return null
 
 func get_slot_to_remove(item : ItemData) -> InventorySlot:
 	for slot in slots:
 		if slot.item == item:
 			return slot
-			
+
 	return null
 
 func get_number_of_item(item : ItemData) -> int:
 	var total = 0
-	
+
 	for slot in slots:
 		if slot.item == item:
 			total += slot.quantity
-			
+
 	return total
-	
+
 func update_info_text():
 	if hovered_slot and hovered_slot.item:
 		info_text.text = hovered_slot.item.name
 	else:
 		info_text.text = ""
-		
+
 func add_gold(amount: int):
 	gold += amount
+	inventory_changed.emit()
